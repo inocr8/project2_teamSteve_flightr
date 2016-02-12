@@ -88,4 +88,14 @@ describe('Flights', function(){
         expect(sortedArray[0]).to.deep.equal(flight1);
     });
 
+    it('should sort all flights by price, lowest to highest', function(){
+        expect(flights.sortByPrice(flights.data)[0]).to.deep.equal({
+            "departure": "Edinburgh",
+            "arrival": "Canberra",
+            "departing": new Date("2016-03-28T11:00:00"),
+            "arriving": new Date("2016-03-29T13:00:00"),
+            "price": 212
+        });
+    });
+
 });
