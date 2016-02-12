@@ -44,14 +44,40 @@ describe('Flights', function(){
         flights.addFlights(flightData);
     });
 
-    it('should return flight(s), given criteria of date, origin, and destination', function(){
+    it('should return flight(s), given criteria of departing, arriving, departure, arrival', function(){
         var options = {
             departing: new Date('2016-03-28'),
+            arriving: new Date('2016-03-29'),
             departure: 'Edinburgh',
             arrival: 'Melbourne'
         }
         var queriedFlights = flights.flightQuery(options);
         expect(queriedFlights.length).to.equal(2);
+    });
+
+    it('should return flight(s), given departure', function(){
+        var options = {
+            departure: 'Edinburgh'
+        }
+        var queriedFlights = flights.flightQuery(options);
+        expect(queriedFlights.length).to.equal(6);
+    });
+
+    it('should return flight(s), given arrival', function(){
+        var options = {
+            arrival: 'Sydney'
+        }
+        var queriedFlights = flights.flightQuery(options);
+        expect(queriedFlights.length).to.equal(2);
+    });
+
+    it('should return flight(s), given departure and departing', function(){
+        var options = {
+            departure: 'Edinburgh',
+            departing: new Date('2016-03-28')
+        }
+        var queriedFlights = flights.flightQuery(options);
+        expect(queriedFlights.length).to.equal(6);
     });
 
 });
