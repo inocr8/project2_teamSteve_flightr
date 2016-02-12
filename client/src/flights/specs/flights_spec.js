@@ -44,11 +44,11 @@ describe('Flights', function(){
         flights.addFlights(flightData);
     });
 
-    it('should return flight(s), given criteria of data, origin, and destination', function(){
+    it('should return flight(s), given criteria of date, origin, and destination', function(){
         var options = {
-            date: new Date('2016-03-28'),
-            origin: 'Edinburgh',
-            destination: 'Melbourne'
+            departing: new Date('2016-03-28'),
+            departure: 'Edinburgh',
+            arrival: 'Melbourne'
         }
         var queriedFlights = flights.flightQuery(options);
         expect(queriedFlights.length).to.equal(2);
