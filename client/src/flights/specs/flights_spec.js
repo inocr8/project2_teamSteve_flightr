@@ -4,8 +4,11 @@ var expect = require('chai').expect;
 
 describe('Flights', function(){
 
+    beforeEach(function createFlights(){
+        flights = new FlightsModel(flightData)
+    });
+
     it('should have seeded data at start', function(){
-        var flights = new FlightsModel(flightData);
         expect(flights.data).to.deep.equal(flightData);
     });
 
