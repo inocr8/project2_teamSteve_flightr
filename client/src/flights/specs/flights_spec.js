@@ -80,4 +80,12 @@ describe('Flights', function(){
         expect(queriedFlights.length).to.equal(6);
     });
 
+    it('should sort flight by price, lowest to highest', function(){
+        var flight1 = flights.data[0];
+        var flight2 = flights.data[1];
+        var flightsArray = [flight2, flight1];
+        var sortedArray = flights.sortByPrice(flightsArray);
+        expect(sortedArray[0]).to.deep.equal(flight1);
+    });
+
 });
