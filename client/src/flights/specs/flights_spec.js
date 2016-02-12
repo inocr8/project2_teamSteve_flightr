@@ -17,6 +17,13 @@ describe('Flights', function(){
         expect(date).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
     });
 
+    it('should return true for date equality, ignoring time', function(){
+        var date1 = new Date("2016-03-28T08:00:00");
+        var date2 = new Date("2016-03-28T12:30:00");
+        var bool = flights.sameDay(date1, date2);
+        expect(bool).to.equal(true);
+    });
+
     it('should be able to add a flight, with corrected formated date', function(){
         var flight = flightData[0];
         flights.addFlight(flight);
@@ -36,23 +43,15 @@ describe('Flights', function(){
         flights = new FlightsModel();
         flights.addFlights(flightData);
     });
-    
+
+    it('should return flight(s), given criteria of data, origin, and destination', function(){
+        var options = {
+            date: new Date('2016-03-28'),
+            origin: 'Edinburgh',
+            destination: 'Melbourne'
+        }
+        var queriedFlights = flights.flightQuery(options);
+        expect(queriedFlights.length).to.equal(2);
+    });
+
 });
-
-
-
-
-
-    // it('should return flight given data, origin, and destination', function(){
-    //     var date = '28-03-2016';
-    //     var origin = 'Edinburgh';
-    //     var destination = 'Melbourne';
-    //     var flight = flights.flightQuery(date, origin, destination);
-    //     expect(flight).to.deep.equal({
-    //         "departure": "Edinburgh",
-    //         "arrival": "Melbourne",
-    //         "departing": "28-03-2016 T08:00:00",
-    //         "arriving": "29-03-2016 T10:00:00",
-    //         "price": 248
-    //     });
-    // });
