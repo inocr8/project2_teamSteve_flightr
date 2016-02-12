@@ -1,0 +1,112 @@
+ [
+{
+"name": "The Plaza",
+"pricePerPerson": 32,
+"rooms": 10,
+"stars": 3,
+"address": {
+"building": "3",
+"street": "Park Avenue",
+"city": "Melbourne",
+"zip": 3498890
+}
+},
+{
+"name": "The Grand Hotel",
+"pricePerPerson": 142,
+"rooms": 43,
+"stars": 5,
+"address": {
+"building": "90",
+"street": "Grand Lane",
+"city": "Melbourne",
+"zip": 4788278
+}
+},
+{
+"name": "Bargain Hostel",
+"pricePerPerson": 12,
+"rooms": 60,
+"stars": 1,
+"address": {
+"building": "7",
+"street": "Harbour Lane",
+"city": "Melbourne",
+"zip": 5789046
+}
+},
+{
+"name": "Four Seasons",
+"pricePerPerson": 78,
+"rooms": 130,
+"stars": 4,
+"address": {
+"building": "67",
+"street": "Hyde Street",
+"city": "Sydney",
+"zip": 8947548
+}
+},
+{
+"name": "City Hotel",
+"pricePerPerson": 55,
+"rooms": 14,
+"stars": 2,
+"address": {
+"building": "10",
+"street": "Bourne Street",
+"city": "Sydney",
+"zip": 3673290
+}
+},
+{
+"name": "Backpackers",
+"pricePerPerson": 12,
+"rooms": 102,
+"stars": 1,
+"address": {
+"building": "64",
+"street": "Stell Avenue",
+"city": "Sydney",
+"zip": 4567824
+}
+},
+{
+"name": "Royal Hotel",
+"pricePerPerson": 45,
+"rooms": 20,
+"stars": 3,
+"address": {
+"building": "17",
+"street": "Kestrel Street",
+"city": "Canberra",
+"zip": 567818
+}
+},
+{
+"name": "Surfer's Inn",
+"pricePerPerson": 80,
+"rooms": 8,
+"stars": 4,
+"address": {
+"building": "35",
+"street": "High Street",
+"city": "Canberra",
+"zip": 6758473
+}
+},
+{
+"name": "Hilton",
+"pricePerPerson": 102,
+"rooms": 170,
+"stars": 4,
+"address": {
+"building": "50",
+"street": "May Lane",
+"city": "Canberra",
+"zip": 5678427
+}
+}
+]
+
+
