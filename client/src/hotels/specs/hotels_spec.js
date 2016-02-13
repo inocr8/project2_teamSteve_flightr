@@ -18,6 +18,14 @@ describe('Hotels', function(){
     assert.equal(1, hotels.data.length);
   });
 
-  // it('shoul
+  it('should sort hotel by price, from lowest to highest', function(){
+    var hotel1 = hotels.data[0];
+    var hotel2 = hotels.data[1];
+    var hotelsArray = [hotel2, hotel1];
+    var sortedArray = hotels.sortByPrice(hotelsArray);
+    expect(sortedArray[0]).to.deep.equal(hotel1);
+  });
 
-})
+  it
+
+});

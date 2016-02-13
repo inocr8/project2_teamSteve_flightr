@@ -7,7 +7,7 @@ HotelsManager.prototype = {
     this.data.push(hotel);
   },
   
-  sortDataByPrice: function(hotels){
+  sortByPrice: function(hotels){
     var sortedData = hotels.sort(function(a,b){
       if (a.pricePerPerson > b.pricePerPerson) {
     return 1;
