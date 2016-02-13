@@ -1,13 +1,25 @@
-var Hotel = function(params){
-  this.name = params.name;
-  this.rooms = params.name;
-  this.stars = params.stars;
-  this.address = {
-    building: params.building,
-    streets: params.streets,
-    city: params.city,
-    zip: params.zip
-  };
+var Hotels = function(){
+  this.data = [];
 }
 
-module.exports = Hotel;
+Hotels.prototype = {
+  addHotel: function(hotel){
+    this.data.push(hotel);
+  },
+  
+  sortByCheapest: function(hotels){
+    hotels.sort(function(a,b){
+      if(a.pricePerPerson > b.pricePerPerson){
+        return 1;
+      }
+      if(a.pricePerPerson < b.pricePerPerson){
+        return -1;
+      }
+    });
+  }  
+
+
+
+}
+
+module.exports = Hotels;
