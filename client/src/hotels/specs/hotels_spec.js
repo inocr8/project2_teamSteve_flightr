@@ -19,16 +19,15 @@ describe('Hotels', function(){
   });
 
   it('should sort hotel by price, from lowest to highest', function(){
-    var hotel1 = hotels.data[0];
-    var hotel2 = hotels.data[1];
-    var hotelsArray = [hotel2, hotel1];
-    var sortedArray = hotels.sortByPrice(hotelsArray);
-    expect(sortedArray[0]).to.deep.equal(hotel1);
+    var hotel1 = hotelData[0];
+    var hotel2 = hotelData[1];
+    hotels.addHotel(hotel1);
+    hotels.addHotel(hotel2);
+    expect(hotels.data[0]).to.deep.equal(hotel1);
   });
 
   it('should sort all hotels by price, from lowest to highest', function(){
     var hotelsArray = hotelData;
-    var sortedArray = hotels.sortByPrice(hotelsArray);
     expect(sortedArray[0]).to.deep.equal({
       "name": "Bargain Hostel",
       "pricePerPerson": 12,
