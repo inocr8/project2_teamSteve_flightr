@@ -5,20 +5,20 @@ var FlightsModel = function(){
 
 FlightsModel.prototype = {
 
-    returnJourneyQuery: function(options){
+    returnJourneyQuery: function(itinerary){
         
         var outgoingRequest = {
-            departure: options.departure,
-            arrival: options.arrival,
-            departing: options.departing
+            departure: itinerary.departureAirport,
+            arrival: itinerary.arrivalAirport,
+            departing: itinerary.outboundDate
         };
 
         var outgoingFlights = this.flightQuery(outgoingRequest);
 
         var returnRequest = {
-            departure: options.arrival,
-            arrival: options.departure,
-            departing: options.arriving
+            departure: itinerary.arrivalAirport,
+            arrival: itinerary.departureAirport,
+            departing: itinerary.returnDate
         };
 
         var returnFlights = this.flightQuery(returnRequest);

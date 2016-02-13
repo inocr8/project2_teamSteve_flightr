@@ -110,10 +110,10 @@ describe('Flights', function(){
 
     it('should return outgoing flights and return flights, given journey itinerary', function(){
         var itinerary = {
-            "departure": "Edinburgh",
-            "arrival": "Canberra",
-            "departing": new Date("2016-03-28T11:00:00"),
-            "returning": new Date("2016-04-11T13:00:00")
+            departureAirport: "Edinburgh",
+            arrivalAirport: "Canberra",
+            outboundDate: new Date("2016-03-28T11:00:00"),
+            returnDate: new Date("2016-04-11T13:00:00")
         };
         var journeys = flights.returnJourneyQuery(itinerary);
         // console.log('journeys', journeys);
