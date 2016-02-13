@@ -31,7 +31,9 @@ HotelsManager.prototype = {
       }
     } 
     return cheapest;
-  }
+  },
+
+  displayByCity: function(){}
 
 
 };
