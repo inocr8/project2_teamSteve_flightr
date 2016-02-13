@@ -34,13 +34,23 @@ HotelsManager.prototype = {
   },
 
   hotelsByCity: function(city){
-    var cities = [];
+    var cityHotels = [];
     for(hotel of this.data){
       if(hotel.city === city){
-        cities.push(hotel);
+        cityHotels.push(hotel);
       }
     } 
-    return cities;
+    return cityHotels;
+  },
+
+  hotelsByCountry: function(country){
+    var countryHotels = [];
+    for(hotel of this.data){
+      if(hotel.country === country){
+        countryHotels.push(hotel);
+      }
+    }
+    return countryHotels;
   }
 
 
