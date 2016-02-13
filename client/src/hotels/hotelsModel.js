@@ -1,8 +1,8 @@
-var Hotels = function(){
+var HotelsModel = function(){
   this.data = [];
 }
 
-Hotels.prototype = {
+HotelsModel.prototype = {
   addHotel: function(hotel){
     this.data.push(hotel);
   },
@@ -13,4 +13,4 @@ Hotels.prototype = {
 
 }
 
-module.exports = Hotels;
+module.exports = HotelsModel;
