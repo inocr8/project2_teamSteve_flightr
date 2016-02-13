@@ -17,7 +17,6 @@ PackagesManager.prototype = {
 
         var hotels = this.hotelsManager.hotelsByCity(itinerary.destination);
         console.log('hotels', hotels);
-        var hotels = this.hotelsManager.sortByPrice(hotels);
 
         var packageOptions = {
             itinerary: itinerary,

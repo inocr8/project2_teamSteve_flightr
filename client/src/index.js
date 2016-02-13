@@ -17,6 +17,7 @@ window.onload = function(){
     hotelsData.forEach(function(hotel){
         hotelsManager.addHotel(hotel);
     });
+    hotelsManager.sortByPrice();
 
     console.log('data', hotelsManager.data);
 
