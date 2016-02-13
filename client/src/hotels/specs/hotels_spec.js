@@ -26,12 +26,30 @@ describe('Hotels', function(){
     expect(sortedArray[0]).to.deep.equal(hotel1);
   });
 
+<<<<<<< HEAD
   it('should returns all hotels from a city', function(){
     hotelData.forEach(function(hotel){
         hotels.addHotel(hotel);
     });
     var hotelsInCanberra = hotels.hotelsByCity('Canberra');
     expect(hotelsInCanberra.length).to.equal(3);
+=======
+  it('should sort all hotels by price, from lowest to highest', function(){
+    var hotelsArray = hotelData;
+    var sortedArray = hotels.sortByPrice(hotelsArray);
+    expect(sortedArray[0]).to.deep.equal({
+      "name": "Bargain Hostel",
+      "pricePerPerson": 12,
+      "rooms": 60,
+      "stars": 1,
+      "address": {
+        "building": "7",
+        "street": "Harbour Lane",
+        "city": "Melbourne",
+        "zip": 5789046
+      }
+    });
+>>>>>>> a92cca51830084405f2aed27322e09ee9affa3d0
   });
 
 });
