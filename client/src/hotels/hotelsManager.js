@@ -33,9 +33,17 @@ HotelsManager.prototype = {
     return cheapest;
   },
 
-  displayByCity: function(){}
+  displayByCity: function(city){
+    var cities = [];
+    for(hotel of this.data){
+      if(hotel.city === city){
+        cities.push(hotel);
+      }
+    } 
+    return cities;
+  }
 
 
 };
 
-module.exports = Hotels;
+module.exports = HotelsManager;
