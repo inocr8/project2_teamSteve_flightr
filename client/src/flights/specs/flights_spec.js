@@ -1,5 +1,6 @@
 var FlightsModel = require('../flightsModel.js');
-var flightData = require('./flights_test_data')
+var outgoingFlightsData = require('./outgoing_flights_test_data.json');
+var returnFlightsData = require('./return_flights_test_data.json');
 var expect = require('chai').expect;
 
 describe('Flights', function(){
@@ -12,7 +13,7 @@ describe('Flights', function(){
     });
 
     it('should parse date into correct JS format', function(){
-        var departure = flightData[0].departing;
+        var departure = outgoingFlightsData[0].departing;
         var date = flights.parseDate(departure);
         expect(date).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
     });
@@ -25,14 +26,14 @@ describe('Flights', function(){
     });
 
     it('should be able to add a flight, with corrected formated date', function(){
-        var flight = flightData[0];
+        var flight = outgoingFlightsData[0];
         flights.addFlight(flight);
         expect(flights.data[0].departure).to.equal("Edinburgh");
         expect(flights.data[0].departing).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
     });
 
     it('should be able to add multiple flight', function(){
-        flights.addFlights(flightData);
+        flights.addFlights(outgoingFlightsData);
         expect(flights.data[0].departure).to.equal("Edinburgh");
         expect(flights.data[1].departure).to.equal("Edinburgh");
     });
@@ -41,7 +42,7 @@ describe('Flights', function(){
 describe('Flights', function(){
     beforeEach(function createFlights(){
         flights = new FlightsModel();
-        flights.addFlights(flightData);
+        flights.addFlights(outgoingFlightsData);
     });
 
     it('should return flight(s), given criteria of departing, arriving, departure, arrival', function(){
