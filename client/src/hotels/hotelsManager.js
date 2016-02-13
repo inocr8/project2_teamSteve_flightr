@@ -7,7 +7,7 @@ HotelsManager.prototype = {
     this.data.push(hotel);
   },
   
-  sortDataByPrice: function(hotels){
+  sortByPrice: function(hotels){
     var sortedData = hotels.sort(function(a,b){
       if (a.pricePerPerson > b.pricePerPerson) {
     return 1;
@@ -22,7 +22,7 @@ HotelsManager.prototype = {
     return sortedData;
   },  
 
-  displayCheapest: function(){
+  hotelsReturnCheapest: function(){
     var cheapest = [];
     cheapest.push(this.data[0]);
     for(var i = 1; i < this.data.length; i++){
@@ -33,7 +33,7 @@ HotelsManager.prototype = {
     return cheapest;
   },
 
-  displayByCity: function(city){
+  hotelsByCity: function(city){
     var cities = [];
     for(hotel of this.data){
       if(hotel.city === city){
@@ -42,6 +42,7 @@ HotelsManager.prototype = {
     } 
     return cities;
   }
+
 
 
 };
