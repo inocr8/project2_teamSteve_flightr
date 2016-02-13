@@ -1,9 +1,9 @@
-var FlightsModel = function(){
+var FlightsManager = function(){
     var self = this;
     self.data = [];
 };
 
-FlightsModel.prototype = {
+FlightsManager.prototype = {
 
     returnJourneyQuery: function(itinerary){
         
@@ -99,20 +99,4 @@ FlightsModel.prototype = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = FlightsModel
+module.exports = FlightsManager;
