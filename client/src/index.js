@@ -1,4 +1,4 @@
-var SearchView = require('./search_view.js');
+var View = require('./view.js');
 
 var flightsData = require('./flightsData.json');
 
@@ -12,5 +12,5 @@ window.onload = function(){
 
     var packagesManager = new PackagesManager(flightsManager);
 
-    var searchView = new SearchView(packagesManager);
+    var view = new View(packagesManager);
 };

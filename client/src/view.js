@@ -1,6 +1,6 @@
 var Itinerary = require('./itinerary/itinerary.js');
 
-var SearchView = function(packagesManager){
+var View = function(packagesManager){
     var self = this;
 
     self.packagesManager = packagesManager;
@@ -36,7 +36,7 @@ var SearchView = function(packagesManager){
     };
 };
 
-SearchView.prototype = {
+View.prototype = {
 
     renderPackage: function(package){
 
@@ -55,4 +55,4 @@ SearchView.prototype = {
     }
 };
 
-module.exports = SearchView;
+module.exports = View;
