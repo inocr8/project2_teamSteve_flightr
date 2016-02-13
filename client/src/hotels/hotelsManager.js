@@ -36,22 +36,14 @@ HotelsManager.prototype = {
   hotelsByCity: function(city){
     var cityHotels = [];
     for(hotel of this.data){
-      if(hotel.city === city){
+      if(hotel.address.city === city){
         cityHotels.push(hotel);
       }
     } 
     return cityHotels;
-  },
-
-  hotelsByCountry: function(country){
-    var countryHotels = [];
-    for(hotel of this.data){
-      if(hotel.country === country){
-        countryHotels.push(hotel);
-      }
-    }
-    return countryHotels;
   }
+
+ 
 
 
 
