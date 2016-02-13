@@ -22,7 +22,7 @@ HotelsManager.prototype = {
     return sortedData;
   },  
 
-  displayCheapest: function(){
+  hotelsReturnCheapest: function(){
     var cheapest = [];
     cheapest.push(this.data[0]);
     for(var i = 1; i < this.data.length; i++){
@@ -33,7 +33,16 @@ HotelsManager.prototype = {
     return cheapest;
   },
 
-  displayByCity: function(){}
+  hotelsByCity: function(city){
+    var cities = [];
+    for(hotel of this.data){
+      if(hotel.city === city){
+        cities.push(hotel);
+      }
+    } 
+    return cities;
+  }
+
 
 
 };
