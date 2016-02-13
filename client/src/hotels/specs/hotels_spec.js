@@ -26,6 +26,4 @@ describe('Hotels', function(){
     expect(sortedArray[0]).to.deep.equal(hotel1);
   });
 
-  it
-
 });
