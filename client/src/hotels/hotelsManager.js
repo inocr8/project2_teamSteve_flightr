@@ -36,7 +36,7 @@ HotelsManager.prototype = {
   hotelsByCity: function(city){
     var cities = [];
     for(hotel of this.data){
-      if(hotel.city === city){
+      if(hotel.address.city === city){
         cities.push(hotel);
       }
     } 
