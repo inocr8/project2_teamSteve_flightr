@@ -1,11 +1,11 @@
-var HotelsModel = require('../hotelsModel.js');
+var HotelsManager = require('../hotelsManager.js');
 var hotelData = require('./hotels_test_data.json')
 var assert = require('chai').assert;
 var expect = require('chai').expect;
 
 describe('Hotels', function(){
   beforeEach(function createHotels(){
-    hotels = new HotelsModel();
+    hotels = new HotelsManager();
   });
 
   it('should start off with no data', function(){
@@ -17,5 +17,7 @@ describe('Hotels', function(){
     hotels.addHotel(hotel);
     assert.equal(1, hotels.data.length);
   });
+
+  // it('shoul
 
 })
