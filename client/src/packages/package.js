@@ -9,7 +9,8 @@ Package.prototype = {
     totalPrice: function(){
         var total
         = this.outboundFlight.price
-        + this.returnFlight.price;
+        + this.returnFlight.price
+        + this.hotel.pricePerPerson;
 
         return total;
     }

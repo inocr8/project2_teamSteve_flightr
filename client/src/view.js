@@ -17,6 +17,7 @@ var View = function(packagesManager){
     // Views
     self.outboundFlight = document.querySelector('#outbound-flight');
     self.returnFlight = document.querySelector('#return-flight');
+    self.hotel = document.querySelector('#hotel')
 
     self.packageBreakdown = document.querySelector('#package-breakdown');
 
@@ -49,6 +50,10 @@ View.prototype = {
         =   '<p>Departing: ' + package.returnFlight.departure + ' ' + package.returnFlight.departing + '</p>'
         +   '<p>Arriving: ' + package.returnFlight.arrival + ' ' + package.returnFlight.arriving + '</p>'
         +   '<p>Price: ' + package.returnFlight.price + '</p>';
+
+        this.hotel.innerHTML
+        =   '<p>' + package.hotel.name + ', ' + package.hotel.stars + ' star(s)</p>'
+        +   '<p>Price Per Person: ' + package.hotel.pricePerPerson + '</p>';
 
         this.packageBreakdown.innerHTML
         =   '<p>Total: ' + package.totalPrice() + '</p>';

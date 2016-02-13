@@ -5,7 +5,7 @@ var Itinerary = function(options){
     this.outboundDate = options.outboundDate;
     this.returnDate = options.returnDate;
 
-    this.destination = options.departureAirport;
+    this.destination = options.arrivalAirport;
     this.checkin = null;
     this.checkout = null;
 };
