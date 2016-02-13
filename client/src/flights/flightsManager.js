@@ -1,9 +1,34 @@
-var FlightsModel = function(){
+var FlightsManager = function(){
     var self = this;
     self.data = [];
 };
 
-FlightsModel.prototype = {
+FlightsManager.prototype = {
+
+    returnJourneyQuery: function(itinerary){
+        
+        var outgoingRequest = {
+            departure: itinerary.departureAirport,
+            arrival: itinerary.arrivalAirport,
+            departing: itinerary.outboundDate
+        };
+
+        var outboundFlights = this.flightQuery(outgoingRequest);
+
+        var returnRequest = {
+            departure: itinerary.arrivalAirport,
+            arrival: itinerary.departureAirport,
+            departing: itinerary.returnDate
+        };
+
+        var returnFlights = this.flightQuery(returnRequest);
+
+        return {
+            outboundFlights: this.sortByPrice(outboundFlights),
+            returnFlights: this.sortByPrice(returnFlights)
+        };
+    },
+
     flightQuery: function(options){
         var self = this;
 
@@ -74,20 +99,4 @@ FlightsModel.prototype = {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-module.exports = FlightsModel
+module.exports = FlightsManager;
