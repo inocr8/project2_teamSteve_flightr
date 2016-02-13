@@ -26,4 +26,12 @@ describe('Hotels', function(){
     expect(sortedArray[0]).to.deep.equal(hotel1);
   });
 
+  it('should returns all hotels from a city', function(){
+    hotelData.forEach(function(hotel){
+        hotels.addHotel(hotel);
+    });
+    var hotelsInCanberra = hotels.hotelsByCity('Canberra');
+    expect(hotelsInCanberra.length).to.equal(3);
+  });
+
 });

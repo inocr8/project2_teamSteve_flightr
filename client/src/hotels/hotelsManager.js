@@ -37,7 +37,9 @@ HotelsManager.prototype = {
     var cityHotels = [];
     for(hotel of this.data){
       if(hotel.address.city === city){
+
         cityHotels.push(hotel);
+
       }
     } 
     return cityHotels;
