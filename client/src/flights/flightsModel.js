@@ -4,6 +4,31 @@ var FlightsModel = function(){
 };
 
 FlightsModel.prototype = {
+
+    returnJourneyQuery: function(options){
+        
+        var outgoingRequest = {
+            departure: options.departure,
+            arrival: options.arrival,
+            departing: options.departing
+        };
+
+        var outgoingFlights = this.flightQuery(outgoingRequest);
+
+        var returnRequest = {
+            departure: options.arrival,
+            arrival: options.departure,
+            departing: options.arriving
+        };
+
+        var returnFlights = this.flightQuery(returnRequest);
+
+        return {
+            outgoingFlights: outgoingFlights,
+            returnFlights: returnFlights
+        };
+    },
+
     flightQuery: function(options){
         var self = this;
 

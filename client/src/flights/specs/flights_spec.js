@@ -40,7 +40,7 @@ describe('Flights', function(){
 });
 
 describe('Flights', function(){
-    beforeEach(function createFlights(){
+    beforeEach(function createFlightsAndSeedData(){
         flights = new FlightsModel();
         flights.addFlights(outgoingFlightsData);
     });
@@ -99,4 +99,25 @@ describe('Flights', function(){
         });
     });
 
+});
+
+describe('Flights', function(){
+    beforeEach(function createFlightsAndSeedData(){
+        flights = new FlightsModel();
+        flights.addFlights(outgoingFlightsData);
+        flights.addFlights(returnFlightsData);
+    });
+
+    it('should return outgoing flights and return flights, given journey itinerary', function(){
+        var itinerary = {
+            "departure": "Edinburgh",
+            "arrival": "Canberra",
+            "departing": new Date("2016-03-28T11:00:00"),
+            "returning": new Date("2016-04-11T13:00:00")
+        };
+        var journeys = flights.returnJourneyQuery(itinerary);
+        // console.log('journeys', journeys);
+        expect(journeys.outgoingFlights.length).to.equal(2);
+        expect(journeys.returnFlights.length).to.equal(2);
+    });
 });
