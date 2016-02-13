@@ -117,7 +117,7 @@ describe('Flights', function(){
         };
         var journeys = flights.returnJourneyQuery(itinerary);
         // console.log('journeys', journeys);
-        expect(journeys.outgoingFlights.length).to.equal(2);
+        expect(journeys.outboundFlights.length).to.equal(2);
         expect(journeys.returnFlights.length).to.equal(2);
     });
 });

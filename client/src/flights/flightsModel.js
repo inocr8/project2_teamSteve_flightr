@@ -13,7 +13,7 @@ FlightsModel.prototype = {
             departing: itinerary.outboundDate
         };
 
-        var outgoingFlights = this.flightQuery(outgoingRequest);
+        var outboundFlights = this.flightQuery(outgoingRequest);
 
         var returnRequest = {
             departure: itinerary.arrivalAirport,
@@ -24,8 +24,8 @@ FlightsModel.prototype = {
         var returnFlights = this.flightQuery(returnRequest);
 
         return {
-            outgoingFlights: outgoingFlights,
-            returnFlights: returnFlights
+            outboundFlights: this.sortByPrice(outboundFlights),
+            returnFlights: this.sortByPrice(returnFlights)
         };
     },
 
