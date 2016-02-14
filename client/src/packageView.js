@@ -19,13 +19,19 @@ PackageView.prototype = {
     },
 
     rebuildFlight: function(flight){
+        var view = {
+            flight: flight,
+            numberOfPersons: this.numberOfPersons
+        };
+
         return Mustache.render(
-            '<div>'
-        +       '<span class="date">{{displayDates.departing.date}}</span>'
-        +       '<span class="from">{{departure}}</span>'
-        +       '<span class="to">to {{arrival}}</span>'
-        +       '<span class="time">Dep {{displayDates.departing.time}} - Arr {{displayDates.arriving.time}}</span>'
-        +   '</div>', flight);
+            '<div class="package-flight">'
+        +       '<span class="date">{{flight.displayDates.departing.date}}</span>'
+        +       '<span class="from">{{flight.departure}}</span>'
+        +       '<span class="to">to {{flight.arrival}}</span>'
+        +       '<span class="time">Dep {{flight.displayDates.departing.time}} - Arr {{flight.displayDates.arriving.time}}</span>'
+        +       '<span class="price">{{numberOfPersons}} x £{{flight.price}}</span'
+        +   '</div>', view);
     }
 };
 
