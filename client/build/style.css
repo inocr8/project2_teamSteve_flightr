@@ -1,20 +1,89 @@
-.flight-options {
-    display: inline-block;
-    border: 1px solid black;
+body {
+
 }
 
 span {
     display: block;
 }
 
+/* Flight Options
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.flight-options {
+    display: inline-block;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 1.8rem .8rem .8rem .8rem;
+    margin: 0 .2rem;
+}
+
 .flight-options.best-value {
-    background-color: tomato;
+    border: 1px solid tomato;
+    position: relative;
 }
 
 .flight-options.selected {
-    border: 3px solid red;
+    background-color: tomato;
+    border: 1px solid tomato;
+    color: #fff;
 }
 
 .flight-options:hover {
-    border: 3px solid wheat;
+    cursor: pointer;
+}
+
+:not(.selected).flight-options:hover {
+    background-color: #eee;
+    color: #000;
+}
+
+.flight-options.best-value:before {
+    content: "Best Value";
+    color: #fff;
+    font-size: .8rem;
+    text-align: center;
+    padding: .1rem 0;
+    position: absolute;
+    background-color: tomato;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.flight-options span.price {
+    font-size: 1.2rem;
+}
+
+.flight-options span.time {
+    font-size: .8rem;
+}
+
+
+/* Package
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.package-flight {
+    display: inline-block;
+    padding: 1rem;
+}
+
+.package-flight span.date {
+    color: #000;
+    font-weight: 600;
+}
+
+.package-flight span.from,
+.package-flight span.to {
+    color: #555;
+    font-weight: 600;
+}
+
+.package-flight span.time {
+    color: #555;
+}
+
+.package-flight span.price {
+    color: #555;
+    font-weight: 600;
 }
