@@ -6,14 +6,22 @@ var Package = function(options){
 };
 
 Package.prototype = {
-    totalPrice: function(){
+    totalPricePerPerson: function(){
         var total
         = this.outboundFlight.price
         + this.returnFlight.price
         + this.hotel.pricePerPerson;
 
         return total;
+    },
+
+    totalPrice: function(){
+        return this.totalPricePerPerson() * this.itinerary.numberOfPersons;
     }
+
+    // summary: function(){
+
+    // }
 };
 
 module.exports = Package;

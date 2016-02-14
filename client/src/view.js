@@ -60,7 +60,9 @@ View.prototype = {
         +   '<p>Price Per Person: ' + package.hotel.pricePerPerson + '</p>';
 
         this.packageBreakdown.innerHTML
-        =   '<p>Total: ' + package.totalPrice() + '</p>';
+        =   '<p>Price Per Person: ' + package.totalPricePerPerson() + '</p>'
+        +   '<p>Number of Persons: ' + package.itinerary.numberOfPersons + '</p>'
+        +   '<p>Total Price: ' + package.totalPrice() + '</p>';
     }
 };
 
