@@ -31,6 +31,11 @@ PackageOptions.prototype = {
         this.currentPackage.outboundFlight = flight;
     },
 
+    updateCurrentPackageReturnFlight: function(key){
+        var flight = this.returnFlights[key];
+        this.currentPackage.returnFlight = flight;
+    }
+
 
 };
 
