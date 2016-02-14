@@ -12,6 +12,8 @@ var View = function(packagesManager){
     self.outboundDate = document.querySelector('#outbound-date');
     self.returnDate = document.querySelector('#return-date');
 
+    self.numberOfPersons = document.querySelector('#number-of-persons');
+
     self.searchButton = document.querySelector('#search-button');
 
     // Views
@@ -24,6 +26,8 @@ var View = function(packagesManager){
     self.searchButton.onclick = function(){
 
         var itinerary = new Itinerary({
+            numberOfPersons: self.numberOfPersons.value,
+
             departureAirport: self.departureAirport.value,
             arrivalAirport: self.arrivalAirport.value,
 

@@ -1,4 +1,6 @@
 var Itinerary = function(options){
+    this.numberOfPersons = options.numberOfPersons;
+
     this.departureAirport = options.departureAirport;
     this.arrivalAirport = options.arrivalAirport;
 
