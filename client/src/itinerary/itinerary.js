@@ -7,7 +7,7 @@ var Itinerary = function(options){
     this.outboundDate = options.outboundDate;
     this.returnDate = options.returnDate;
 
-    this.dates = this.formatDates(this.outboundDate, this.returnDate);
+    this.displayDates = this.formatDisplayDates(this.outboundDate, this.returnDate);
 
     this.destination = options.arrivalAirport;
     this.checkin = null;
@@ -15,7 +15,7 @@ var Itinerary = function(options){
 };
 
 Itinerary.prototype = {
-    formatDates: function(outboundDate, returnDate){
+    formatDisplayDates: function(outboundDate, returnDate){
         var dateOptions = {
             weekday: 'short',
             day: 'numeric',
