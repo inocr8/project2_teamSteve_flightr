@@ -14,7 +14,7 @@ describe('Flight', function(){
         var departing = new Date('2016-03-28T08:00:00');
         var arriving = new Date('Tue, 29 Mar 2016 10:00:00 GMT');
 
-        var dates = Flight.prototype.formatDates(departing, arriving);
+        var dates = Flight.prototype.formatDisplayDates(departing, arriving);
         expect(dates.departing.date).to.equal('Mon, Mar 28, 2016');
         expect(dates.departing.time).to.equal('9:00:00 AM');
         expect(dates.arriving.date).to.equal('Tue, Mar 29, 2016');

@@ -5,7 +5,7 @@ var Flight = function(options){
     this.arriving = this.parseDate(options.arriving),
     this.price = options.price;
 
-    this.dates = this.formatDates(this.departing, this.arriving);
+    this.displayDates = this.formatDisplayDates(this.departing, this.arriving);
 }
 
 Flight.prototype = {
@@ -28,7 +28,7 @@ Flight.prototype = {
         return new Date(dateString);
     },
 
-    formatDates: function(departing, arriving){
+    formatDisplayDates: function(departing, arriving){
         var dateOptions = {
             weekday: 'short',
             day: 'numeric',
