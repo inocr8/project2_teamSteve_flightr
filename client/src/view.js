@@ -1,80 +1,90 @@
 var Itinerary = require('./itinerary/itinerary.js');
-var Mustache = require('mustache');
+var OutboundFlightsView = require('./outboundFlightsView.js');
+var ReturnFlightsView = require('./returnFlightsView.js');
 
 var View = function(packagesManager){
-    var self = this;
-
-    self.packagesManager = packagesManager;
+    this.packagesManager = packagesManager;
 
     // Form
-    self.departureAirport = document.querySelector('#departure-airport');
-    self.arrivalAirport = document.querySelector('#arrival-airport');
+    this.departureAirport = document.querySelector('#departure-airport');
+    this.arrivalAirport = document.querySelector('#arrival-airport');
 
-    self.outboundDate = document.querySelector('#outbound-date');
-    self.returnDate = document.querySelector('#return-date');
+    this.outboundDate = document.querySelector('#outbound-date');
+    this.returnDate = document.querySelector('#return-date');
 
-    self.numberOfPersons = document.querySelector('#number-of-persons');
+    this.numberOfPersons = document.querySelector('#number-of-persons');
 
-    self.searchButton = document.querySelector('#search-button');
+    this.searchButton = document.querySelector('#search-button');
 
     // Views
-    self.outboundFlight = document.querySelector('#outbound-flight');
-    self.returnFlight = document.querySelector('#return-flight');
-    self.hotel = document.querySelector('#hotel')
+    this.hotel = document.querySelector('#hotel')
 
-    self.packageBreakdown = document.querySelector('#package-breakdown');
+    this.packageBreakdown = document.querySelector('#package-breakdown');
 
-    self.searchButton.onclick = function(){
+    this.searchButton.onclick = function(){
 
         var itinerary = new Itinerary({
-            numberOfPersons: self.numberOfPersons.value,
+            numberOfPersons: this.numberOfPersons.value,
 
-            departureAirport: self.departureAirport.value,
-            arrivalAirport: self.arrivalAirport.value,
+            departureAirport: this.departureAirport.value,
+            arrivalAirport: this.arrivalAirport.value,
 
-            outboundDate: new Date(self.outboundDate.value),
-            returnDate: new Date(self.returnDate.value)
+            outboundDate: new Date(this.outboundDate.value),
+            returnDate: new Date(this.returnDate.value)
         });
+        var packageOptions = this.packagesManager.createPackageOptions(itinerary);
 
-        var packageOptions = self.packagesManager.createPackageOptions(itinerary);
-        var bestValuePackage = self.packagesManager.bestValuePackage(packageOptions);
-        self.renderPackage(bestValuePackage);
-    };
+        this.renderPackageOptions(packageOptions);
+
+    }.bind(this);
 };
 
 View.prototype = {
 
-    renderPackage: function(package){
+    // renderPackage: function(package){
 
-        var dateOptions = {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
-        };
+    //     var dateOptions = {
+    //         year: 'numeric',
+    //         month: 'short',
+    //         day: 'numeric'
+    //     };
 
-        var display = {
+    //     var display = {
 
-        };
+    //     };
 
-        this.outboundFlight.innerHTML = Mustache.render('<p>Departing: {{outboundFlight.departure}} {{dates.outboundFlight.departing}}</p><p>Arriving: {{outboundFlight.arrival}} {{dates.outboundFlight.arriving}}</p><p>Price: {{outboundFlight.price}}</p>', package);
+    //     this.outboundFlights.innerHTML = Mustache.render(
+    //         '<p>Dep: {{outboundFlight.departure}} {{displayDates.outboundFlight.departing}}</p>'
+    //         +'<p>Arr: {{outboundFlight.arrival}} {{outboundFlight.dates.arriving}}</p>'
+    //         +'<p>£{{outboundFlight.price}}pp</p>', package);
 
-        // this.outboundFlight.innerHTML
-        // =   '<p>Departing: ' + package.outboundFlight.departure + ' ' + package.outboundFlight.departing.toLocaleDateString('en-GB', dateOptions) + '</p>'
-        // +   '<p>Arriving: ' + package.outboundFlight.arrival + ' ' + package.outboundFlight.arriving + '</p>'
-        // +   '<p>Price: ' + package.outboundFlight.price + '</p>';
+    //     // this.outboundFlight.innerHTML
+    //     // =   '<p>Departing: ' + package.outboundFlight.departure + ' ' + package.outboundFlight.departing.toLocaleDateString('en-GB', dateOptions) + '</p>'
+    //     // +   '<p>Arriving: ' + package.outboundFlight.arrival + ' ' + package.outboundFlight.arriving + '</p>'
+    //     // +   '<p>Price: ' + package.outboundFlight.price + '</p>';
 
-        this.returnFlight.innerHTML
-        =   Mustache.render('<p>Departing: {{returnFlight.departure}} {{dates.returnFlight.departing}}</p><p>Arriving: {{returnFlight.arrival}} {{dates.returnFlight.arriving}}</p><p>Price: {{returnFlight.price}}</p>', package);
+    //     this.returnFlights.innerHTML
+    //     =   Mustache.render('<p>Departing: {{returnFlight.departure}} {{dates.returnFlight.departing}}</p><p>Arriving: {{returnFlight.arrival}} {{dates.returnFlight.arriving}}</p><p>Price: {{returnFlight.price}}</p>', package);
 
-        this.hotel.innerHTML
-        =   Mustache.render('<p>{{hotel.name}}, {{hotel.stars}} star(s)</p>'
-        +   '<p>Price Per Person: {{hotel.pricePerPerson}}</p>', package);
+    //     this.hotel.innerHTML
+    //     =   Mustache.render('<p>{{hotel.name}}, {{hotel.stars}} star(s)</p>'
+    //     +   '<p>Price Per Person: {{hotel.pricePerPerson}}</p>', package);
 
-        this.packageBreakdown.innerHTML
-        =   Mustache.render('<p>Price Per Person: {{totalPricePerPerson}}</p>'
-        +   '<p>Number of Persons: {{itinerary.numberOfPersons}}</p>'
-        +   '<p>Total Price: {{totalPrice}}</p>', package);
+    //     this.packageBreakdown.innerHTML
+    //     =   Mustache.render('<p>Price Per Person: {{totalPricePerPerson}}</p>'
+    //     +   '<p>Number of Persons: {{itinerary.numberOfPersons}}</p>'
+    //     +   '<p>Total Price: {{totalPrice}}</p>', package);
+    // },
+
+    renderPackageOptions: function(packageOptions){
+
+        var outboundFlightsView = new OutboundFlightsView(packageOptions);
+        var returnFlightsView = new ReturnFlightsView(packageOptions);
+
+        outboundFlightsView.rebuildFlightOptions();
+        returnFlightsView.rebuildFlightOptions();
     }
+
 };
 
 module.exports = View;
