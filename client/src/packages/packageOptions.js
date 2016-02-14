@@ -28,12 +28,12 @@ PackageOptions.prototype = {
 
     updateCurrentPackageOutboundFlight: function(key){
         var flight = this.outboundFlights[key];
-        this.currentPackage.outboundFlight = flight;
+        this.currentPackage.updateOutboundFlight(flight);
     },
 
     updateCurrentPackageReturnFlight: function(key){
         var flight = this.returnFlights[key];
-        this.currentPackage.returnFlight = flight;
+        this.currentPackage.updateReturnFlight(flight);
     }
 
 

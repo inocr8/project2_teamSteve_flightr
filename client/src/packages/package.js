@@ -8,6 +8,7 @@ var Package = function(options){
     this.totalPrice = this.calcTotalPrice();
 
     // this.dates = this.formatDates();
+    this.optionsUpdated = undefined;
 };
 
 Package.prototype = {
@@ -23,6 +24,16 @@ Package.prototype = {
     calcTotalPrice: function(){
         return this.calcTotalPricePerPerson() * this.itinerary.numberOfPersons;
     },
+
+    updateOutboundFlight: function(flight){
+        this.outboundFlight = flight;
+        this.optionsUpdated();
+    },
+
+    updateReturnFlight: function(flight){
+        this.returnFlight = flight;
+        this.optionsUpdated();
+    }
 
     // formatDates: function(){
     //     return {
