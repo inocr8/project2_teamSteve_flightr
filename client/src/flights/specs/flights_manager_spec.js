@@ -12,12 +12,6 @@ describe('Flights', function(){
         expect(flights.data).to.deep.equal([]);
     });
 
-    it('should parse date into correct JS format', function(){
-        var departure = outgoingFlightsData[0].departing;
-        var date = flights.parseDate(departure);
-        expect(date).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
-    });
-
     it('should return true for date equality, ignoring time', function(){
         var date1 = new Date("2016-03-28T08:00:00");
         var date2 = new Date("2016-03-28T12:30:00");
