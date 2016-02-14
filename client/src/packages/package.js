@@ -3,10 +3,15 @@ var Package = function(options){
     this.outboundFlight = options.outboundFlight;
     this.returnFlight = options.returnFlight;
     this.hotel = options.hotel;
+
+    this.totalPricePerPerson = this.calcTotalPricePerPerson();
+    this.totalPrice = this.calcTotalPrice();
+
+    this.dates = this.formatDates();
 };
 
 Package.prototype = {
-    totalPricePerPerson: function(){
+    calcTotalPricePerPerson: function(){
         var total
         = this.outboundFlight.price
         + this.returnFlight.price
@@ -15,8 +20,21 @@ Package.prototype = {
         return total;
     },
 
-    totalPrice: function(){
-        return this.totalPricePerPerson() * this.itinerary.numberOfPersons;
+    calcTotalPrice: function(){
+        return this.calcTotalPricePerPerson() * this.itinerary.numberOfPersons;
+    },
+
+    formatDates: function(){
+        return {
+            outboundFlight: {
+                departing:this.outboundFlight.departing.toDateString(),
+                arriving: this.outboundFlight.arriving.toDateString()
+            },
+            returnFlight: {
+                departing: this.returnFlight.departing.toDateString(),
+                arriving: this.returnFlight.arriving.toDateString()
+            }
+        }
     }
 
     // summary: function(){

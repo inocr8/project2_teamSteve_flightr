@@ -1,4 +1,5 @@
 var Itinerary = require('./itinerary/itinerary.js');
+var Mustache = require('mustache');
 
 var View = function(packagesManager){
     var self = this;
@@ -45,24 +46,34 @@ View.prototype = {
 
     renderPackage: function(package){
 
-        this.outboundFlight.innerHTML
-        =   '<p>Departing: ' + package.outboundFlight.departure + ' ' + package.outboundFlight.departing + '</p>'
-        +   '<p>Arriving: ' + package.outboundFlight.arrival + ' ' + package.outboundFlight.arriving + '</p>'
-        +   '<p>Price: ' + package.outboundFlight.price + '</p>'
+        var dateOptions = {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric'
+        };
+
+        var display = {
+
+        };
+
+        this.outboundFlight.innerHTML = Mustache.render('<p>Departing: {{outboundFlight.departure}} {{dates.outboundFlight.departing}}</p><p>Arriving: {{outboundFlight.arrival}} {{dates.outboundFlight.arriving}}</p><p>Price: {{outboundFlight.price}}</p>', package);
+
+        // this.outboundFlight.innerHTML
+        // =   '<p>Departing: ' + package.outboundFlight.departure + ' ' + package.outboundFlight.departing.toLocaleDateString('en-GB', dateOptions) + '</p>'
+        // +   '<p>Arriving: ' + package.outboundFlight.arrival + ' ' + package.outboundFlight.arriving + '</p>'
+        // +   '<p>Price: ' + package.outboundFlight.price + '</p>';
 
         this.returnFlight.innerHTML
-        =   '<p>Departing: ' + package.returnFlight.departure + ' ' + package.returnFlight.departing + '</p>'
-        +   '<p>Arriving: ' + package.returnFlight.arrival + ' ' + package.returnFlight.arriving + '</p>'
-        +   '<p>Price: ' + package.returnFlight.price + '</p>';
+        =   Mustache.render('<p>Departing: {{returnFlight.departure}} {{dates.returnFlight.departing}}</p><p>Arriving: {{returnFlight.arrival}} {{dates.returnFlight.arriving}}</p><p>Price: {{returnFlight.price}}</p>', package);
 
         this.hotel.innerHTML
-        =   '<p>' + package.hotel.name + ', ' + package.hotel.stars + ' star(s)</p>'
-        +   '<p>Price Per Person: ' + package.hotel.pricePerPerson + '</p>';
+        =   Mustache.render('<p>{{hotel.name}}, {{hotel.stars}} star(s)</p>'
+        +   '<p>Price Per Person: {{hotel.pricePerPerson}}</p>', package);
 
         this.packageBreakdown.innerHTML
-        =   '<p>Price Per Person: ' + package.totalPricePerPerson() + '</p>'
-        +   '<p>Number of Persons: ' + package.itinerary.numberOfPersons + '</p>'
-        +   '<p>Total Price: ' + package.totalPrice() + '</p>';
+        =   Mustache.render('<p>Price Per Person: {{totalPricePerPerson}}</p>'
+        +   '<p>Number of Persons: {{itinerary.numberOfPersons}}</p>'
+        +   '<p>Total Price: {{totalPrice}}</p>', package);
     }
 };
 
