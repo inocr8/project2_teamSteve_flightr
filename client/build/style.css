@@ -1,0 +1,28 @@
+.outbound-flight-option,
+.return-flight-option {
+    display: inline-block;
+    border: 1px solid black;
+    margin: 1rem;
+}
+
+
+.flight-options {
+    display: inline-block;
+    border: 1px solid black;
+}
+
+.flight-options span {
+    display: block;
+}
+
+.flight-options.best-value {
+    background-color: tomato;
+}
+
+.flight-options.selected {
+    border: 3px solid red;
+}
+
+.flight-options:hover {
+    border: 3px solid wheat;
+}
