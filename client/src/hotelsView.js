@@ -10,7 +10,7 @@ HotelsView.prototype = {
 
     rebuildHotelOptions: function(){
         console.log('hotels view called');
-        this.element.innerHTML = Mustache.render('<p>{{itinerarary.destination}} Hotels</p>', this.packageOptions);
+        this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
 
         var hotels = this.packageOptions.hotels;
         for (var key in hotels) {
