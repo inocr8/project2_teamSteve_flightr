@@ -6,6 +6,68 @@ span {
     display: block;
 }
 
+/* Nav
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.tabs {
+  position: relative;   
+  min-height: 600px; /* This part sucks */
+  clear: both;
+  margin: 25px 0;
+}
+.tab {
+  float: left;
+  width: 33.333333%;
+}
+.tab label {
+    text-align: center;
+    display: block;
+    width: 100%;
+  background: #eee; 
+  padding: 10px 0; 
+  border-left: 1px solid white; 
+  border-right: 1px solid white; 
+  margin-left: -1px; 
+  position: relative;
+  left: 1px; 
+}
+.tab [type=radio] {
+  display: none;   
+}
+.content {
+  position: absolute;
+  top: 2.42rem;
+  left: 0;
+  background: white;
+  display: none;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  border-top: 1px solid tomato; 
+}
+[type=radio]:checked ~ label {
+  background: tomato;
+  border-bottom: 1px solid tomato;
+  color: white;
+  z-index: 2;
+}
+
+#map {
+    margin-left: -999%;
+}
+
+[type=radio]:checked ~ #map {
+    margin: 0;
+    border: 3px solid red;
+}
+
+
+[type=radio]:checked ~ label ~ .content {
+  /*z-index: 1;*/
+  display: block;
+}
+
+
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -63,6 +125,7 @@ span {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #hotels {
     display: inline-block;
+    vertical-align: top;
 }
 
 .hotel-options {
