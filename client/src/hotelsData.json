@@ -165,8 +165,8 @@ module.exports = [
 "street": "Hyde Street",
 "city": "Sydney",
 "zip": 8947548,
-"lat": -37.81743203370275,
-"lng": 144.9668582088212,
+"lat": -33.8860,
+"lng": 151.2103,
 "latLng": {"lat":-33.88630, "lng":151.2103}
 }
 },
