@@ -61,9 +61,14 @@ span {
 
 /* Hotel Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+#hotels {
+    display: inline-block;
+}
 
 .hotel-options {
-    display: inline-block;
+    /*display: inline-block;*/
+    list-style-type: none;
+    width: 5.5rem;
     color: #555;
     border: 1px solid #ccc;
     padding: 1.8rem .8rem .8rem .8rem;
@@ -149,6 +154,7 @@ span {
 
 /* HotelMap---------------------------------------------------------- */
 #map {
+    display: inline-block;
  height: 500px;
  width: 500px;   
 }
