@@ -39,6 +39,7 @@ PackageOptions.prototype = {
     updateCurrentPackageHotel: function(key){
         var hotel = this.hotels[key];
         this.currentPackage.updateHotel(hotel);
+        return hotel;
     }
 
 

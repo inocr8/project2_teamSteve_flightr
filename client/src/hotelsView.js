@@ -1,12 +1,23 @@
 var Mustache = require('mustache');
+var HotelMap = require('./map/map.js');
 
 var HotelsView = function(packageOptions){
     this.packageOptions = packageOptions;
-    // this.map = map;
+    this.hotelMap = new HotelMap(packageOptions.currentPackage.hotel);
     this.element = document.querySelector('#hotels');
 };
 
 HotelsView.prototype = {
+
+    populateMap: function(){
+        var hotels = this.packageOptions.hotels;
+        for (var key in hotels) {
+            var hotel = hotels[key];
+
+            this.map.addInfoWindow(hotel);
+
+        }
+    },
 
     rebuildHotelOptions: function(){
         console.log('hotels view called');
@@ -54,8 +65,9 @@ HotelsView.prototype = {
     notifyHotelSelection: function(element){
         var key = element.id;
 
-        this.packageOptions.updateCurrentPackageHotel(key);
+        var hotel = this.packageOptions.updateCurrentPackageHotel(key);
         this.rebuildHotelOptions(this.packageOptions);
+        this.hotelMap.setCenter(hotel);
 
         console.log('current', this.packageOptions.currentPackage);
     }

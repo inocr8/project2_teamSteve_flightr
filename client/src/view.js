@@ -141,6 +141,7 @@ View.prototype = {
         outboundFlightsView.rebuildFlightOptions();
         returnFlightsView.rebuildFlightOptions();
         hotelsView.rebuildHotelOptions();
+        hotelsView.populateMap();
     },
 
     renderPackageBreakdown: function(package){

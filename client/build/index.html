@@ -7,7 +7,8 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+  
   <link rel="stylesheet" type="text/css" href="style.css">
   <link rel="stylesheet" type="text/css" href="normalize.css">
 </head>
@@ -35,9 +36,39 @@
 
   </form>
 
-  <div id="outbound-flights"></div>
-  <div id="hotels"></div>
-  <div id="return-flights"></div>
-  <div id="package-breakdown"></div>
+
+  <div class="tabs">
+      
+     <div class="tab">
+         <input type="radio" id="tab-1" name="tab-group-1" checked>
+         <label for="tab-1">Flights</label>
+         
+         <div id="flights-tab" class="content">
+           <div id="outbound-flights"></div>
+           <div id="return-flights"></div>
+         </div>
+     </div>
+      
+     <div class="tab">
+         <input type="radio" id="tab-2" name="tab-group-1">
+         <label for="tab-2">Hotels</label>
+         
+         <div id="hotels-tab" class="content">
+           <div id="hotels"></div>
+         </div> 
+         <div id="map"></div>
+     </div>
+      
+      <div class="tab">
+         <input type="radio" id="tab-3" name="tab-group-1">
+         <label for="tab-3">Package</label>
+       
+         <div id="package-tab" class="content">
+         </div>
+     </div>
+      
+  </div>
+
+<div id="package-breakdown"></div>
 </body>
 </html>
