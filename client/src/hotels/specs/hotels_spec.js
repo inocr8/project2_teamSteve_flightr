@@ -19,16 +19,20 @@ describe('Hotels', function(){
   });
 
   it('should sort hotel by price, from lowest to highest', function(){
-    var hotel1 = hotelData[0];
-    var hotel2 = hotelData[1];
+    var hotel1 = hotelData[1];
+    var hotel2 = hotelData[0];
     hotels.addHotel(hotel1);
     hotels.addHotel(hotel2);
-    expect(hotels.data[0]).to.deep.equal(hotel1);
+    hotels.sortByPrice();
+    expect(hotels.data[0]).to.deep.equal(hotel2);
   });
 
   it('should sort all hotels by price, from lowest to highest', function(){
-    var hotelsArray = hotelData;
-    expect(sortedArray[0]).to.deep.equal({
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    hotels.sortByPrice();
+    expect(hotels.data[0]).to.deep.equal({
       "name": "Bargain Hostel",
       "pricePerPerson": 12,
       "rooms": 60,
