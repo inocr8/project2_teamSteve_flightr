@@ -11,7 +11,7 @@ span {
 
 .tabs {
   position: relative;   
-  min-height: 600px; /* This part sucks */
+  min-height: 400px;  This part sucks 
   clear: both;
   margin: 25px 0;
 }
@@ -65,6 +65,7 @@ span {
 [type=radio]:checked ~ label ~ .content {
   /*z-index: 1;*/
   display: block;
+  width: 100%;
 }
 
 
@@ -184,6 +185,13 @@ span {
 
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#package-breakdown {
+/*    position: absolute;
+    bottom: 0;*/
+    display: block;
+    border: 3px solid red;
+}
 
 .package-flight,
 .package-hotel {
