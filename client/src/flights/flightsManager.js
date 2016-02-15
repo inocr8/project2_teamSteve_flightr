@@ -68,6 +68,10 @@ FlightsManager.prototype = {
         return this.sortByPrice(flights)[0];
     },
 
+    earliestFlight: function(flights){
+        return this.sortByDeparting(flights)[0];
+    },
+
     addFlight: function(flight){
         this.data.push(new Flight(flight));
     },
