@@ -20,7 +20,13 @@ HotelMap.prototype = {
       // icon: icon
     });
     return marker
+  },
+  setCenter: function(hotel){
+    var hotelLatLng = hotel.address.latLng;
+    this.map.setCenter(hotelLatLng);
   }
+
+
 };
 
 module.exports = HotelMap;
