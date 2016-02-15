@@ -1,21 +1,15 @@
-var FlightsModel = require('../flightsModel.js');
+var FlightsManager = require('../flightsManager.js');
 var outgoingFlightsData = require('./outgoing_flights_test_data.json');
 var returnFlightsData = require('./return_flights_test_data.json');
 var expect = require('chai').expect;
 
 describe('Flights', function(){
     beforeEach(function createFlights(){
-        flights = new FlightsModel();
+        flights = new FlightsManager();
     });
 
     it('should have no data at start', function(){
         expect(flights.data).to.deep.equal([]);
-    });
-
-    it('should parse date into correct JS format', function(){
-        var departure = outgoingFlightsData[0].departing;
-        var date = flights.parseDate(departure);
-        expect(date).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
     });
 
     it('should return true for date equality, ignoring time', function(){
@@ -41,7 +35,7 @@ describe('Flights', function(){
 
 describe('Flights', function(){
     beforeEach(function createFlightsAndSeedData(){
-        flights = new FlightsModel();
+        flights = new FlightsManager();
         flights.addFlights(outgoingFlightsData);
     });
 
@@ -103,7 +97,7 @@ describe('Flights', function(){
 
 describe('Flights', function(){
     beforeEach(function createFlightsAndSeedData(){
-        flights = new FlightsModel();
+        flights = new FlightsManager();
         flights.addFlights(outgoingFlightsData);
         flights.addFlights(returnFlightsData);
     });
