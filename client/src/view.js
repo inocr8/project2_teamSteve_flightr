@@ -24,6 +24,19 @@ var View = function(packagesManager){
 
     this.searchButton.onclick = function(){
 
+
+        // var itinerary = this.createItinerary();
+        // var flights = this.flightsManager.returnJourneyQuery(itinerary);
+
+        // itinerary.checkin = flights.outboundFlights[0].arriving;
+        // itinerary.checkout = flights.returnFlights[0].departing;
+        
+        // console.log('destination', itinerary.destination);
+        // var packageOptions = this.createPackageOptions(itinerary);
+
+
+        //////////////////////////////////////
+
         var itinerary = new Itinerary({
             numberOfPersons: this.numberOfPersons.value,
 
@@ -77,6 +90,46 @@ View.prototype = {
     //     +   '<p>Number of Persons: {{itinerary.numberOfPersons}}</p>'
     //     +   '<p>Total Price: {{totalPrice}}</p>', package);
     // },
+
+    // createItinerary: function(){
+    //     return new Itinerary({
+    //         numberOfPersons: this.numberOfPersons.value,
+
+    //         departureAirport: this.departureAirport.value,
+    //         arrivalAirport: this.arrivalAirport.value,
+
+    //         outboundDate: new Date(this.outboundDate.value),
+    //         returnDate: new Date(this.returnDate.value)
+    //     });
+    // }
+
+    // createPackageOptions: function(itinerary){
+
+    //     var flights = this.flightsManager.returnJourneyQuery(itinerary);
+
+    //     itinerary.checkin = flights.outboundFlights[0].arriving;
+    //     itinerary.checkout = flights.returnFlights[0].departing;
+    //     console.log('destination', itinerary.destination);
+
+    //     var hotels = this.hotelsManager.hotelsByCity(itinerary.destination);
+    //     console.log('hotels', hotels);
+    //     var hotels = this.hotelsManager.sortByPrice(hotels);
+
+    //     var options = {
+    //         itinerary: itinerary,
+    //         outboundFlights: flights.outboundFlights,
+    //         returnFlights: flights.returnFlights,
+    //         hotels: hotels,
+    //     };
+
+    //     var packageOptions = new PackageOptions(options);
+    //     this.packageOptions = packageOptions;
+
+    //     // console.log('packages', packages);
+
+    //     return packageOptions;
+    // },
+
 
     renderPackageOptions: function(packageOptions){
 
