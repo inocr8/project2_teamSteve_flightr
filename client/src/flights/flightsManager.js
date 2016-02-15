@@ -64,6 +64,10 @@ FlightsManager.prototype = {
         });
     },
 
+    cheapestFlight: function(flights){
+        return this.sortByPrice(flights)[0];
+    },
+
     addFlight: function(flight){
         this.data.push(new Flight(flight));
     },
