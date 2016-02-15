@@ -44,7 +44,7 @@ Itinerary.prototype = {
 
     calcNumberOfNights: function(checkin, checkout){
         var oneDay = 24 * 60 * 60 * 1000;
-        return Math.abs( (checkout.getTime() - checkin.getTime()) / oneDay );
+        return Math.round(Math.abs( (checkout.getTime() - checkin.getTime()) / oneDay ));
     }
 
 };
