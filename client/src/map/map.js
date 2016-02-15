@@ -4,8 +4,8 @@ var HotelMap = function(hotel){
   var hotelLatLng = hotel.address.latLng; 
   var markerTitle = hotel.name;
   this.map = new google.maps.Map(document.querySelector('#map'),{
-    centre: hotelLatLng,
-    zoom: 8 
+    center: hotelLatLng,
+    zoom: 14 
   }),
   this.addMarker = function(hotelLatLng,markerTitle,icon){
     var marker = new google.maps.Marker({

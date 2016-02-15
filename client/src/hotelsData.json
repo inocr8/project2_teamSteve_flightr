@@ -1,3 +1,114 @@
+// module.exports = [
+// {
+// "name": "The Plaza",
+// "pricePerPerson": 32,
+// "rooms": 10,
+// "stars": 3,
+// "address": {
+// "building": "3",
+// "street": "Park Avenue",
+// "city": "Melbourne",
+// "zip": 3498890
+// }
+// },
+// {
+// "name": "The Grand Hotel",
+// "pricePerPerson": 142,
+// "rooms": 43,
+// "stars": 5,
+// "address": {
+// "building": "90",
+// "street": "Grand Lane",
+// "city": "Melbourne",
+// "zip": 4788278
+// }
+// },
+// {
+// "name": "Bargain Hostel",
+// "pricePerPerson": 12,
+// "rooms": 60,
+// "stars": 1,
+// "address": {
+// "building": "7",
+// "street": "Harbour Lane",
+// "city": "Melbourne",
+// "zip": 5789046
+// }
+// },
+// {
+// "name": "Four Seasons",
+// "pricePerPerson": 78,
+// "rooms": 130,
+// "stars": 4,
+// "address": {
+// "building": "67",
+// "street": "Hyde Street",
+// "city": "Sydney",
+// "zip": 8947548
+// }
+// },
+// {
+// "name": "City Hotel",
+// "pricePerPerson": 55,
+// "rooms": 14,
+// "stars": 2,
+// "address": {
+// "building": "10",
+// "street": "Bourne Street",
+// "city": "Sydney",
+// "zip": 3673290
+// }
+// },
+// {
+// "name": "Backpackers",
+// "pricePerPerson": 12,
+// "rooms": 102,
+// "stars": 1,
+// "address": {
+// "building": "64",
+// "street": "Stell Avenue",
+// "city": "Sydney",
+// "zip": 4567824
+// }
+// },
+// {
+// "name": "Royal Hotel",
+// "pricePerPerson": 45,
+// "rooms": 20,
+// "stars": 3,
+// "address": {
+// "building": "17",
+// "street": "Kestrel Street",
+// "city": "Canberra",
+// "zip": 567818
+// }
+// },
+// {
+// "name": "Surfer's Inn",
+// "pricePerPerson": 80,
+// "rooms": 8,
+// "stars": 4,
+// "address": {
+// "building": "35",
+// "street": "High Street",
+// "city": "Canberra",
+// "zip": 6758473
+// }
+// },
+// {
+// "name": "Hilton",
+// "pricePerPerson": 102,
+// "rooms": 170,
+// "stars": 4,
+// "address": {
+// "building": "50",
+// "street": "May Lane",
+// "city": "Canberra",
+// "zip": 5678427
+// }
+// }
+// ]
+
 module.exports = [
 {
 "name": "The Plaza",
@@ -8,7 +119,10 @@ module.exports = [
 "building": "3",
 "street": "Park Avenue",
 "city": "Melbourne",
-"zip": 3498890
+"zip": 3498890, 
+"lat": -37.827028986826775,
+"lng": 144.95683343238613,
+"latLng": {"lat": -37.827028986826775, "lng": 144.95683343238613}
 }
 },
 {
@@ -20,7 +134,10 @@ module.exports = [
 "building": "90",
 "street": "Grand Lane",
 "city": "Melbourne",
-"zip": 4788278
+"zip": 4788278, 
+"lat": -37.77417955127804,
+"lng": 144.94894442654916,
+"latLng": {"lat": -37.77417955127804, "lng": 144.94894442654916}
 }
 },
 {
@@ -32,7 +149,10 @@ module.exports = [
 "building": "7",
 "street": "Harbour Lane",
 "city": "Melbourne",
-"zip": 5789046
+"zip": 5789046, 
+"lat": -37.86006907910177,
+"lng": 145.01567376149222,
+"latLng": {"lat":-37.86006907910177, "lng":145.01567376149222}
 }
 },
 {
@@ -44,7 +164,10 @@ module.exports = [
 "building": "67",
 "street": "Hyde Street",
 "city": "Sydney",
-"zip": 8947548
+"zip": 8947548,
+"lat": -37.81743203370275,
+"lng": 144.9668582088212,
+"latLng": {"lat":-37.81743203370275, "lng":144.9668582088212}
 }
 },
 {
@@ -56,7 +179,10 @@ module.exports = [
 "building": "10",
 "street": "Bourne Street",
 "city": "Sydney",
-"zip": 3673290
+"zip": 3673290,
+"lat": -33.886146945433566,
+"lng": 151.202938204774,
+"latLng": {"lat":-33.886146945433566, "lng":151.202938204774}
 }
 },
 {
@@ -68,7 +194,10 @@ module.exports = [
 "building": "64",
 "street": "Stell Avenue",
 "city": "Sydney",
-"zip": 4567824
+"zip": 4567824,
+"lat": -33.88803587448435,
+"lng": 151.23256586525508,
+"latLng": {"lat":-33.88803587448435, "lng":151.23256586525508}
 }
 },
 {
@@ -80,7 +209,10 @@ module.exports = [
 "building": "17",
 "street": "Kestrel Street",
 "city": "Canberra",
-"zip": 567818
+"zip": 567818,
+"lat": -35.3075,
+"lng": 149.1244,
+"latLng": {"lat":-35.3075, "lng":149.1244}
 }
 },
 {
@@ -92,7 +224,10 @@ module.exports = [
 "building": "35",
 "street": "High Street",
 "city": "Canberra",
-"zip": 6758473
+"zip": 6758473,
+"lat": -35.3250,
+"lng": 149.1250,
+"latLng": {"lat":-35.3250, "lng":149.1250}
 }
 },
 {
@@ -104,7 +239,13 @@ module.exports = [
 "building": "50",
 "street": "May Lane",
 "city": "Canberra",
-"zip": 5678427
+"zip": 5678427,
+"lat": -35.3475,
+"lng": 149.1360,
+"latLng": {"lat":-35.3475, "lng":149.1360}
 }
 }
 ]
+
+
+

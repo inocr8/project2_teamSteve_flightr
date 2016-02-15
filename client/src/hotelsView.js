@@ -1,8 +1,9 @@
 var Mustache = require('mustache');
+var HotelMap = require('./map/map.js');
 
 var HotelsView = function(packageOptions){
     this.packageOptions = packageOptions;
-    // this.map = map;
+    this.map = new HotelMap(packageOptions.currentPackage.hotel);
     this.element = document.querySelector('#hotels');
 };
 
