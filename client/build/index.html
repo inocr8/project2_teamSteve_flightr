@@ -7,6 +7,9 @@
   <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" type="text/css" href="normalize.css">
 </head>
 <body>
   <h1>Welcome to the Team Steve Flightr App</h1>
@@ -18,20 +21,23 @@
 
       <label for="arrival-airport">Arrival:</label>
       <input type="text" id="arrival-airport" name="arrival-airport" value="Canberra">
-
+      <br>
       <label for="outbound-date">Outbound:</label>
       <input type="date" id="outbound-date" name="outbound-date" value="2016-03-28">
 
       <label for="return-date">Return:</label>
       <input type="date" id="return-date" name="return-date" value="2016-04-11">
+      <br>
+      <label for="number-of-persons">Number of Persons:</label>
+      <input type="number" id="number-of-persons" name="number-of-persons" min="1" value="1">
 
       <input type="button" id="search-button" value="Search">
 
   </form>
 
-  <div id="outbound-flight"></div>
+  <div id="outbound-flights"></div>
   <div id="hotel"></div>
-  <div id="return-flight"></div>
+  <div id="return-flights"></div>
   <div id="package-breakdown"></div>
 </body>
 </html>
