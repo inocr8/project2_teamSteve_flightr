@@ -16,8 +16,8 @@ describe('Flight', function(){
 
         var dates = Flight.prototype.formatDisplayDates(departing, arriving);
         expect(dates.departing.date).to.equal('Mon, Mar 28, 2016');
-        expect(dates.departing.time).to.equal('9:00:00 AM');
+        expect(dates.departing.time).to.equal('9:00 AM');
         expect(dates.arriving.date).to.equal('Tue, Mar 29, 2016');
-        expect(dates.arriving.time).to.equal('11:00:00 AM');
+        expect(dates.arriving.time).to.equal('11:00 AM');
     });
 });
