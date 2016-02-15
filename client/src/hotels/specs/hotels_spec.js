@@ -50,6 +50,7 @@ describe('Hotels', function(){
     hotelData.forEach(function(hotel){
       hotels.addHotel(hotel);
     });
+    hotels.sortByPrice();
     hotels.hotelsReturnCheapest();
     assert.equal(12, hotels.hotelsReturnCheapest()[0].pricePerPerson);
   });

@@ -23,14 +23,10 @@ HotelsManager.prototype = {
   },  
 
   hotelsReturnCheapest: function(){
-    var cheapest = [];
-    cheapest.push(this.data[0]);
+    var cheapest = [this.data[0]];
     for(var i = 1; i < this.data.length; i++){
-      // adjusted === cheapest to < cheapest
-      if(this.data[i].pricePerPerson < cheapest[0].pricePerPerson){
+      if(this.data[i].pricePerPerson === cheapest[0].pricePerPerson){
         cheapest.push(this.data[i])
-        // added sort to sort prices into cheapest first order
-        this.sortByPrice();
       }
     } 
     return cheapest;
