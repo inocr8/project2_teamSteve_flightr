@@ -24,4 +24,5 @@ window.onload = function(){
     var packagesManager = new PackagesManager(flightsManager, hotelsManager);
 
     var view = new View(packagesManager);
+
 };
