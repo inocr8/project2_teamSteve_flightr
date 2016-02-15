@@ -33,6 +33,11 @@ HotelsView.prototype = {
             +           '<span class="name">{{hotel.name}}</span>'
             +           '<span class="stars">{{hotel.stars}} {{stars}}</span>', view);
 
+            var self = this;
+            a.onclick = function(){
+                self.notifyHotelSelection(this);
+            };
+
             if (hotel === this.packageOptions.bestValuePackage.hotel) {
                 li.classList.add('best-value');
             }
@@ -45,6 +50,15 @@ HotelsView.prototype = {
             this.element.appendChild(li);
         }
     },
+
+    notifyHotelSelection: function(element){
+        var key = element.id;
+
+        this.packageOptions.updateCurrentPackageHotel(key);
+        this.rebuildHotelOptions(this.packageOptions);
+
+        console.log('current', this.packageOptions.currentPackage);
+    }
 
 };
 

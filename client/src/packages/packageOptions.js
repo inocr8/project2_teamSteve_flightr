@@ -34,6 +34,11 @@ PackageOptions.prototype = {
     updateCurrentPackageReturnFlight: function(key){
         var flight = this.returnFlights[key];
         this.currentPackage.updateReturnFlight(flight);
+    },
+
+    updateCurrentPackageHotel: function(key){
+        var hotel = this.hotels[key];
+        this.currentPackage.updateHotel(hotel);
     }
 
 
