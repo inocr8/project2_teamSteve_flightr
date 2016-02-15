@@ -1,4 +1,4 @@
-module.exports = [
+[
 {
 "name": "The Plaza",
 "pricePerPerson": 32,
@@ -108,3 +108,5 @@ module.exports = [
 }
 }
 ]
+
+
