@@ -46,7 +46,17 @@ describe('Hotels', function(){
     });
   });
 
-  it('should returns all hotels from a city', function(){
+  it('should return the cheapest price from all prices', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    hotels.hotelsReturnCheapest();
+    assert.equal(12, hotels.hotelsReturnCheapest()[0].pricePerPerson);
+  });
+
+
+
+  it('should return all hotels from a city', function(){
     hotelData.forEach(function(hotel){
       hotels.addHotel(hotel);
     });

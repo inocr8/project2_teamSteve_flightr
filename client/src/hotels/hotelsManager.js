@@ -26,8 +26,11 @@ HotelsManager.prototype = {
     var cheapest = [];
     cheapest.push(this.data[0]);
     for(var i = 1; i < this.data.length; i++){
-      if(this.data[i].pricePerPerson === cheapest[0].pricePerPerson){
+      // adjusted === cheapest to < cheapest
+      if(this.data[i].pricePerPerson < cheapest[0].pricePerPerson){
         cheapest.push(this.data[i])
+        // added sort to sort prices into cheapest first order
+        this.sortByPrice();
       }
     } 
     return cheapest;
@@ -42,10 +45,6 @@ HotelsManager.prototype = {
     } 
     return cityHotels;
   }
-
- 
-
-
 
 };
 
