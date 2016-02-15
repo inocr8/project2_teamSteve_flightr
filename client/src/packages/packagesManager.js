@@ -14,13 +14,15 @@ PackagesManager.prototype = {
 
         var flights = this.flightsManager.returnJourneyQuery(itinerary);
 
-        itinerary.checkin = flights.outboundFlights[0].arriving;
-        itinerary.checkout = flights.returnFlights[0].departing;
+        var checkin = flights.outboundFlights[0].arriving;
+        var checkout = flights.returnFlights[0].departing;
+
+        itinerary.updateCheckinCheckoutDates(checkin, checkout);
+
         console.log('destination', itinerary.destination);
 
         var hotels = this.hotelsManager.hotelsByCity(itinerary.destination);
         console.log('hotels', hotels);
-        var hotels = this.hotelsManager.sortByPrice(hotels);
 
         var options = {
             itinerary: itinerary,

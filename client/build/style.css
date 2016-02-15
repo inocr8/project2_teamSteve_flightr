@@ -59,31 +59,90 @@ span {
     font-size: .8rem;
 }
 
+/* Hotel Options
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.hotel-options {
+    display: inline-block;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 1.8rem .8rem .8rem .8rem;
+    margin: 0 .2rem;
+}
+
+.hotel-options.best-value {
+    border: 1px solid tomato;
+    position: relative;
+}
+
+.hotel-options.selected {
+    background-color: tomato;
+    border: 1px solid tomato;
+    color: #fff;
+}
+
+.hotel-options:hover {
+    cursor: pointer;
+}
+
+:not(.selected).hotel-options:hover {
+    background-color: #eee;
+    color: #000;
+}
+
+.hotel-options.best-value:before {
+    content: "Best Value";
+    color: #fff;
+    font-size: .8rem;
+    text-align: center;
+    padding: .1rem 0;
+    position: absolute;
+    background-color: tomato;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.hotel-options span.price {
+    font-size: 1.2rem;
+}
+
+.hotel-options span.name,
+.hotel-option span.stars {
+    font-size: .8rem;
+}
+
 
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.package-flight {
+.package-flight,
+.package-hotel {
     display: inline-block;
     padding: 1rem;
 }
 
-.package-flight span.date {
+.package-flight span.date,
+.package-hotel span.date {
     color: #000;
     font-weight: 600;
 }
 
 .package-flight span.from,
-.package-flight span.to {
+.package-flight span.to,
+.package-hotel span.name {
     color: #555;
     font-weight: 600;
 }
 
-.package-flight span.time {
+.package-flight span.time,
+.package-hotel span.stars {
     color: #555;
 }
 
-.package-flight span.price {
+.package-flight span.price,
+.package-hotel span.price {
     color: #555;
     font-weight: 600;
 }

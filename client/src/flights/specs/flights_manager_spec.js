@@ -1,7 +1,10 @@
 var FlightsManager = require('../flightsManager.js');
 var outgoingFlightsData = require('./outgoing_flights_test_data.json');
 var returnFlightsData = require('./return_flights_test_data.json');
+var chai = require('chai');
 var expect = require('chai').expect;
+var assert = require('chai').assert;
+chai.use(require('chai-datetime'));
 
 describe('Flights', function(){
     beforeEach(function createFlights(){
@@ -23,7 +26,7 @@ describe('Flights', function(){
         var flight = outgoingFlightsData[0];
         flights.addFlight(flight);
         expect(flights.data[0].departure).to.equal("Edinburgh");
-        expect(flights.data[0].departing).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
+        expect(flights.data[0].departing).to.equalDate(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
     });
 
     it('should be able to add multiple flight', function(){
@@ -33,7 +36,7 @@ describe('Flights', function(){
     });
 });
 
-describe('Flights', function(){
+describe('Flights with Data Outgoing', function(){
     beforeEach(function createFlightsAndSeedData(){
         flights = new FlightsManager();
         flights.addFlights(outgoingFlightsData);
@@ -84,22 +87,36 @@ describe('Flights', function(){
     });
 
     it('should sort all flights by price, lowest to highest', function(){
-        expect(flights.sortByPrice(flights.data)[0]).to.deep.equal({
-            "departure": "Edinburgh",
-            "arrival": "Canberra",
-            "departing": new Date("2016-03-28T11:00:00"),
-            "arriving": new Date("2016-03-29T13:00:00"),
-            "price": 212
-        });
+        var flightPriceTest = flights.sortByPrice(flights.data)[0];
+        var dateDepart = new Date("2016-03-28T11:00");
+        var dateArrive = new Date("2016-03-29T13:00");
+        assert.equal("Edinburgh", flightPriceTest.departure);
+        assert.equal("Canberra", flightPriceTest.arrival);
+        expect(dateDepart).to.equalDate(flightPriceTest.departing);
+        expect(dateArrive).to.equalDate(flightPriceTest.arriving);
     });
 
 });
 
-describe('Flights', function(){
+describe('Flights with Data Both Ways', function(){
     beforeEach(function createFlightsAndSeedData(){
         flights = new FlightsManager();
         flights.addFlights(outgoingFlightsData);
         flights.addFlights(returnFlightsData);
+    });
+
+    it('should have a departure and arrival city name on both directions', function(){
+        var outgoingFlightCity = ["Edinburgh", "Melbourne"];
+        var incomingFlightCity = ["Melbourne", "Edinburgh"];
+        assert.equal(outgoingFlightCity[0], flights.data[0].departure);
+        assert.equal(outgoingFlightCity[1], flights.data[0].arrival);
+        assert.equal(incomingFlightCity[0], flights.data[6].departure);
+        assert.equal(incomingFlightCity[1], flights.data[6].arrival);
+    });
+
+    it('should have a price on both directions', function(){
+        assert.equal(248, flights.data[0].price);
+        assert.equal(248, flights.data[6].price);
     });
 
     it('should return outgoing flights and return flights, given journey itinerary', function(){

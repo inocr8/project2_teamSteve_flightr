@@ -19,16 +19,47 @@ describe('Hotels', function(){
   });
 
   it('should sort hotel by price, from lowest to highest', function(){
-    var hotel1 = hotels.data[0];
-    var hotel2 = hotels.data[1];
-    var hotelsArray = [hotel2, hotel1];
-    var sortedArray = hotels.sortByPrice(hotelsArray);
-    expect(sortedArray[0]).to.deep.equal(hotel1);
+    var hotel1 = hotelData[1];
+    var hotel2 = hotelData[0];
+    hotels.addHotel(hotel1);
+    hotels.addHotel(hotel2);
+    hotels.sortByPrice();
+    expect(hotels.data[0]).to.deep.equal(hotel2);
   });
 
-  it('should returns all hotels from a city', function(){
+  it('should sort all hotels by price, from lowest to highest', function(){
     hotelData.forEach(function(hotel){
-        hotels.addHotel(hotel);
+      hotels.addHotel(hotel);
+    });
+    hotels.sortByPrice();
+    expect(hotels.data[0]).to.deep.equal({
+      "name": "Bargain Hostel",
+      "pricePerPerson": 12,
+      "rooms": 60,
+      "stars": 1,
+      "address": {
+        "building": "7",
+        "street": "Harbour Lane",
+        "city": "Melbourne",
+        "zip": 5789046
+      }
+    });
+  });
+
+  it('should return the cheapest price from all prices', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    hotels.sortByPrice();
+    hotels.hotelsReturnCheapest();
+    assert.equal(12, hotels.hotelsReturnCheapest()[0].pricePerPerson);
+  });
+
+
+
+  it('should return all hotels from a city', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
     });
     var hotelsInCanberra = hotels.hotelsByCity('Canberra');
     expect(hotelsInCanberra.length).to.equal(3);

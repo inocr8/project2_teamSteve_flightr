@@ -1,7 +1,8 @@
 var Itinerary = require('./itinerary/itinerary.js');
-var PackageView = require('./packageView.js');
+var PackageBreakdownView = require('./packageBreakdownView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
+var HotelsView = require('./hotelsView.js');
 
 var View = function(packagesManager){
     this.packagesManager = packagesManager;
@@ -135,15 +136,17 @@ View.prototype = {
 
         var outboundFlightsView = new OutboundFlightsView(packageOptions);
         var returnFlightsView = new ReturnFlightsView(packageOptions);
+        var hotelsView = new HotelsView(packageOptions);
 
         outboundFlightsView.rebuildFlightOptions();
         returnFlightsView.rebuildFlightOptions();
+        hotelsView.rebuildHotelOptions();
     },
 
     renderPackageBreakdown: function(package){
-        var packageView = new PackageView(package);
+        var packageBreakdownView = new PackageBreakdownView(package);
 
-        packageView.rebuildPackageBreakdown();
+        packageBreakdownView.rebuildPackageBreakdown();
     }
 
 };
