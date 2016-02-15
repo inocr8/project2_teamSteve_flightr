@@ -1,20 +1,15 @@
-var FlightsModel = require('../flightsModel.js');
-var flightData = require('./flights_test_data')
+var FlightsManager = require('../flightsManager.js');
+var outgoingFlightsData = require('./outgoing_flights_test_data.json');
+var returnFlightsData = require('./return_flights_test_data.json');
 var expect = require('chai').expect;
 
 describe('Flights', function(){
     beforeEach(function createFlights(){
-        flights = new FlightsModel();
+        flights = new FlightsManager();
     });
 
     it('should have no data at start', function(){
         expect(flights.data).to.deep.equal([]);
-    });
-
-    it('should parse date into correct JS format', function(){
-        var departure = flightData[0].departing;
-        var date = flights.parseDate(departure);
-        expect(date).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
     });
 
     it('should return true for date equality, ignoring time', function(){
@@ -25,23 +20,23 @@ describe('Flights', function(){
     });
 
     it('should be able to add a flight, with corrected formated date', function(){
-        var flight = flightData[0];
+        var flight = outgoingFlightsData[0];
         flights.addFlight(flight);
         expect(flights.data[0].departure).to.equal("Edinburgh");
         expect(flights.data[0].departing).to.deep.equal(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
     });
 
     it('should be able to add multiple flight', function(){
-        flights.addFlights(flightData);
+        flights.addFlights(outgoingFlightsData);
         expect(flights.data[0].departure).to.equal("Edinburgh");
         expect(flights.data[1].departure).to.equal("Edinburgh");
     });
 });
 
 describe('Flights', function(){
-    beforeEach(function createFlights(){
-        flights = new FlightsModel();
-        flights.addFlights(flightData);
+    beforeEach(function createFlightsAndSeedData(){
+        flights = new FlightsManager();
+        flights.addFlights(outgoingFlightsData);
     });
 
     it('should return flight(s), given criteria of departing, arriving, departure, arrival', function(){
@@ -98,4 +93,25 @@ describe('Flights', function(){
         });
     });
 
+});
+
+describe('Flights', function(){
+    beforeEach(function createFlightsAndSeedData(){
+        flights = new FlightsManager();
+        flights.addFlights(outgoingFlightsData);
+        flights.addFlights(returnFlightsData);
+    });
+
+    it('should return outgoing flights and return flights, given journey itinerary', function(){
+        var itinerary = {
+            departureAirport: "Edinburgh",
+            arrivalAirport: "Canberra",
+            outboundDate: new Date("2016-03-28T11:00:00"),
+            returnDate: new Date("2016-04-11T13:00:00")
+        };
+        var journeys = flights.returnJourneyQuery(itinerary);
+        // console.log('journeys', journeys);
+        expect(journeys.outboundFlights.length).to.equal(2);
+        expect(journeys.returnFlights.length).to.equal(2);
+    });
 });
