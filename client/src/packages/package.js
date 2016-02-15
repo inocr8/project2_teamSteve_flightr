@@ -33,6 +33,11 @@ Package.prototype = {
     updateReturnFlight: function(flight){
         this.returnFlight = flight;
         this.optionsUpdated();
+    },
+
+    updateHotel: function(hotel){
+        this.hotel = hotel;
+        this.optionsUpdated();
     }
 
     // formatDates: function(){
