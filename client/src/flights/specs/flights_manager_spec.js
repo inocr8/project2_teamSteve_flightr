@@ -94,7 +94,7 @@ describe('Flights with Data Outgoing', function(){
         assert.equal("Canberra", flightPriceTest.arrival);
         expect(dateDepart).to.equalDate(flightPriceTest.departing);
         expect(dateArrive).to.equalDate(flightPriceTest.arriving);
-        });
+    });
 
 });
 
@@ -103,6 +103,20 @@ describe('Flights with Data Both Ways', function(){
         flights = new FlightsManager();
         flights.addFlights(outgoingFlightsData);
         flights.addFlights(returnFlightsData);
+    });
+
+    it('should have a departure and arrival city name on both directions', function(){
+        var outgoingFlightCity = ["Edinburgh", "Melbourne"];
+        var incomingFlightCity = ["Melbourne", "Edinburgh"];
+        assert.equal(outgoingFlightCity[0], flights.data[0].departure);
+        assert.equal(outgoingFlightCity[1], flights.data[0].arrival);
+        assert.equal(incomingFlightCity[0], flights.data[6].departure);
+        assert.equal(incomingFlightCity[1], flights.data[6].arrival);
+    });
+
+    it('should have a price on both directions', function(){
+        assert.equal(248, flights.data[0].price);
+        assert.equal(248, flights.data[6].price);
     });
 
     it('should return outgoing flights and return flights, given journey itinerary', function(){
