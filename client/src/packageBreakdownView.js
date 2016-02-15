@@ -1,6 +1,6 @@
 var Mustache = require('mustache');
 
-var PackageView = function(package){
+var PackageBreakdownView = function(package){
     this.package = package;
     this.numberOfPersons = package.itinerary.numberOfPersons;
     this.packageBreakdown = document.querySelector('#package-breakdown');
@@ -11,7 +11,7 @@ var PackageView = function(package){
     };
 };
 
-PackageView.prototype = {
+PackageBreakdownView.prototype = {
     rebuildPackageBreakdown: function(){
         this.packageBreakdown.innerHTML = '';
         this.packageBreakdown.innerHTML += this.rebuildFlight(this.package.outboundFlight);
@@ -35,4 +35,4 @@ PackageView.prototype = {
     }
 };
 
-module.exports = PackageView;
+module.exports = PackageBreakdownView;
