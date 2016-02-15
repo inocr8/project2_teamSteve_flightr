@@ -58,6 +58,12 @@ FlightsManager.prototype = {
         });
     },
 
+    sortByDeparting: function(flights){
+        return flights.sort(function(a, b){
+            return a.departing - b.departing;
+        });
+    },
+
     addFlight: function(flight){
         this.data.push(new Flight(flight));
     },

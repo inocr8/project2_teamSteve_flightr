@@ -96,6 +96,14 @@ describe('Flights with Data Outgoing', function(){
         expect(dateArrive).to.equalDate(flightPriceTest.arriving);
     });
 
+    it('should sort flights by departing, earliest to latest', function(){
+        var sortedFlights = flights.sortByDeparting(flights.data);
+        var earliestFlight = sortedFlights[0];
+        expect(earliestFlight.departure).to.equal('Edinburgh');
+        expect(earliestFlight.arrival).to.equal('Sydney');
+        expect(earliestFlight.price).to.equal(310);
+    });
+
 });
 
 describe('Flights with Data Both Ways', function(){
