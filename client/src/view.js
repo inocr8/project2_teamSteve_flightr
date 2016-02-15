@@ -141,9 +141,9 @@ View.prototype = {
     },
 
     renderPackageBreakdown: function(package){
-        var packageView = new PackageView(package);
+        var packageBreakdownView = new PackageBreakdownView(package);
 
-        packageView.rebuildPackageBreakdown();
+        packageBreakdownView.rebuildPackageBreakdown();
     }
 
 };
