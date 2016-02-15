@@ -9,6 +9,14 @@ var HotelsView = function(packageOptions){
 
 HotelsView.prototype = {
 
+    populateMap: function(){
+        var hotels = this.packageOptions.hotels;
+        for (var key in hotels) {
+            var hotel = hotels[key];
+            this.map.addMarker(hotel);
+        }
+    },
+
     rebuildHotelOptions: function(){
         console.log('hotels view called');
         this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);

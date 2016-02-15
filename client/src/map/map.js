@@ -6,17 +6,21 @@ var HotelMap = function(hotel){
   this.map = new google.maps.Map(document.querySelector('#map'),{
     center: hotelLatLng,
     zoom: 14 
-  }),
-  this.addMarker = function(hotelLatLng,markerTitle,icon){
+  });
+};
+
+HotelMap.prototype = {
+  addMarker: function(hotel){
+    var hotelLatLng = hotel.address.latLng; 
+    var markerTitle = hotel.name;
     var marker = new google.maps.Marker({
       position: hotelLatLng,
       map: this.map,
       title: markerTitle,
-      icon: icon
+      // icon: icon
     });
     return marker
   }
-
-  };  
+};
 
 module.exports = HotelMap;
