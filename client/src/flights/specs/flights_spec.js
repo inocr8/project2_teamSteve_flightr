@@ -1,11 +1,11 @@
-var FlightsModel = require('../flightsModel.js');
+var FlightsManager = require('../flightsManager.js');
 var outgoingFlightsData = require('./outgoing_flights_test_data.json');
 var returnFlightsData = require('./return_flights_test_data.json');
 var expect = require('chai').expect;
 
 describe('Flights', function(){
     beforeEach(function createFlights(){
-        flights = new FlightsModel();
+        flights = new FlightsManager();
     });
 
     it('should have no data at start', function(){
@@ -41,7 +41,7 @@ describe('Flights', function(){
 
 describe('Flights', function(){
     beforeEach(function createFlightsAndSeedData(){
-        flights = new FlightsModel();
+        flights = new FlightsManager();
         flights.addFlights(outgoingFlightsData);
     });
 
@@ -103,7 +103,7 @@ describe('Flights', function(){
 
 describe('Flights', function(){
     beforeEach(function createFlightsAndSeedData(){
-        flights = new FlightsModel();
+        flights = new FlightsManager();
         flights.addFlights(outgoingFlightsData);
         flights.addFlights(returnFlightsData);
     });
