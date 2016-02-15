@@ -3,8 +3,9 @@ var PackageBreakdownView = require('./packageBreakdownView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
 
-var View = function(packagesManager){
+var View = function(packagesManager, localStorageManager){
     this.packagesManager = packagesManager;
+    this.localStorageManager = localStorageManager;
 
     // Form
     this.departureAirport = document.querySelector('#departure-airport');
@@ -141,7 +142,7 @@ View.prototype = {
     },
 
     renderPackageBreakdown: function(package){
-        var packageBreakdownView = new PackageBreakdownView(package);
+        var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
 
         packageBreakdownView.rebuildPackageBreakdown();
     }

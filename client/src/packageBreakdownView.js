@@ -1,6 +1,7 @@
 var Mustache = require('mustache');
 
-var PackageBreakdownView = function(package){
+var PackageBreakdownView = function(package, localStorageManager){
+    this.localStorageManager = localStorageManager;
     this.package = package;
     this.numberOfPersons = package.itinerary.numberOfPersons;
     this.packageBreakdown = document.querySelector('#package-breakdown');
@@ -16,6 +17,19 @@ PackageBreakdownView.prototype = {
         this.packageBreakdown.innerHTML = '';
         this.packageBreakdown.innerHTML += this.rebuildFlight(this.package.outboundFlight);
         this.packageBreakdown.innerHTML += this.rebuildFlight(this.package.returnFlight);
+
+        this.buildSaveButton();
+    },
+
+    buildSaveButton: function(){
+        var button = document.createElement('button');
+        button.innerText = 'Save Package';
+
+        var self = this;
+        button.onclick = function(){
+            self.localStorageManager.savePackage(self.package);
+        };
+        this.packageBreakdown.appendChild(button);
     },
 
     rebuildFlight: function(flight){
