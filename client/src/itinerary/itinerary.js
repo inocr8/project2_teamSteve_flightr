@@ -7,7 +7,6 @@ var Itinerary = function(options){
     this.arrivalAirport = options.arrivalAirport;
 
     this.outboundDate = moment(options.outboundDate);
-    console.log('moment?', this.outboundDate);
     this.returnDate = moment(options.returnDate);
 
     this.destination = options.arrivalAirport;
@@ -16,6 +15,7 @@ var Itinerary = function(options){
 };
 
 Itinerary.prototype = {
+    
     updateCheckinCheckoutDates: function(checkin, checkout){
         this.checkin = checkin;
         this.checkout = checkout;

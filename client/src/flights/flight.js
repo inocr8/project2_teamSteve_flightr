@@ -31,26 +31,6 @@ Flight.prototype = {
     },
 
     formatDisplayDates: function(departing, arriving){
-        // var dateOptions = {
-        //     weekday: 'short',
-        //     day: 'numeric',
-        //     month: 'short',
-        //     year: 'numeric'
-        // };
-        // var timeOptions = {
-        //     hour: '2-digit',
-        //     minute:'2-digit'
-        // };
-        // return {
-        //     departing: {
-        //         date: departing.toLocaleDateString('en-GB', dateOptions),
-        //         time: departing.toLocaleTimeString('en-GB', timeOptions)
-        //     },
-        //     arriving: {
-        //         date: arriving.toLocaleDateString('en-GB', dateOptions),
-        //         time: arriving.toLocaleTimeString('en-GB', timeOptions)
-        //     }
-        // };
 
         return {
             departing: {
