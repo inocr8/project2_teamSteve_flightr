@@ -229,7 +229,7 @@ span {
 
 }
 #map img{
-    max-width: 100%; 
+    max-width: 60%; 
 }
 /*.map-responsive{
     overflow:hidden;
