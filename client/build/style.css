@@ -46,6 +46,7 @@ span {
 
 .flight-day {
   display: inline-block;
+  vertical-align: top;
 }
 
 .flight-day p {
