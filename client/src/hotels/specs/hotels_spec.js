@@ -48,6 +48,13 @@ describe('Hotels', function(){
       expect(hotels.data[0].stars).to.be.an('number');
     });
 
+    it('should have a number of rooms as an integer and greater than zero', function(){
+      var hotel = hotelData[0];
+      hotels.addHotel(hotel);
+      expect(hotels.data[0].rooms).to.be.an('number');
+      expect(hotels.data[0].rooms).to.be.above(0);
+    });
+
   it('should sort hotel by price, from lowest to highest', function(){
     var hotel1 = hotelData[1];
     var hotel2 = hotelData[0];
