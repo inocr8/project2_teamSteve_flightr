@@ -37,9 +37,9 @@ Package.prototype = {
 
     updateReturnFlight: function(flight){
         this.returnFlight = flight;
-        if (!this.returnFlight.arriving.isSame(this.itinerary.checkin, 'day')) {
-            var newCheckin = this.returnFlight.arriving.startOf('day');
-            this.itinerary.updateCheckin(newCheckin);
+        if (!this.returnFlight.departing.isSame(this.itinerary.checkout, 'day')) {
+            var newCheckout = this.returnFlight.departing.startOf('day');
+            this.itinerary.updateCheckout(newCheckout);
         }
         // notifies view of update
         this.returnFlightUpdated();
