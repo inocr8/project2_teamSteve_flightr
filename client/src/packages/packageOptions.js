@@ -14,6 +14,8 @@ var PackageOptions = function(options){
     this.returnFlights = options.returnFlights;
     this.nextDayReturnFlights = options.nextDayReturnFlights;
 
+    this.threeDayFlights = options.threeDayFlights;
+
     this.hotels = options.hotels;
 
     this.bestValuePackage = this.createBestValuePackage(this);
@@ -51,8 +53,7 @@ PackageOptions.prototype = {
     },
 
 
-    updateCurrentPackageOutboundFlight: function(key){
-        var flight = this.outboundFlights[key];
+    updateCurrentPackageOutboundFlight: function(flight){
         this.currentPackage.updateOutboundFlight(flight);
     },
 
@@ -65,6 +66,10 @@ PackageOptions.prototype = {
         var hotel = this.hotels[key];
         this.currentPackage.updateHotel(hotel);
         return hotel;
+    },
+
+    findOutboundFlightByDayAndKey: function(day, key){
+        return this.threeDayFlights.outboundFlights[day][key];
     }
 
 
