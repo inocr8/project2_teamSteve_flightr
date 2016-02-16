@@ -6,10 +6,13 @@ var FlightsManager = require('../flights/flightsManager.js');
 var PackageOptions = function(options){
     this.itinerary = options.itinerary;
 
+    this.prevDayOutboundFlights = options.prevDayOutboundFlights;
     this.outboundFlights = options.outboundFlights;
     this.nextDayOutboundFlights = options.nextDayOutboundFlights;
 
+    this.prevDayReturnFlights = options.prevDayReturnFlights;
     this.returnFlights = options.returnFlights;
+    this.nextDayReturnFlights = options.nextDayReturnFlights;
 
     this.hotels = options.hotels;
 

@@ -46,9 +46,16 @@ PackagesManager.prototype = {
 
         var options = {
             itinerary: itinerary,
+
+            prevDayOutboundFlights: prevDayFlights.outboundFlights,
             outboundFlights: flights.outboundFlights,
+            nextDayOutboundFlights: nextDayFlights.outboundFlights,
+
+            prevDayReturnFlights: prevDayFlights.returnFlights,
             returnFlights: flights.returnFlights,
-            hotels: hotels,
+            nextDayReturnFlights: nextDayFlights.returnFlights,
+
+            hotels: hotels
         };
 
         var packageOptions = new PackageOptions(options);
