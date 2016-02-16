@@ -18,11 +18,10 @@ HotelMap.prototype = {
     var marker = new google.maps.Marker({
       position: hotelLatLng,
       map: this.map,
-      title: markerTitle,
+      title: markerTitle
       // icon: icon
-
     });
-    return marker
+    return marker;
   },
 
   setCenter: function(hotel){
@@ -38,19 +37,16 @@ HotelMap.prototype = {
 
    addInfoWindow: function(hotel){
      var marker = this.addMarker(hotel);
-    var infoWindow = new google.maps.InfoWindow({
-      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}, Address:<ul></ul>", hotel)
-
-    });
+     var infoWindow = new google.maps.InfoWindow({
+      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}", hotel)
+     });
     marker.addListener('mouseover', function(){
       infoWindow.open(this.map, marker);
     });
     marker.addListener('mouseout', function(){
       infoWindow.close();
     });
-    marker.addListener('click', function(){
-      infoWindow.open(this.map, marker);
-    });
+    
   }
 }
 
