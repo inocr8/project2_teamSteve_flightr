@@ -67,6 +67,12 @@ describe('Hotels', function(){
     assert.equal(144.95683343238613, hotels.data[0].address.lng);
   });
 
+  it('should have a latLng object when created', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].address.latLng).to.be.an('object');
+  })
+
   it('should sort hotel by price, from lowest to highest', function(){
     var hotel1 = hotelData[0];
     var hotel2 = hotelData[1];
@@ -76,6 +82,17 @@ describe('Hotels', function(){
     });
     hotels.sortByPriceAsc(hotels.data);
     expect(hotels.data[0]).to.deep.equal(hotel1);
+  });
+
+  it('should sort hotel by price, from highest to lowest', function(){
+    var hotel1 = hotelData[0];
+    var hotel2 = hotelData[1];
+    var hotelArray = [hotel2, hotel1];
+    hotelArray.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    hotels.sortByPriceDesc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotel2);
   });
 
   it('should sort all hotels by price, from lowest to highest', function(){
