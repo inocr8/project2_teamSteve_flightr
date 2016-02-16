@@ -5,13 +5,9 @@ var FlightsManager = require('../flights/flightsManager.js');
 
 var PackageOptions = function(options){
     this.itinerary = options.itinerary;
-    console.log('still a moment?', this.itinerary.outboundDate);
-
 
     this.outboundFlights = options.outboundFlights;
-
     this.returnFlights = options.returnFlights;
-
 
     this.threeDayFlights = options.threeDayFlights;
 
@@ -27,8 +23,8 @@ PackageOptions.prototype = {
 
         var bestValuePackage = new Package({
             itinerary: this.itinerary,
-            outboundFlight: this.outboundFlights[0],
-            returnFlight: this.returnFlights[0],
+            outboundFlight: FlightsManager.prototype.cheapestFlight(this.outboundFlights),
+            returnFlight: FlightsManager.prototype.cheapestFlight(this.returnFlights),
             hotel: this.hotels[0]
         });
 
@@ -50,7 +46,7 @@ PackageOptions.prototype = {
     sortHotelsByStarsDesc: function(){
         this.hotels = HotelsManager.prototype.sortByStarsDesc(this.hotels);
     },
-
+    
 
     updateCurrentPackageOutboundFlight: function(flight){
         this.currentPackage.updateOutboundFlight(flight);

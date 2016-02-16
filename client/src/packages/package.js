@@ -2,6 +2,7 @@ var moment = require('moment');
 
 var Package = function(options){
     this.itinerary = options.itinerary;
+
     this.outboundFlight = options.outboundFlight;
     this.returnFlight = options.returnFlight;
     this.hotel = options.hotel;
@@ -35,12 +36,6 @@ Package.prototype = {
         this.outboundFlightUpdated();
     },
 
-    // sameDay: function(date1, date2){
-    //     return date1.getDate() === date2.getDate()
-    //         && date1.getMonth() === date2.getMonth()
-    //         && date1.getFullYear() === date2.getFullYear();
-    // },
-
     updateReturnFlight: function(flight){
         this.returnFlight = flight;
         this.returnFlightUpdated();
@@ -50,23 +45,6 @@ Package.prototype = {
         this.hotel = hotel;
         this.hotelUpdated();
     }
-
-    // formatDates: function(){
-    //     return {
-    //         outboundFlight: {
-    //             departing:this.outboundFlight.departing.toDateString(),
-    //             arriving: this.outboundFlight.arriving.toDateString()
-    //         },
-    //         returnFlight: {
-    //             departing: this.returnFlight.departing.toDateString(),
-    //             arriving: this.returnFlight.arriving.toDateString()
-    //         }
-    //     }
-    // }
-
-    // summary: function(){
-
-    // }
 };
 
 module.exports = Package;
