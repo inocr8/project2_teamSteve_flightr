@@ -216,8 +216,23 @@ module.exports = [
 }
 },
 {
+"name": "Hilton",
+"pricePerPerson": 95,
+"rooms": 170,
+"stars": 5,
+"address": {
+"building": "50",
+"street": "May Lane",
+"city": "Canberra",
+"zip": 5678427,
+"lat": -35.3475,
+"lng": 149.1360,
+"latLng": {"lat":-35.3475, "lng":149.1360}
+}
+},
+{
 "name": "Surfer's Inn",
-"pricePerPerson": 80,
+"pricePerPerson": 100,
 "rooms": 8,
 "stars": 4,
 "address": {
@@ -228,21 +243,6 @@ module.exports = [
 "lat": -35.3250,
 "lng": 149.1250,
 "latLng": {"lat":-35.3250, "lng":149.1250}
-}
-},
-{
-"name": "Hilton",
-"pricePerPerson": 102,
-"rooms": 170,
-"stars": 4,
-"address": {
-"building": "50",
-"street": "May Lane",
-"city": "Canberra",
-"zip": 5678427,
-"lat": -35.3475,
-"lng": 149.1360,
-"latLng": {"lat":-35.3475, "lng":149.1360}
 }
 }
 ]

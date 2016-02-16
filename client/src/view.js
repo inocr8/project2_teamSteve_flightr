@@ -4,8 +4,9 @@ var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
 var HotelsView = require('./hotelsView.js');
 
-var View = function(packagesManager){
+var View = function(packagesManager, localStorageManager){
     this.packagesManager = packagesManager;
+    this.localStorageManager = localStorageManager;
 
     // Form
     this.departureAirport = document.querySelector('#departure-airport');
@@ -19,9 +20,18 @@ var View = function(packagesManager){
     this.searchButton = document.querySelector('#search-button');
 
     // Views
-    this.hotel = document.querySelector('#hotel')
+    this.hotel = document.querySelector('#hotel');
 
     this.packageBreakdown = document.querySelector('#package-breakdown');
+
+
+    // Prevent Tabs from defaulting
+    // var tabs = document.querySelectorAll('input[type=radio]');
+    // for (var i = 0; i < tabs.length; i++) {
+    //     tabs[i].addEventListener('click', function(e){
+    //         e.preventDefault();
+    //     });
+    // }
 
     this.searchButton.onclick = function(){
 
@@ -145,8 +155,7 @@ View.prototype = {
     },
 
     renderPackageBreakdown: function(package){
-        var packageBreakdownView = new PackageBreakdownView(package);
-
+        var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
         packageBreakdownView.rebuildPackageBreakdown();
     }
 

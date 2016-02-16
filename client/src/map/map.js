@@ -49,6 +49,7 @@ HotelMap.prototype = {
     });
     
   }
+
 }
 
 

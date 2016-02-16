@@ -7,6 +7,8 @@ var FlightsManager = require('./flights/flightsManager.js');
 var HotelsManager = require('./hotels/hotelsManager.js');
 var PackagesManager = require('./packages/packagesManager.js');
 
+var LocalStorageManager = require('./localStorage/localStorageManager.js');
+
 window.onload = function(){
 
     var flightsManager = new FlightsManager();
@@ -17,12 +19,12 @@ window.onload = function(){
     hotelsData.forEach(function(hotel){
         hotelsManager.addHotel(hotel);
     });
-    hotelsManager.sortByPrice();
 
     console.log('data', hotelsManager.data);
 
     var packagesManager = new PackagesManager(flightsManager, hotelsManager);
 
-    var view = new View(packagesManager);
+    var localStorageManager = new LocalStorageManager();
 
+    var view = new View(packagesManager, localStorageManager);
 };
