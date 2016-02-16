@@ -278,7 +278,6 @@ span {
 }
 .tabs .tab-content {
   z-index: 2;
-  display: none;
   overflow: hidden;
   width: 100%;
   font-size: 17px;
@@ -286,18 +285,17 @@ span {
   padding: 25px;
   position: absolute;
   top: 53px;
-  left: 0;
+  left: -10000px;
   background: #fff;
   border-top: 1px solid tomato;
 }
 .tabs [id^="tab"]:checked + label {
-/*  top: 0;*/
   padding-top: 17px;
   background: tomato;
   color: #fff;
 }
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
-  display: block;
+  left: 0px;
 }
 
 
