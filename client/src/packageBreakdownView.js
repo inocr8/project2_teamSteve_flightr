@@ -4,6 +4,7 @@ var PackageBreakdownView = function(package){
     this.package = package;
     this.itinerary = package.itinerary;
     this.packageBreakdown = document.querySelector('#package-breakdown');
+    console.log('package breakdown created');
 
     var self = this;
     this.package.optionsUpdated = function(){

@@ -1,72 +1,44 @@
 body {
+  background-image: url('http://2.bp.blogspot.com/-OIBygzZgQVg/U12FSHRFt0I/AAAAAAAAAbM/WT0akTR3TcU/s1600/BouchonGrapeVines.jpg');
+  border-left: 1px solid white;
+}
 
+header {
+
+}
+
+.logo {
+  padding: 1rem 1.2rem;
+  color: tomato;
+  -webkit-text-fill-color: tomato; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fff;
+  letter-spacing: .2rem;
 }
 
 span {
     display: block;
 }
 
+/* Search
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#search {
+  float: right;
+  padding: 1rem 1.2rem;
+  background-color: rgba(255, 255, 255, .6);
+  border: 1px solid tomato;
+}
+
+#search label {
+  vertical-align: top;
+}
+
+
 /* Nav
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.tabs {
-  position: relative;   
-  min-height: 400px;  This part sucks 
-  clear: both;
-  margin: 25px 0;
-}
-.tab {
-  float: left;
-  width: 33.333333%;
-}
-.tab label {
-    text-align: center;
-    display: block;
-    width: 100%;
-  background: #eee; 
-  padding: 10px 0; 
-  border-left: 1px solid white; 
-  border-right: 1px solid white; 
-  margin-left: -1px; 
-  position: relative;
-  left: 1px; 
-}
-.tab [type=radio] {
-  display: none;   
-}
-.content {
-  position: absolute;
-  top: 2.42rem;
-  left: 0;
-  background: white;
-  display: none;
-  right: 0;
-  bottom: 0;
-  padding: 20px;
-  border-top: 1px solid tomato; 
-}
-[type=radio]:checked ~ label {
-  background: tomato;
-  border-bottom: 1px solid tomato;
-  color: white;
-  z-index: 2;
-}
 
-#map {
-    margin-left: -999%;
-}
-
-[type=radio]:checked ~ #map {
-    margin: 0;
-    border: 3px solid red;
-}
-
-
-[type=radio]:checked ~ label ~ .content {
-  /*z-index: 1;*/
-  display: block;
-  width: 100%;
-}
 
 
 /* Flight Options
@@ -125,18 +97,22 @@ span {
 /* Hotel Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #hotels {
-    display: inline-block;
+/*    display: inline-block;*/
     vertical-align: top;
 }
 
 .hotel-options {
-    /*display: inline-block;*/
+    display: block;
     list-style-type: none;
-    width: 5.5rem;
+    width: 100%;
     color: #555;
     border: 1px solid #ccc;
     padding: 1.8rem .8rem .8rem .8rem;
-    margin: 0 .2rem;
+    margin: .2rem;
+}
+
+.hotel-options a {
+  width: 100%;
 }
 
 .hotel-options.best-value {
@@ -187,8 +163,6 @@ span {
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #package-breakdown {
-/*    position: absolute;
-    bottom: 0;*/
     display: block;
     border: 3px solid red;
 }
@@ -224,10 +198,86 @@ span {
 }
 
 /* HotelMap---------------------------------------------------------- */
+
 #map {
-    display: inline-block;
- height: 500px;
- width: 500px;   
+/*    display: inline-block;*/
+    height: 500px;
+    width: 500px;
+}
+
+/*.map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:500px;
+}
+.map-responsive div{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}*/
+
+
+/* Tabs ---------------------------------------------------------- */
+
+.tabs {
+  width: 100%;
+  float: none;
+  list-style: none;
+  position: relative;
+  text-align: left;
+}
+.tabs > li {
+  float: left;
+  width: 33.33333%;
+  display: block;
+}
+.tabs input[type="radio"] {
+  display: none;
+}
+.tabs label {
+  display: block;
+  padding: 14px 21px;
+  border-radius: 2px 2px 0 0;
+  font-size: 20px;
+  font-weight: normal;
+  text-transform: uppercase;
+  background: #eee;
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.tabs label:hover {
+  background: wheat;
+}
+.tabs .tab-content {
+  z-index: 2;
+  display: none;
+  overflow: hidden;
+  width: 100%;
+  font-size: 17px;
+  line-height: 25px;
+  padding: 25px;
+  position: absolute;
+  top: 53px;
+  left: 0;
+  background: #fff;
+  border-top: 1px solid tomato;
+}
+.tabs [id^="tab"]:checked + label {
+/*  top: 0;*/
+  padding-top: 17px;
+  background: tomato;
+  color: #fff;
+}
+.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+  display: block;
 }
 
 

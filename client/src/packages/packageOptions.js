@@ -1,5 +1,8 @@
 var Package = require('./package.js');
 
+var HotelsManager = require('../hotels/hotelsManager.js');
+var FlightsManager = require('../flights/flightsManager.js');
+
 var PackageOptions = function(options){
     this.itinerary = options.itinerary;
 
@@ -25,6 +28,15 @@ PackageOptions.prototype = {
 
         return bestValuePackage;
     },
+
+    sortHotelsByPriceAscending: function(){
+        this.hotels = HotelsManager.prototype.sortByPrice(this.hotels);
+    },
+
+    sortHotelsByStarsAscending: function(){
+        this.hotels = HotelsManager.prototype.sortByStars(this.hotels);
+    },
+
 
     updateCurrentPackageOutboundFlight: function(key){
         var flight = this.outboundFlights[key];

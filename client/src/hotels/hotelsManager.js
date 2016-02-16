@@ -6,21 +6,18 @@ HotelsManager.prototype = {
   addHotel: function(hotel){
     this.data.push(hotel);
   },
-  
-  sortByPrice: function(){
-    var sortedData = this.data.sort(function(a,b){
-      if (a.pricePerPerson > b.pricePerPerson) {
-    return 1;
-    }
-    if (a.pricePerPerson < b.pricePerPerson) {
-      return -1;
-    }
-    if (a.pricePerPerson === b.pricePerPerson){
-    return 0;
-    }
+
+  sortByPrice: function(hotels){
+    return hotels.sort(function(a, b){
+      return a.pricePerPerson - b.pricePerPerson
     });
-    this.data = sortedData;
-  },  
+  },
+
+  sortByStars: function(hotels){
+    return hotels.sort(function(a, b){
+      return a.stars - b.stars;
+    });
+  },
 
   hotelsReturnCheapest: function(){
     var cheapest = [this.data[0]];
@@ -39,7 +36,7 @@ HotelsManager.prototype = {
         cityHotels.push(hotel);
       }
     } 
-    return cityHotels;
+    return this.sortByPrice(cityHotels);
   }
 
 };
