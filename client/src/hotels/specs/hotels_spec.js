@@ -122,6 +122,15 @@ describe('Hotels', function(){
     expect(hotels.data[0]).to.deep.equal(hotelTest);
   });
 
+  it('should sort all hotels by stars, from highest to lowest', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    var hotelTest = hotelData[1];
+    hotels.sortByStarsDesc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotelTest);
+  });
+
   it('should return the cheapest price from all prices', function(){
     hotelData.forEach(function(hotel){
       hotels.addHotel(hotel);
