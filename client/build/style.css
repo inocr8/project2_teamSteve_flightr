@@ -235,7 +235,8 @@ span {
   display: block;
 }
 .tabs input[type="radio"] {
-  display: none;
+  position: absolute;
+  left: -10000px;
 }
 .tabs label {
   display: block;
