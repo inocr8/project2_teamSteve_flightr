@@ -30,17 +30,6 @@ var HotelsView = function(packageOptions){
         self.packageOptions.sortHotelsByStarsDesc();
         self.rebuildHotelOptions();
     };
-
-
-    // Map
-    var self = this;
-    function displayMap() {
-        console.log('resized');
-        google.maps.event.trigger(self.hotelMap, 'resize');
-    }
-    this.hotelsTab = document.querySelector('#hotels-tab');
-    console.log('hotels tab', this.hotelsTab);
-    this.hotelsTab.onclick = displayMap;
 };
 
 HotelsView.prototype = {
