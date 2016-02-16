@@ -24,7 +24,16 @@ Package.prototype = {
 
     updateOutboundFlight: function(flight){
         this.outboundFlight = flight;
+
+        
+
         this.outboundFlightUpdated();
+    },
+
+    sameDay: function(date1, date2){
+        return date1.getDate() === date2.getDate()
+            && date1.getMonth() === date2.getMonth()
+            && date1.getFullYear() === date2.getFullYear();
     },
 
     updateReturnFlight: function(flight){
