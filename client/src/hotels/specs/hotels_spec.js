@@ -42,6 +42,12 @@ describe('Hotels', function(){
       assert.equal(32, hotels.data[0].pricePerPerson);
     });
 
+    it('should have a star rating as an integer', function(){
+      var hotel = hotelData[0];
+      hotels.addHotel(hotel);
+      expect(hotels.data[0].stars).to.be.an('number');
+    });
+
   it('should sort hotel by price, from lowest to highest', function(){
     var hotel1 = hotelData[1];
     var hotel2 = hotelData[0];
