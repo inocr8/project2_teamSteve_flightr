@@ -23,7 +23,7 @@ var View = function(packagesManager, localStorageManager){
     this.hotel = document.querySelector('#hotel');
 
     this.packageBreakdown = document.querySelector('#package-breakdown');
-
+    this.packageSummary = document.querySelector('#package-summary');
 
     // Prevent Tabs from defaulting
     // var tabs = document.querySelectorAll('input[type=radio]');
@@ -157,6 +157,9 @@ View.prototype = {
     renderPackageBreakdown: function(package){
         var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
         packageBreakdownView.rebuildPackageBreakdown();
+        
+        var packageSummaryView = 
+        
     }
 
 };
