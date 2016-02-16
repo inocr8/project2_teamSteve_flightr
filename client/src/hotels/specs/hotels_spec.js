@@ -18,6 +18,43 @@ describe('Hotels', function(){
     assert.equal(1, hotels.data.length);
   });
 
+  it('should have a name, address and zip code', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    assert.equal("The Plaza", hotels.data[0].name);
+    expect(hotels.data[0]).to.deep.equal({
+      "name": "The Plaza",
+      "pricePerPerson": 32,
+      "rooms": 10,
+      "stars": 3,
+      "address": {
+        "building": "3",
+        "street": "Park Avenue",
+        "city": "Melbourne",
+        "zip": 3498890
+      }
+    });
+  });
+
+  it('should have a price per person to rent room', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    assert.equal(32, hotels.data[0].pricePerPerson);
+  });
+
+  it('should have a star rating as an integer', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].stars).to.be.an('number');
+  });
+
+  it('should have a number of rooms as an integer and greater than zero', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].rooms).to.be.an('number');
+    expect(hotels.data[0].rooms).to.be.above(0);
+  });
+
   it('should sort hotel by price, from lowest to highest', function(){
     var hotel1 = hotelData[1];
     var hotel2 = hotelData[0];
@@ -54,8 +91,6 @@ describe('Hotels', function(){
     hotels.hotelsReturnCheapest();
     assert.equal(12, hotels.hotelsReturnCheapest()[0].pricePerPerson);
   });
-
-
 
   it('should return all hotels from a city', function(){
     hotelData.forEach(function(hotel){
