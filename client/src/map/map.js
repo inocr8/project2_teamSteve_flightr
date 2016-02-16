@@ -1,6 +1,7 @@
 var Mustache = require('mustache');
 //var hotel = require('../packages/view.js')
 
+
 var HotelMap = function(hotel){
   var hotelLatLng = hotel.address.latLng; 
   var markerTitle = hotel.name;
@@ -8,6 +9,7 @@ var HotelMap = function(hotel){
     center: hotelLatLng,
     zoom: 14 
   });
+  // this.map.addListener(window,'resize',initialize);
 };
 
 
