@@ -7,6 +7,8 @@ var FlightsManager = require('./flights/flightsManager.js');
 var HotelsManager = require('./hotels/hotelsManager.js');
 var PackagesManager = require('./packages/packagesManager.js');
 
+var LocalStorageManager = require('./localStorage/localStorageManager.js');
+
 window.onload = function(){
 
     var flightsManager = new FlightsManager();
@@ -22,8 +24,7 @@ window.onload = function(){
 
     var packagesManager = new PackagesManager(flightsManager, hotelsManager);
 
-    var view = new View(packagesManager);
+    var localStorageManager = new LocalStorageManager();
 
-    
-
+    var view = new View(packagesManager, localStorageManager);
 };
