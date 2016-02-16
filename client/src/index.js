@@ -17,12 +17,13 @@ window.onload = function(){
     hotelsData.forEach(function(hotel){
         hotelsManager.addHotel(hotel);
     });
-    hotelsManager.sortByPrice();
 
     console.log('data', hotelsManager.data);
 
     var packagesManager = new PackagesManager(flightsManager, hotelsManager);
 
     var view = new View(packagesManager);
+
+    
 
 };

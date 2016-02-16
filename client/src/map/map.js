@@ -36,22 +36,22 @@ HotelMap.prototype = {
     }
   },
 
-   addInfoWindow: function(hotel){
-     var marker = this.addMarker(hotel);
-    var infoWindow = new google.maps.InfoWindow({
-      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}, Address:<ul></ul>", hotel)
+  //  addInfoWindow: function(hotel){
+  //    var marker = this.addMarker(hotel);
+  //   var infoWindow = new google.maps.InfoWindow({
+  //     content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}, Address:<ul></ul>", hotel)
 
-    });
-    marker.addListener('mouseover', function(){
-      infoWindow.open(this.map, marker);
-    });
-    marker.addListener('mouseout', function(){
-      infoWindow.close();
-    });
-    marker.addListener('click', function(){
-      infoWindow.open(this.map, marker);
-    });
-  }
+  //   });
+  //   marker.addListener('mouseover', function(){
+  //     infoWindow.open(this.map, marker);
+  //   });
+  //   marker.addListener('mouseout', function(){
+  //     infoWindow.close();
+  //   });
+  //   marker.addListener('click', function(){
+  //     infoWindow.open(this.map, marker);
+  //   });
+  // }
 }
 
 

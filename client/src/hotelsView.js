@@ -5,6 +5,42 @@ var HotelsView = function(packageOptions){
     this.packageOptions = packageOptions;
     this.hotelMap = new HotelMap(packageOptions.currentPackage.hotel);
     this.element = document.querySelector('#hotels');
+
+    // Sort by
+
+    var self = this;
+
+    self.lowestPriceFirst = document.querySelector('#lowest-price-first');
+    self.lowestPriceFirst.onclick = function(e){
+        e.preventDefault();
+        self.packageOptions.sortHotelsByPriceAsc();
+        self.rebuildHotelOptions();
+    };
+
+    self.lowestStarsFirst = document.querySelector('#lowest-stars-first');
+    self.lowestStarsFirst.onclick = function(e){
+        e.preventDefault();
+        self.packageOptions.sortHotelsByStarsAsc();
+        self.rebuildHotelOptions();
+    };
+
+    self.highestStarsFirst = document.querySelector('#highest-stars-first');
+    self.highestStarsFirst.onclick = function(e){
+        e.preventDefault();
+        self.packageOptions.sortHotelsByStarsDesc();
+        self.rebuildHotelOptions();
+    };
+
+
+    // Map
+    var self = this;
+    function displayMap() {
+        console.log('resized');
+        google.maps.event.trigger(self.hotelMap, 'resize');
+    }
+    this.hotelsTab = document.querySelector('#hotels-tab');
+    console.log('hotels tab', this.hotelsTab);
+    this.hotelsTab.onclick = displayMap;
 };
 
 HotelsView.prototype = {
@@ -14,13 +50,11 @@ HotelsView.prototype = {
         for (var key in hotels) {
             var hotel = hotels[key];
 
-            this.map.addInfoWindow(hotel);
-
+            // this.hotelMap.addMarker(hotel);
         }
     },
 
     rebuildHotelOptions: function(){
-        console.log('hotels view called');
         this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
 
         var hotels = this.packageOptions.hotels;
