@@ -12,12 +12,6 @@ var OutboundFlightsView = function(packageOptions){
 
 OutboundFlightsView.prototype = {
 
-    // rebuildOnDayOptions: function(){
-    //     var element = this.onDay;
-    //     var flights = this.packageOptions.outboundFlights;
-    //     this.rebuildFlightOptions(element, flights);
-    // },
-
     rebuildThreeDayFlightOptions: function(){
         var onDay = this.packageOptions.itinerary.outboundDate;
     
@@ -26,21 +20,9 @@ OutboundFlightsView.prototype = {
 
         var threeDayFlights = this.packageOptions.threeDayFlights;
 
-        console.log('three day flights outbound', threeDayFlights.outboundFlights);
-        console.log('my search key', nextDay.toDate());
-
-        // console.log('my search key looks like:', prevDay.toDate());
-        // console.log('should have a flight here:', threeDayFlights.outboundFlights[prevDay.toDate()])
-        // console.log('all flights', threeDayFlights.outboundFlights);
-
-        // console.log('my search key looks like:', onDay.toDate());
-        // console.log('should have a flight here:', threeDayFlights.outboundFlights[onDay.toDate()])
-        // console.log('all flights', threeDayFlights.outboundFlights);
-
         this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[prevDay], this.prevDay, prevDay);
         this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[onDay], this.onDay, onDay);
         this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[nextDay], this.nextDay, nextDay);
-        console.log('next day flights', threeDayFlights.outboundFlights[nextDay.toDate()])
     },
 
     rebuildDayFlightOptions: function(flights, element, day){
@@ -63,7 +45,7 @@ OutboundFlightsView.prototype = {
 
             var self = this;
             a.onclick = function(){
-                self.notifyFlightSelectionOnDay(this, day);
+                self.notifyFlightSelectionOnDay(day, this.id);
             };
 
             if (flight === this.packageOptions.bestValuePackage.outboundFlight) {
@@ -117,27 +99,12 @@ OutboundFlightsView.prototype = {
         }
     },
 
-    notifyFlightSelectionOnDay: function(element, day){
-        // console.log('element', key);
-        // console.log('element id', key.id);
-        var key = element.id;
+    notifyFlightSelectionOnDay: function(day, key){
+
         var flight = this.packageOptions.findOutboundFlightByDayAndKey(day, key);
 
         this.packageOptions.updateCurrentPackageOutboundFlight(flight);
         this.rebuildThreeDayFlightOptions();
-
-        console.log('current', this.packageOptions.currentPackage);
-    },
-
-    notifyFlightSelection: function(element){
-        // console.log('element', key);
-        // console.log('element id', key.id);
-        var key = element.id;
-
-        this.packageOptions.updateCurrentPackageOutboundFlight(key);
-        this.rebuildFlightOptions(this.packageOptions);
-
-        console.log('current', this.packageOptions.currentPackage);
     }
 };
 

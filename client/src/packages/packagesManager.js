@@ -15,8 +15,8 @@ PackagesManager.prototype = {
 
         var threeDayFlights = this.flightsManager.threeDayQuery(itinerary);
 
-        var onDayOutbound = threeDayFlights.outboundFlights[itinerary.outboundDate];
-        var onDayReturn = threeDayFlights.returnFlights[itinerary.returnDate];
+        var onDayOutboundFlights = threeDayFlights.outboundFlights[itinerary.outboundDate];
+        var onDayReturnFlights = threeDayFlights.returnFlights[itinerary.returnDate];
 
         var cheapestOutbound = this.flightsManager.cheapestFlight(onDayOutboundFlights);
         var cheapestReturn = this.flightsManager.cheapestFlight(onDayReturnFlights);

@@ -122,7 +122,11 @@ FlightsManager.prototype = {
     },
 
     cheapestFlight: function(flights){
-        return this.sortByPrice(flights)[0];
+        // var copyFlights = flights;
+        // return this.sortByPrice(copyFlights)[0];
+        return flights.reduce(function(a, b){
+            return a.price < b.price ? a : b;
+        });
     },
 
     earliestFlight: function(flights){

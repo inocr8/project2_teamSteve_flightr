@@ -8,7 +8,7 @@ HotelsManager.prototype = {
   },
 
   addHotels: function(hotelsArray){
-    for (var hotel of hotels) {
+    for (var hotel of hotelsArray) {
       this.addHotel(hotel);
     }
   },
