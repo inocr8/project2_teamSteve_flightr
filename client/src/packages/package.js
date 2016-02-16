@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 var Package = function(options){
     this.itinerary = options.itinerary;
     this.outboundFlight = options.outboundFlight;
@@ -24,9 +26,12 @@ Package.prototype = {
 
     updateOutboundFlight: function(flight){
         this.outboundFlight = flight;
+        if (!moment(this.outboundFlight.arriving).isSame(this.itinerary.checkin)) {
+            var newDay = moment(this.outboundFlight.arriving).startOf('day');
 
-        
-
+            console.log('new day', newDay);
+            this.itinerary.updateCheckin(newDay);
+        }
         this.outboundFlightUpdated();
     },
 
