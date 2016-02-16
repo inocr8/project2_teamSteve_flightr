@@ -31,8 +31,9 @@ PackagesManager.prototype = {
             returnDate: new Date(itinerary.returnDate.getTime() - day)
         });
 
-        console.log('nextDayFlights', nextDayFlights);
-        console.log('prevDayFlights', prevDayFlights);
+
+        var threeDayFlights = this.flightsManager.threeDayQuery(itinerary);
+        console.log('threeDayFlights', threeDayFlights);
 
         var checkin = flights.outboundFlights[0].arriving;
         var checkout = flights.returnFlights[0].departing;
@@ -46,6 +47,8 @@ PackagesManager.prototype = {
 
         var options = {
             itinerary: itinerary,
+
+            threeDayFlights: threeDayFlights,
 
             prevDayOutboundFlights: prevDayFlights.outboundFlights,
             outboundFlights: flights.outboundFlights,

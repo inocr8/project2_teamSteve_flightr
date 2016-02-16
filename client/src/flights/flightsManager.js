@@ -7,6 +7,58 @@ var FlightsManager = function(){
 
 FlightsManager.prototype = {
 
+    threeDayQuery: function(itinerary){
+        var day =  24 * 60 * 60 * 1000;
+
+        var dates = {
+            outbound: {
+                prevDay: new Date(itinerary.outboundDate.getTime() - day),
+                onDay: itinerary.outboundDate,
+                nextDay: new Date(itinerary.outboundDate.getTime() + day)
+            },
+
+            return: {
+                prevDay: new Date(itinerary.returnDate.getTime() - day),
+                onDay: itinerary.returnDate,
+                nextDay: new Date(itinerary.returnDate.getTime() + day)
+            },
+        };
+
+        var prevDayFlights = this.returnJourneyQuery({
+            departureAirport: itinerary.departureAirport,
+            arrivalAirport: itinerary.arrivalAirport,
+
+            outboundDate: dates.outbound.prevDay,
+            returnDate: dates.return.prevDay
+        });
+
+        var onDayFlights = this.returnJourneyQuery(itinerary);
+
+        var nextDayFlights = this.returnJourneyQuery({
+            departureAirport: itinerary.departureAirport,
+            arrivalAirport: itinerary.arrivalAirport,
+
+            outboundDate: dates.outbound.nextDay,
+            returnDate: dates.return.nextDay
+        });
+
+        var outboundFlights = {}
+        outboundFlights[dates.outbound.prevDay] = prevDayFlights.outboundFlights;
+        outboundFlights[dates.outbound.onDay] = onDayFlights.outboundFlights;
+        outboundFlights[dates.outbound.nextDay] = nextDayFlights.outboundFlights;
+
+        var returnFlights = {}
+        returnFlights[dates.return.prevDay] = prevDayFlights.returnFlights;
+        returnFlights[dates.return.onDay] = onDayFlights.returnFlights;
+        returnFlights[dates.return.nextDay] = nextDayFlights.returnFlights;
+
+        return {
+            outboundFlights: outboundFlights,
+            returnFlights: returnFlights
+        }
+
+    },
+
     returnJourneyQuery: function(itinerary){
         
         var outgoingRequest = {
