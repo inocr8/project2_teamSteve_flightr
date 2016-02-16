@@ -6,9 +6,6 @@ var Package = function(options){
 
     this.totalPricePerPerson = this.calcTotalPricePerPerson();
     this.totalPrice = this.calcTotalPrice();
-
-    // this.dates = this.formatDates();
-    this.optionsUpdated = undefined;
 };
 
 Package.prototype = {
@@ -27,17 +24,17 @@ Package.prototype = {
 
     updateOutboundFlight: function(flight){
         this.outboundFlight = flight;
-        this.optionsUpdated();
+        this.outboundFlightUpdated();
     },
 
     updateReturnFlight: function(flight){
         this.returnFlight = flight;
-        this.optionsUpdated();
+        this.returnFlightUpdated();
     },
 
     updateHotel: function(hotel){
         this.hotel = hotel;
-        this.optionsUpdated();
+        this.hotelUpdated();
     }
 
     // formatDates: function(){

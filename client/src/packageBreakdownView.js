@@ -2,23 +2,41 @@ var Mustache = require('mustache');
 
 var PackageBreakdownView = function(package, localStorageManager){
     this.localStorageManager = localStorageManager;
+
     this.package = package;
     this.itinerary = package.itinerary;
-    this.packageBreakdown = document.querySelector('#package-breakdown');
+
+    this.packageBreakdownButtons = document.querySelector('#package-breakdown-buttons');
+    this.outboundFlightElement = document.querySelector('#package-breakdown-outbound-flight');
+    this.returnFlightElement = document.querySelector('#package-breakdown-return-flight');
+    this.hotelElement = document.querySelector('#package-breakdown-hotel');
+
+
     console.log('package breakdown created');
 
     var self = this;
+
     this.package.optionsUpdated = function(){
         self.rebuildPackageBreakdown();
+    };
+
+    this.package.outboundFlightUpdated = function(){
+        self.rebuildOutboundFlight();
+    };
+    this.package.returnFlightUpdated = function(){
+        self.rebuildReturnFlight();
+    };
+    this.package.hotelUpdated = function(){
+        self.rebuildHotel();
     };
 };
 
 PackageBreakdownView.prototype = {
     rebuildPackageBreakdown: function(){
-        this.packageBreakdown.innerHTML = '';
-        this.packageBreakdown.innerHTML += this.rebuildFlight(this.package.outboundFlight);
-        this.packageBreakdown.innerHTML += this.rebuildFlight(this.package.returnFlight);
-        this.packageBreakdown.innerHTML += this.rebuildHotel(this.package.hotel);
+        this.packageBreakdownButtons.innerHTML = '';
+        this.rebuildOutboundFlight();
+        this.rebuildReturnFlight();
+        this.rebuildHotel();
         this.buildSaveButton();
         this.buildDeleteButton();
     },
@@ -31,7 +49,7 @@ PackageBreakdownView.prototype = {
         button.onclick = function(){
             self.localStorageManager.savePackage(self.package);
         };
-        this.packageBreakdown.appendChild(button);
+        this.packageBreakdownButtons.appendChild(button);
     },
 
     buildDeleteButton: function(){
@@ -42,7 +60,16 @@ PackageBreakdownView.prototype = {
         button.onclick = function(){
             self.localStorageManager.deletePackage(self.package);
         };
-        this.packageBreakdown.appendChild(button);
+        this.packageBreakdownButtons.appendChild(button);
+    },
+
+
+    rebuildOutboundFlight: function(){
+        this.outboundFlightElement.innerHTML = this.rebuildFlight(this.package.outboundFlight);
+    },
+
+    rebuildReturnFlight: function(){
+        this.returnFlightElement.innerHTML = this.rebuildFlight(this.package.returnFlight);
     },
 
     rebuildFlight: function(flight){
@@ -61,7 +88,9 @@ PackageBreakdownView.prototype = {
         +   '</div>', view);
     },
 
-    rebuildHotel: function(hotel){
+    rebuildHotel: function(){
+        var hotel = this.package.hotel;
+
         var dateOptions = {
             weekday: 'short',
             day: 'numeric',
@@ -85,13 +114,15 @@ PackageBreakdownView.prototype = {
             }
         };
 
-        return Mustache.render(
+        var output =  Mustache.render(
             '<div class="package-hotel">'
         +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
         +       '<span class="name">{{hotel.name}}</span>'
         +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
         +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
         +   '</div>', view);
+
+        this.hotelElement.innerHTML = output;
     }
 };
 
