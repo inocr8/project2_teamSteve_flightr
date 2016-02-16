@@ -38,8 +38,9 @@ HotelMap.prototype = {
    addInfoWindow: function(hotel){
      var marker = this.addMarker(hotel);
      var infoWindow = new google.maps.InfoWindow({
-      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}", hotel)
-     });
+      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}", hotel),
+      position: marker.position
+     }); 
     marker.addListener('mouseover', function(){
       infoWindow.open(this.map, marker);
     });
