@@ -20,7 +20,7 @@ PackageBreakdownView.prototype = {
         this.packageBreakdown.innerHTML += this.rebuildFlight(this.package.returnFlight);
         this.packageBreakdown.innerHTML += this.rebuildHotel(this.package.hotel);
         this.buildSaveButton();
-        this.buildDeleteButton();
+        // this.buildDeleteButton();
     },
 
     buildSaveButton: function(){
