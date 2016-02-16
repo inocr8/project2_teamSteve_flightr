@@ -44,12 +44,29 @@ span {
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+.flight-day {
+  display: inline-block;
+}
+
+.flight-day p {
+  margin: 0;
+  border-right: 1px solid #ccc;
+  margin-left: 4px;
+  margin-right: -2px;
+  font-size: 1rem;
+}
+
+.flight-three-day p:last-of-type {
+  border-right: none;
+}
+
+
 .flight-options {
-    display: inline-block;
+    display: block;
     color: #555;
     border: 1px solid #ccc;
     padding: 1.8rem .8rem .8rem .8rem;
-    margin: 0 .2rem;
+    margin: .3rem 2px;
 }
 
 .flight-options.best-value {

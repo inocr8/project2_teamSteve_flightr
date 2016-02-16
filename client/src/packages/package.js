@@ -26,8 +26,8 @@ Package.prototype = {
 
     updateOutboundFlight: function(flight){
         this.outboundFlight = flight;
-        if (!moment(this.outboundFlight.arriving).isSame(this.itinerary.checkin)) {
-            var newDay = moment(this.outboundFlight.arriving).startOf('day');
+        if (!this.outboundFlight.arriving.isSame(this.itinerary.checkin, 'day')) {
+            var newDay = this.outboundFlight.arriving.startOf('day');
 
             console.log('new day', newDay);
             this.itinerary.updateCheckin(newDay);
@@ -35,11 +35,11 @@ Package.prototype = {
         this.outboundFlightUpdated();
     },
 
-    sameDay: function(date1, date2){
-        return date1.getDate() === date2.getDate()
-            && date1.getMonth() === date2.getMonth()
-            && date1.getFullYear() === date2.getFullYear();
-    },
+    // sameDay: function(date1, date2){
+    //     return date1.getDate() === date2.getDate()
+    //         && date1.getMonth() === date2.getMonth()
+    //         && date1.getFullYear() === date2.getFullYear();
+    // },
 
     updateReturnFlight: function(flight){
         this.returnFlight = flight;

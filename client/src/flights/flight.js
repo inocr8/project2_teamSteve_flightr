@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 var Flight = function(options){
     this.departure = options.departure;
     this.arrival = options.arrival;
@@ -25,28 +27,39 @@ Flight.prototype = {
 
         var dateString = year + '-' + month + '-' + day + time;
 
-        return new Date(dateString);
+        return moment(dateString);
     },
 
     formatDisplayDates: function(departing, arriving){
-        var dateOptions = {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        };
-        var timeOptions = {
-            hour: '2-digit',
-            minute:'2-digit'
-        };
+        // var dateOptions = {
+        //     weekday: 'short',
+        //     day: 'numeric',
+        //     month: 'short',
+        //     year: 'numeric'
+        // };
+        // var timeOptions = {
+        //     hour: '2-digit',
+        //     minute:'2-digit'
+        // };
+        // return {
+        //     departing: {
+        //         date: departing.toLocaleDateString('en-GB', dateOptions),
+        //         time: departing.toLocaleTimeString('en-GB', timeOptions)
+        //     },
+        //     arriving: {
+        //         date: arriving.toLocaleDateString('en-GB', dateOptions),
+        //         time: arriving.toLocaleTimeString('en-GB', timeOptions)
+        //     }
+        // };
+
         return {
             departing: {
-                date: departing.toLocaleDateString('en-GB', dateOptions),
-                time: departing.toLocaleTimeString('en-GB', timeOptions)
+                date: departing.format('ddd DD MMM YYYY'),
+                time: departing.format('HH:mm')
             },
             arriving: {
-                date: arriving.toLocaleDateString('en-GB', dateOptions),
-                time: arriving.toLocaleTimeString('en-GB', timeOptions)
+                date: arriving.format('ddd DD MMM YYYY'),
+                time: arriving.format('HH:mm')
             }
         };
     }

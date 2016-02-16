@@ -102,20 +102,18 @@ PackageBreakdownView.prototype = {
             year: 'numeric'
         };
 
-        var dateFormat = 'ddd DD MMM';
-
         var view = {
             hotel: hotel,
 
             display: {
                 numberOfPersons: this.itinerary.numberOfPersons,
-                numberOfNights: this.itinerary.numberOfNights,
+                numberOfNights: this.itinerary.numberOfNights(),
 
-                checkin: this.itinerary.checkin.format(dateFormat),
-                checkout: this.itinerary.checkout.toLocaleDateString('en-GB', dateOptions),
+                checkin: this.itinerary.checkin.format('ddd DD MMM'),
+                checkout: this.itinerary.checkout.format('ddd DD MMM YYYY'),
 
                 stars: hotel.stars > 1 ? 'stars' : 'star',
-                nights: this.itinerary.numberOfNights > 1 ? 'nights' : 'night',
+                nights: this.itinerary.numberOfNights() > 1 ? 'nights' : 'night',
                 persons: this.itinerary.numberOfPersons > 1 ? 'persons' : 'person'
             }
         };

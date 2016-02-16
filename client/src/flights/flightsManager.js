@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 var Flight = require('./flight.js');
 
 var FlightsManager = function(){
@@ -12,17 +14,20 @@ FlightsManager.prototype = {
 
         var dates = {
             outbound: {
-                prevDay: new Date(itinerary.outboundDate.getTime() - day),
-                onDay: itinerary.outboundDate,
-                nextDay: new Date(itinerary.outboundDate.getTime() + day)
+                prevDay: moment(itinerary.outboundDate).subtract(1, 'day'),
+                onDay: moment(itinerary.outboundDate),
+                nextDay: moment(itinerary.outboundDate).add(1, 'day')
             },
 
             return: {
-                prevDay: new Date(itinerary.returnDate.getTime() - day),
-                onDay: itinerary.returnDate,
-                nextDay: new Date(itinerary.returnDate.getTime() + day)
+                prevDay: moment(itinerary.returnDate).subtract(1, 'day'),
+                onDay: moment(itinerary.returnDate),
+                nextDay: moment(itinerary.returnDate).add(1, 'day')
             },
         };
+
+        console.log('prev day', dates.outbound.prevDay);
+        console.log('next day', dates.outbound.nextDay);
 
         var prevDayFlights = this.returnJourneyQuery({
             departureAirport: itinerary.departureAirport,
@@ -44,6 +49,7 @@ FlightsManager.prototype = {
 
         var outboundFlights = {}
         outboundFlights[dates.outbound.prevDay] = prevDayFlights.outboundFlights;
+        console.log('previous day flights', prevDayFlights.outboundFlights);
         outboundFlights[dates.outbound.onDay] = onDayFlights.outboundFlights;
         outboundFlights[dates.outbound.nextDay] = nextDayFlights.outboundFlights;
 
@@ -96,9 +102,9 @@ FlightsManager.prototype = {
                 return false;
             if (arrival && flight.arrival !== arrival)
                 return false;
-            if (departing && !self.sameDay(flight.departing, departing))
+            if (departing && !flight.departing.isSame(departing, 'day'))
                 return false;
-            if (arriving && !self.sameDay(flight.arriving, arriving))
+            if (arriving && !flight.arriving.isSame(arriving, 'day'))
                 return false;
             return true;
         });
@@ -134,11 +140,11 @@ FlightsManager.prototype = {
         }
     },
 
-    sameDay: function(date1, date2){
-        return date1.getDate() === date2.getDate()
-            && date1.getMonth() === date2.getMonth()
-            && date1.getFullYear() === date2.getFullYear();
-    }
+    // sameDay: function(date1, date2){
+    //     return date1.getDate() === date2.getDate()
+    //         && date1.getMonth() === date2.getMonth()
+    //         && date1.getFullYear() === date2.getFullYear();
+    // }
 };
 
 

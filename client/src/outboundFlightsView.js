@@ -1,4 +1,5 @@
 var Mustache = require('mustache');
+var moment = require('moment');
 
 var OutboundFlightsView = function(packageOptions){
     this.packageOptions = packageOptions;
@@ -19,31 +20,35 @@ OutboundFlightsView.prototype = {
 
     rebuildThreeDayFlightOptions: function(){
         var onDay = this.packageOptions.itinerary.outboundDate;
-
-        var day =  24 * 60 * 60 * 1000;
-        var prevDay =  new Date(onDay.getTime() - day);
-        var nextDay =  new Date(onDay.getTime() + day);
+    
+        var prevDay =  moment(onDay).subtract(1, 'day');
+        var nextDay =  moment(onDay).add(1, 'day');
 
         var threeDayFlights = this.packageOptions.threeDayFlights;
-        console.log('passed tdflight', threeDayFlights);
+
+        console.log('three day flights outbound', threeDayFlights.outboundFlights);
+        console.log('my search key', nextDay.toDate());
+
+        // console.log('my search key looks like:', prevDay.toDate());
+        // console.log('should have a flight here:', threeDayFlights.outboundFlights[prevDay.toDate()])
+        // console.log('all flights', threeDayFlights.outboundFlights);
+
+        // console.log('my search key looks like:', onDay.toDate());
+        // console.log('should have a flight here:', threeDayFlights.outboundFlights[onDay.toDate()])
+        // console.log('all flights', threeDayFlights.outboundFlights);
 
         this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[prevDay], this.prevDay, prevDay);
         this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[onDay], this.onDay, onDay);
         this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[nextDay], this.nextDay, nextDay);
+        console.log('next day flights', threeDayFlights.outboundFlights[nextDay.toDate()])
     },
 
     rebuildDayFlightOptions: function(flights, element, day){
 
-        var dateOptions = {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short'
-        };
+        element.innerHTML = '<p>' + day.format('ddd DD MMM') + '</p>';
 
-        element.innerHTML = '<p>' + day.toLocaleDateString('en-GB', dateOptions) + '</p>';
-        console.log('called first');
         for (var key in flights) {
-            console.log('called second');
+
             var flight = flights[key];
 
             var li = document.createElement('li');
@@ -70,7 +75,7 @@ OutboundFlightsView.prototype = {
             }
 
             li.appendChild(a);
-            console.log('li', li);
+
             element.appendChild(li);
         }
     },

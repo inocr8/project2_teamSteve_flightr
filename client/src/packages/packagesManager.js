@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 var Package = require('./package.js');
 var PackageOptions = require('./packageOptions.js');
 
@@ -14,49 +16,26 @@ PackagesManager.prototype = {
 
         var flights = this.flightsManager.returnJourneyQuery(itinerary);
 
-        var day =  24 * 60 * 60 * 1000;
-        var nextDayFlights = this.flightsManager.returnJourneyQuery({
-            departureAirport: itinerary.departureAirport,
-            arrivalAirport: itinerary.arrivalAirport,
-
-            outboundDate: new Date(itinerary.outboundDate.getTime() + day),
-            returnDate: new Date(itinerary.returnDate.getTime() + day)
-        });
-
-        var prevDayFlights = this.flightsManager.returnJourneyQuery({
-            departureAirport: itinerary.departureAirport,
-            arrivalAirport: itinerary.arrivalAirport,
-
-            outboundDate: new Date(itinerary.outboundDate.getTime() - day),
-            returnDate: new Date(itinerary.returnDate.getTime() - day)
-        });
-
-
         var threeDayFlights = this.flightsManager.threeDayQuery(itinerary);
-        console.log('threeDayFlights', threeDayFlights);
 
-        var checkin = flights.outboundFlights[0].arriving;
-        var checkout = flights.returnFlights[0].departing;
+        var checkin = moment(flights.outboundFlights[0].arriving);
+        var checkout = moment(flights.returnFlights[0].departing);
 
         itinerary.updateCheckinCheckoutDates(checkin, checkout);
 
-        console.log('destination', itinerary.destination);
-
         var hotels = this.hotelsManager.hotelsByCity(itinerary.destination);
-        console.log('hotels', hotels);
+
+        console.log('itinerary moment?', itinerary.outboundDate);
 
         var options = {
             itinerary: itinerary,
 
             threeDayFlights: threeDayFlights,
 
-            prevDayOutboundFlights: prevDayFlights.outboundFlights,
             outboundFlights: flights.outboundFlights,
-            nextDayOutboundFlights: nextDayFlights.outboundFlights,
 
-            prevDayReturnFlights: prevDayFlights.returnFlights,
             returnFlights: flights.returnFlights,
-            nextDayReturnFlights: nextDayFlights.returnFlights,
+  
 
             hotels: hotels
         };

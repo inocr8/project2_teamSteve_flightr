@@ -54,8 +54,8 @@ var View = function(packagesManager, localStorageManager){
             departureAirport: this.departureAirport.value,
             arrivalAirport: this.arrivalAirport.value,
 
-            outboundDate: new Date(this.outboundDate.value),
-            returnDate: new Date(this.returnDate.value)
+            outboundDate: this.outboundDate.value,
+            returnDate: this.returnDate.value
         });
         var packageOptions = this.packagesManager.createPackageOptions(itinerary);
 
