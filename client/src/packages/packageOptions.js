@@ -7,6 +7,8 @@ var PackageOptions = function(options){
     this.itinerary = options.itinerary;
 
     this.outboundFlights = options.outboundFlights;
+    this.nextDayOutboundFlights = options.nextDayOutboundFlights;
+
     this.returnFlights = options.returnFlights;
 
     this.hotels = options.hotels;

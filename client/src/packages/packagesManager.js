@@ -14,6 +14,26 @@ PackagesManager.prototype = {
 
         var flights = this.flightsManager.returnJourneyQuery(itinerary);
 
+        var day =  24 * 60 * 60 * 1000;
+        var nextDayFlights = this.flightsManager.returnJourneyQuery({
+            departureAirport: itinerary.departureAirport,
+            arrivalAirport: itinerary.arrivalAirport,
+
+            outboundDate: new Date(itinerary.outboundDate.getTime() + day),
+            returnDate: new Date(itinerary.returnDate.getTime() + day)
+        });
+
+        var prevDayFlights = this.flightsManager.returnJourneyQuery({
+            departureAirport: itinerary.departureAirport,
+            arrivalAirport: itinerary.arrivalAirport,
+
+            outboundDate: new Date(itinerary.outboundDate.getTime() - day),
+            returnDate: new Date(itinerary.returnDate.getTime() - day)
+        });
+
+        console.log('nextDayFlights', nextDayFlights);
+        console.log('prevDayFlights', prevDayFlights);
+
         var checkin = flights.outboundFlights[0].arriving;
         var checkout = flights.returnFlights[0].departing;
 

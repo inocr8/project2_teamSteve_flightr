@@ -1,4 +1,22 @@
 module.exports = [
+
+// Sun 27 Mar 2016
+{
+"departure": "Edinburgh",
+"arrival": "Canberra",
+"departing": "27-03-2016 T11:00:00",
+"arriving": "28-03-2016 T13:00:00",
+"price": 240
+},
+{
+"departure": "Edinburgh",
+"arrival": "Canberra",
+"departing": "27-03-2016 T10:00:00",
+"arriving": "28-03-2016 T12:00:00",
+"price": 212
+},
+
+// Mon 28 Mar 2016
 {
 "departure": "Edinburgh",
 "arrival": "Melbourne",
@@ -41,6 +59,42 @@ module.exports = [
 "arriving": "29-03-2016 T12:00:00",
 "price": 245
 },
+
+// Tue 29 Mar 2016
+{
+"departure": "Edinburgh",
+"arrival": "Canberra",
+"departing": "29-03-2016 T11:00:00",
+"arriving": "30-03-2016 T13:00:00",
+"price": 200
+},
+{
+"departure": "Edinburgh",
+"arrival": "Canberra",
+"departing": "29-03-2016 T10:00:00",
+"arriving": "30-03-2016 T12:00:00",
+"price": 255
+},
+
+// Sun 10 Apr 2016
+
+{
+"departure": "Canberra",
+"arrival": "Edinburgh",
+"departing": "10-04-2016 T11:00:00",
+"arriving": "11-04-2016 T13:00:00",
+"price": 380
+},
+{
+"departure": "Canberra",
+"arrival": "Edinburgh",
+"departing": "10-04-2016 T10:00:00",
+"arriving": "11-04-2016 T12:00:00",
+"price": 400
+},
+
+// Mon 11 Apr 2016
+
 {
 "departure": "Melbourne",
 "arrival": "Edinburgh",
@@ -167,5 +221,23 @@ module.exports = [
 "departing": "13-04-2016 T10:00:00",
 "arriving": "14-04-2016 T12:00:00",
 "price": 410
+},
+
+// Tue 12 Apr 2016
+
+{
+"departure": "Canberra",
+"arrival": "Edinburgh",
+"departing": "12-04-2016 T11:00:00",
+"arriving": "13-04-2016 T13:00:00",
+"price": 385
+},
+{
+"departure": "Canberra",
+"arrival": "Edinburgh",
+"departing": "12-04-2016 T10:00:00",
+"arriving": "13-04-2016 T12:00:00",
+"price": 390
 }
+
 ]
