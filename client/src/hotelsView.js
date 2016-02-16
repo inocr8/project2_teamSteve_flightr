@@ -49,8 +49,7 @@ HotelsView.prototype = {
         var hotels = this.packageOptions.hotels;
         for (var key in hotels) {
             var hotel = hotels[key];
-
-            // this.hotelMap.addMarker(hotel);
+            this.hotelMap.addMarker(hotel);
         }
     },
 
