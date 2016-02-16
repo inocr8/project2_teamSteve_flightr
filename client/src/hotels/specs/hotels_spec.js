@@ -18,9 +18,29 @@ describe('Hotels', function(){
     assert.equal(1, hotels.data.length);
   });
 
-  it('should have a price per person to rent room', function(){
-      assert.equal(32, hotelData[0].pricePerPerson);
+  it('should have a name, address and zip code', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    assert.equal("The Plaza", hotels.data[0].name);
+    expect(hotels.data[0]).to.deep.equal({
+      "name": "The Plaza",
+      "pricePerPerson": 32,
+      "rooms": 10,
+      "stars": 3,
+      "address": {
+        "building": "3",
+        "street": "Park Avenue",
+        "city": "Melbourne",
+        "zip": 3498890
+      }
+    });
   });
+
+    it('should have a price per person to rent room', function(){
+      var hotel = hotelData[0];
+      hotels.addHotel(hotel);
+      assert.equal(32, hotels.data[0].pricePerPerson);
+    });
 
   it('should sort hotel by price, from lowest to highest', function(){
     var hotel1 = hotelData[1];
