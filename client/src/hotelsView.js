@@ -13,9 +13,7 @@ HotelsView.prototype = {
         var hotels = this.packageOptions.hotels;
         for (var key in hotels) {
             var hotel = hotels[key];
-
-            this.map.addInfoWindow(hotel);
-
+            this.hotelMap.addInfoWindow(hotel);
         }
     },
 
