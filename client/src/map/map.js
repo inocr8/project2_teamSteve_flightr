@@ -39,7 +39,8 @@ HotelMap.prototype = {
    addInfoWindow: function(hotel){
      var marker = this.addMarker(hotel);
      var infoWindow = new google.maps.InfoWindow({
-      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}, Address: {{address.building}} {{address.street}} {{address.city}},{{address.zip}}", hotel),
+      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}, Address: {{address.building}} {{address.street}} {{address.city}},{{address.zip}}", hotel) ,
+      
       pixelOffset: new google.maps.Size(0,-60)
      }); 
     marker.addListener('mouseover', function(){
