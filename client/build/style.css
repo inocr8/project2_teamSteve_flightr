@@ -1,10 +1,45 @@
 body {
+  background-image: url('http://2.bp.blogspot.com/-OIBygzZgQVg/U12FSHRFt0I/AAAAAAAAAbM/WT0akTR3TcU/s1600/BouchonGrapeVines.jpg');
+  border-left: 1px solid white;
+}
 
+header {
+
+}
+
+.logo {
+  padding: 1rem 1.2rem;
+  color: tomato;
+  -webkit-text-fill-color: tomato; /* Will override color (regardless of order) */
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: #fff;
+  letter-spacing: .2rem;
 }
 
 span {
     display: block;
 }
+
+/* Search
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+#search {
+  float: right;
+  padding: 1rem 1.2rem;
+  background-color: rgba(255, 255, 255, .6);
+  border: 1px solid tomato;
+}
+
+#search label {
+  vertical-align: top;
+}
+
+
+/* Nav
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+
+
 
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -59,31 +94,208 @@ span {
     font-size: .8rem;
 }
 
+/* Hotel Options
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+#hotels {
+/*    display: inline-block;*/
+    vertical-align: top;
+}
+
+.hotel-options {
+    display: block;
+    list-style-type: none;
+    width: 100%;
+    color: #555;
+    border: 1px solid #ccc;
+    padding: 1.8rem .8rem .8rem .8rem;
+    margin: .2rem;
+}
+
+.hotel-options a {
+  width: 100%;
+}
+
+.hotel-options.best-value {
+    border: 1px solid tomato;
+    position: relative;
+}
+
+.hotel-options.selected {
+    background-color: tomato;
+    border: 1px solid tomato;
+    color: #fff;
+}
+
+.hotel-options:hover {
+    cursor: pointer;
+}
+
+:not(.selected).hotel-options:hover {
+    background-color: #eee;
+    color: #000;
+}
+
+.hotel-options.best-value:before {
+    content: "Best Value";
+    color: #fff;
+    font-size: .8rem;
+    text-align: center;
+    padding: .1rem 0;
+    position: absolute;
+    background-color: tomato;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+}
+
+.hotel-options span.price {
+    font-size: 1.2rem;
+}
+
+.hotel-options span.name,
+.hotel-option span.stars {
+    font-size: .8rem;
+}
+
+
+/* Sort options list
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.sort-options-list {
+  border: 1px solid #444;
+}
+
+.sort-options-list li {
+  display: inline-block;
+  border-right: 1px solid #444;
+}
+
+.sort-options-list li a {
+  padding: .4rem 1rem;
+  text-decoration: none;
+  color: tomato;
+}
 
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-.package-flight {
+#package-breakdown {
+    display: block;
+    background-color: #fff;
+    border: 3px solid tomato;
+}
+
+.package-flight,
+.package-hotel {
     display: inline-block;
     padding: 1rem;
 }
 
-.package-flight span.date {
+.package-flight span.date,
+.package-hotel span.date {
     color: #000;
     font-weight: 600;
 }
 
 .package-flight span.from,
-.package-flight span.to {
+.package-flight span.to,
+.package-hotel span.name {
     color: #555;
     font-weight: 600;
 }
 
-.package-flight span.time {
+.package-flight span.time,
+.package-hotel span.stars {
     color: #555;
 }
 
-.package-flight span.price {
+.package-flight span.price,
+.package-hotel span.price {
     color: #555;
     font-weight: 600;
 }
+
+/* HotelMap---------------------------------------------------------- */
+
+#map {
+/*    display: inline-block;*/
+    height: 500px;
+    width: 500px;
+}
+
+/*.map-responsive{
+    overflow:hidden;
+    padding-bottom:56.25%;
+    position:relative;
+    height:500px;
+}
+.map-responsive div{
+    left:0;
+    top:0;
+    height:100%;
+    width:100%;
+    position:absolute;
+}*/
+
+
+/* Tabs ---------------------------------------------------------- */
+
+.tabs {
+  width: 100%;
+  float: none;
+  list-style: none;
+  position: relative;
+  text-align: left;
+}
+.tabs > li {
+  float: left;
+  width: 33.33333%;
+  display: block;
+}
+.tabs input[type="radio"] {
+  position: absolute;
+  left: -10000px;
+}
+.tabs label {
+  display: block;
+  padding: 14px 21px;
+  border-radius: 2px 2px 0 0;
+  font-size: 20px;
+  font-weight: normal;
+  text-transform: uppercase;
+  background: #eee;
+  cursor: pointer;
+  position: relative;
+  top: 4px;
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+}
+.tabs label:hover {
+  background: #fff;
+}
+.tabs .tab-content {
+  z-index: 2;
+  overflow: hidden;
+  width: 100%;
+  font-size: 17px;
+  line-height: 25px;
+  padding: 25px;
+  position: absolute;
+  top: 53px;
+  left: -10000px;
+  background: #fff;
+  border-top: 1px solid tomato;
+}
+.tabs [id^="tab"]:checked + label {
+  padding-top: 17px;
+  background: tomato;
+  color: #fff;
+}
+.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+  left: 0px;
+}
+
+

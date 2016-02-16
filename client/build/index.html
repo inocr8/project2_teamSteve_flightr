@@ -8,36 +8,97 @@
   <script src="//code.jquery.com/jquery-1.10.2.js"></script>
   <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <script src="https://maps.googleapis.com/maps/api/js"></script>
+
   <link rel="stylesheet" type="text/css" href="normalize.css">
+  <link rel="stylesheet" type="text/css" href="skeleton.css">
+  <link rel="stylesheet" type="text/css" href="style.css">
 </head>
-<body>
-  <h1>Welcome to the Team Steve Flightr App</h1>
+<body class="container">
+  <header class="row">
+    <h1 class="logo">fflyghtr</h1>
 
-  <form id="search">
+  <form id="search" class="row">
+      <div class="form-group">
+      <label for="departure-airport" class="three columns">Departure</label>
+      <input type="text" id="departure-airport" class="nine columns" name="departure-airport" value="Edinburgh">
+      </div>
 
-      <label for="departure-airport">Departure:</label>
-      <input type="text" id="departure-airport" name="departure-airport" value="Edinburgh">
+      <div class="form-group">
+      <label for="arrival-airport" class="three columns">Arrival</label>
+      <input type="text" id="arrival-airport" class="nine columns" name="arrival-airport" value="Canberra">
+      </div>
 
-      <label for="arrival-airport">Arrival:</label>
-      <input type="text" id="arrival-airport" name="arrival-airport" value="Canberra">
-      <br>
-      <label for="outbound-date">Outbound:</label>
-      <input type="date" id="outbound-date" name="outbound-date" value="2016-03-28">
+      <div class="form-group">
+      <label for="outbound-date" class="three columns">Outbound</label>
+      <input type="date" id="outbound-date" class="nine columns" name="outbound-date" value="2016-03-28">
+      </div>
 
-      <label for="return-date">Return:</label>
-      <input type="date" id="return-date" name="return-date" value="2016-04-11">
-      <br>
-      <label for="number-of-persons">Number of Persons:</label>
-      <input type="number" id="number-of-persons" name="number-of-persons" min="1" value="1">
+      <div class="form-group">
+      <label for="return-date" class="three columns">Return</label>
+      <input type="date" id="return-date" class="nine columns" name="return-date" value="2016-04-11">
+      </div>
 
-      <input type="button" id="search-button" value="Search">
+      <div class="form-group">
+      <label for="number-of-persons" class="six columns">Number of Persons</label>
+      <input type="number" id="number-of-persons" class="six columns" name="number-of-persons" min="1" value="1">
+      </div>
+
+      <input type="button" id="search-button" value="Find your holiday">
 
   </form>
+  </header>
 
-  <div id="outbound-flights"></div>
-  <div id="hotel"></div>
-  <div id="return-flights"></div>
-  <div id="package-breakdown"></div>
+  <div id="package-breakdown" class=""></div>
+
+
+  <ul class="tabs row">
+      <li class="row">
+         <input type="radio" id="tab1" name="tabs" checked>
+         <label for="tab1">Flights</label>
+         
+         <div id="tab-content1" class="tab-content u-cf">
+           <div id="outbound-flights" class="one-half column"></div>
+           <div id="return-flights" class="one-half column"></div>
+         </div>
+     </li>
+      
+     <li id="hotels-tab">
+         <input type="radio" id="tab2" name="tabs">
+         <label for="tab2">Hotels</label>
+         
+            <div id="tab-content2" class="tab-content u-cf">
+              <div id="hotels-sort-by">
+                <ul class="sort-options-list">
+                  <li>Order By: <li>
+                  <li>
+                    <a href="#" id="lowest-price-first">Lowest Price First</a>
+                  </li>
+                  <li>
+                    <a href="#" id="lowest-stars-first">Stars 1 - 5</a>
+                  </li>
+                  <li>
+                    <a href="#" id="highest-stars-first">Stars 5 - 1</a>
+                  </li>
+                </ul>
+              </div>
+              <ul id="hotels" class="one-third column"></ul>
+              <div id="map" class="two-third column"></div>
+            </div> 
+
+     </li>
+      
+      <li>
+         <input type="radio" id="tab3" name="tabs">
+         <label for="tab3">Package</label>
+       
+         <div id="tab-content3" class="tab-content u-cf">
+         </div>
+     </li>
+      
+  </ul>
+
+  <br class=".u-cf">
+
 </body>
 </html>
