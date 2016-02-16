@@ -58,6 +58,20 @@ FlightsManager.prototype = {
         });
     },
 
+    sortByDeparting: function(flights){
+        return flights.sort(function(a, b){
+            return a.departing - b.departing;
+        });
+    },
+
+    cheapestFlight: function(flights){
+        return this.sortByPrice(flights)[0];
+    },
+
+    earliestFlight: function(flights){
+        return this.sortByDeparting(flights)[0];
+    },
+
     addFlight: function(flight){
         this.data.push(new Flight(flight));
     },
