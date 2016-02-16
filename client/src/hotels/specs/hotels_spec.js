@@ -36,24 +36,24 @@ describe('Hotels', function(){
     });
   });
 
-    it('should have a price per person to rent room', function(){
-      var hotel = hotelData[0];
-      hotels.addHotel(hotel);
-      assert.equal(32, hotels.data[0].pricePerPerson);
-    });
+  it('should have a price per person to rent room', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    assert.equal(32, hotels.data[0].pricePerPerson);
+  });
 
-    it('should have a star rating as an integer', function(){
-      var hotel = hotelData[0];
-      hotels.addHotel(hotel);
-      expect(hotels.data[0].stars).to.be.an('number');
-    });
+  it('should have a star rating as an integer', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].stars).to.be.an('number');
+  });
 
-    it('should have a number of rooms as an integer and greater than zero', function(){
-      var hotel = hotelData[0];
-      hotels.addHotel(hotel);
-      expect(hotels.data[0].rooms).to.be.an('number');
-      expect(hotels.data[0].rooms).to.be.above(0);
-    });
+  it('should have a number of rooms as an integer and greater than zero', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].rooms).to.be.an('number');
+    expect(hotels.data[0].rooms).to.be.above(0);
+  });
 
   it('should sort hotel by price, from lowest to highest', function(){
     var hotel1 = hotelData[1];
@@ -91,8 +91,6 @@ describe('Hotels', function(){
     hotels.hotelsReturnCheapest();
     assert.equal(12, hotels.hotelsReturnCheapest()[0].pricePerPerson);
   });
-
-
 
   it('should return all hotels from a city', function(){
     hotelData.forEach(function(hotel){
