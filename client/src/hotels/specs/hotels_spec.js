@@ -18,6 +18,10 @@ describe('Hotels', function(){
     assert.equal(1, hotels.data.length);
   });
 
+  it('should have a price per person to rent room', function(){
+      assert.equal(32, hotelData[0].pricePerPerson);
+  });
+
   it('should sort hotel by price, from lowest to highest', function(){
     var hotel1 = hotelData[1];
     var hotel2 = hotelData[0];
