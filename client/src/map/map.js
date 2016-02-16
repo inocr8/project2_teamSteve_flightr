@@ -40,17 +40,17 @@ HotelMap.prototype = {
      var marker = this.addMarker(hotel);
      var infoWindow = new google.maps.InfoWindow({ 
       
-      content: Mustache.render('Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}, Address: {{address.building}} {{address.street}} {{address.city}},{{address.zip}},<img src="{{address.image}}"/>', hotel),
+      content: Mustache.render('Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}, <div>Address: {{address.building}} {{address.street}} {{address.city}},{{address.zip}}</div>,<img src="{{address.image}}"/>', hotel),
       
       pixelOffset: new google.maps.Size(0,-60)
      }); 
     marker.addListener('click', function(){
       infoWindow.open(this.map, marker);
     });
-    // marker.addListener('mouseout', function(){
-    //   infoWindow.close();
-    // });
-    // this.map.addListener(window,'resize',initialize);
+     // marker.addListener('click', function(){
+     //   infoWindow.close();
+     // });
+    
   }
 
 }
