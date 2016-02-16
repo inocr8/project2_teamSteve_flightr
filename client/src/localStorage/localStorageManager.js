@@ -2,11 +2,11 @@ var _ = require('lodash');
 
 var LocalStorageManager = function(){
 
-    this.storageKeyPackages ="flightrPackages";
-    this.storageKeyItineraries ="flightrItineraries";
+  this.storageKeyPackages ="flightrPackages";
+  this.storageKeyItineraries ="flightrItineraries";
 
-    this.packages = this.getPackages() || [];
-    this.itineraries = this.getItineraries() || [];
+  this.packages = this.getPackages() || [];
+  this.itineraries = this.getItineraries() || [];
 };
 
 LocalStorageManager.prototype = {
@@ -26,6 +26,7 @@ LocalStorageManager.prototype = {
       }
     }
     storedPackages.push(package);
+    console.log('Package saved');
     localStorage.setItem(this.storageKeyPackages, JSON.stringify(storedPackages));
   },
 
@@ -34,6 +35,7 @@ LocalStorageManager.prototype = {
     for ( var i = 0; i < storedPackages.length; i++ ) {
       if ( _.isEqual(storedPackages[i], package ) ){
         storedPackages.splice(i,1); 
+        console.log('Package deleted');
       }
     }
     localStorage.setItem(this.storageKeyPackages, JSON.stringify(storedPackages));
@@ -54,6 +56,7 @@ LocalStorageManager.prototype = {
       }
     }
     storedItineraries.push(itinerary);
+    console.log('Package saved');
     localStorage.setItem(this.storageKeyItineraries, JSON.stringify(storedItineraries));
   },
 
@@ -61,7 +64,8 @@ LocalStorageManager.prototype = {
     var storedItineraries = this.itineraries;
     for ( var i = 0; i < storedItineraries.length; i++ ) {
       if ( _.isEqual(storedItineraries[i], itinerary ) ){
-        storedItineraries.splice(i,1); 
+        storedItineraries.splice(i,1);
+        console.log('Package deleted');
       }
     }
     localStorage.setItem(this.storageKeyItineraries, JSON.stringify(storedItineraries));

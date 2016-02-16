@@ -19,6 +19,7 @@ PackageBreakdownView.prototype = {
         this.packageBreakdown.innerHTML += this.rebuildFlight(this.package.returnFlight);
 
         this.buildSaveButton();
+        this.buildDeleteButton();
     },
 
     buildSaveButton: function(){
@@ -28,6 +29,17 @@ PackageBreakdownView.prototype = {
         var self = this;
         button.onclick = function(){
             self.localStorageManager.savePackage(self.package);
+        };
+        this.packageBreakdown.appendChild(button);
+    },
+
+    buildDeleteButton: function(){
+        var button = document.createElement('button');
+        button.innerText = 'Delete Saved Package';
+
+        var self = this;
+        button.onclick = function(){
+            self.localStorageManager.deletePackage(self.package);
         };
         this.packageBreakdown.appendChild(button);
     },
