@@ -13,14 +13,21 @@ var HotelsView = function(packageOptions){
     self.lowestPriceFirst = document.querySelector('#lowest-price-first');
     self.lowestPriceFirst.onclick = function(e){
         e.preventDefault();
-        self.packageOptions.sortHotelsByPriceAscending();
+        self.packageOptions.sortHotelsByPriceAsc();
         self.rebuildHotelOptions();
     };
 
     self.lowestStarsFirst = document.querySelector('#lowest-stars-first');
     self.lowestStarsFirst.onclick = function(e){
         e.preventDefault();
-        self.packageOptions.sortHotelsByStarsAscending();
+        self.packageOptions.sortHotelsByStarsAsc();
+        self.rebuildHotelOptions();
+    };
+
+    self.highestStarsFirst = document.querySelector('#highest-stars-first');
+    self.highestStarsFirst.onclick = function(e){
+        e.preventDefault();
+        self.packageOptions.sortHotelsByStarsDesc();
         self.rebuildHotelOptions();
     };
 
@@ -43,7 +50,7 @@ HotelsView.prototype = {
         for (var key in hotels) {
             var hotel = hotels[key];
 
-            // this.map.addMarker(hotel);
+            // this.hotelMap.addMarker(hotel);
         }
     },
 

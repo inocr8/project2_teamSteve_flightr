@@ -29,12 +29,20 @@ PackageOptions.prototype = {
         return bestValuePackage;
     },
 
-    sortHotelsByPriceAscending: function(){
-        this.hotels = HotelsManager.prototype.sortByPrice(this.hotels);
+    sortHotelsByPriceAsc: function(){
+        this.hotels = HotelsManager.prototype.sortByPriceAsc(this.hotels);
     },
 
-    sortHotelsByStarsAscending: function(){
-        this.hotels = HotelsManager.prototype.sortByStars(this.hotels);
+    sortHotelsByPriceDesc: function(){
+        this.hotels = HotelsManager.prototype.sortByPriceDesc(this.hotels);
+    },
+
+    sortHotelsByStarsAsc: function(){
+        this.hotels = HotelsManager.prototype.sortByStarsAsc(this.hotels);
+    },
+
+    sortHotelsByStarsDesc: function(){
+        this.hotels = HotelsManager.prototype.sortByStarsDesc(this.hotels);
     },
 
 
