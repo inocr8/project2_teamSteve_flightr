@@ -150,7 +150,7 @@ View.prototype = {
 
         // outboundFlightsView.rebuildFlightOptions();
         outboundFlightsView.rebuildThreeDayFlightOptions();
-        returnFlightsView.rebuildFlightOptions();
+        returnFlightsView.rebuildThreeDayFlightOptions();
         hotelsView.rebuildHotelOptions();
         hotelsView.populateMap();
     },

@@ -28,21 +28,26 @@ Package.prototype = {
     updateOutboundFlight: function(flight){
         this.outboundFlight = flight;
         if (!this.outboundFlight.arriving.isSame(this.itinerary.checkin, 'day')) {
-            var newDay = this.outboundFlight.arriving.startOf('day');
-
-            console.log('new day', newDay);
-            this.itinerary.updateCheckin(newDay);
+            var newCheckin = this.outboundFlight.arriving.startOf('day');
+            this.itinerary.updateCheckin(newCheckin);
         }
+        // notifies view of update
         this.outboundFlightUpdated();
     },
 
     updateReturnFlight: function(flight){
         this.returnFlight = flight;
+        if (!this.returnFlight.arriving.isSame(this.itinerary.checkin, 'day')) {
+            var newCheckin = this.returnFlight.arriving.startOf('day');
+            this.itinerary.updateCheckin(newCheckin);
+        }
+        // notifies view of update
         this.returnFlightUpdated();
     },
 
     updateHotel: function(hotel){
         this.hotel = hotel;
+        // notifies view of update
         this.hotelUpdated();
     }
 };

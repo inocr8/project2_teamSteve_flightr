@@ -46,14 +46,13 @@ PackageOptions.prototype = {
     sortHotelsByStarsDesc: function(){
         this.hotels = HotelsManager.prototype.sortByStarsDesc(this.hotels);
     },
-    
+
 
     updateCurrentPackageOutboundFlight: function(flight){
         this.currentPackage.updateOutboundFlight(flight);
     },
 
-    updateCurrentPackageReturnFlight: function(key){
-        var flight = this.returnFlights[key];
+    updateCurrentPackageReturnFlight: function(flight){
         this.currentPackage.updateReturnFlight(flight);
     },
 
@@ -65,8 +64,11 @@ PackageOptions.prototype = {
 
     findOutboundFlightByDayAndKey: function(day, key){
         return this.threeDayFlights.outboundFlights[day][key];
-    }
+    },
 
+    findReturnFlightByDayAndKey: function(day, key){
+        return this.threeDayFlights.returnFlights[day][key];
+    }
 
 };
 
