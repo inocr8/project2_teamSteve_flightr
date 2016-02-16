@@ -9,7 +9,6 @@ var HotelMap = function(hotel){
     center: hotelLatLng,
     zoom: 14 
   });
-  // this.map.addListener(window,'resize',initialize);
 };
 
 
@@ -49,7 +48,7 @@ HotelMap.prototype = {
     marker.addListener('mouseout', function(){
       infoWindow.close();
     });
-    
+    // this.map.addListener(window,'resize',initialize);
   }
 
 }
