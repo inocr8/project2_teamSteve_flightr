@@ -159,12 +159,31 @@ span {
 }
 
 
+/* Sort options list
+–––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.sort-options-list {
+  border: 1px solid #444;
+}
+
+.sort-options-list li {
+  display: inline-block;
+  border-right: 1px solid #444;
+}
+
+.sort-options-list li a {
+  padding: .4rem 1rem;
+  text-decoration: none;
+  color: tomato;
+}
+
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #package-breakdown {
     display: block;
-    border: 3px solid red;
+    background-color: #fff;
+    border: 3px solid tomato;
 }
 
 .package-flight,
@@ -255,7 +274,7 @@ span {
   transition: all 0.2s ease-in-out;
 }
 .tabs label:hover {
-  background: wheat;
+  background: #fff;
 }
 .tabs .tab-content {
   z-index: 2;
