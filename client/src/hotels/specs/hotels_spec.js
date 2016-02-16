@@ -31,7 +31,10 @@ describe('Hotels', function(){
         "building": "3",
         "street": "Park Avenue",
         "city": "Melbourne",
-        "zip": 3498890
+        "zip": 3498890,
+        "lat": -37.827028986826775,
+        "lng": 144.95683343238613,
+        "latLng": {"lat": -37.827028986826775, "lng": 144.95683343238613}
       }
     });
   });
@@ -55,39 +58,40 @@ describe('Hotels', function(){
     expect(hotels.data[0].rooms).to.be.above(0);
   });
 
+  it('should have a latitude and longitude map position', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].address.lat).to.be.an('number');
+    expect(hotels.data[0].address.lng).to.be.an('number');
+    assert.equal(-37.827028986826775, hotels.data[0].address.lat);
+    assert.equal(144.95683343238613, hotels.data[0].address.lng);
+  });
+
   it('should sort hotel by price, from lowest to highest', function(){
-    var hotel1 = hotelData[1];
-    var hotel2 = hotelData[0];
-    hotels.addHotel(hotel1);
-    hotels.addHotel(hotel2);
-    hotels.sortByPrice();
-    expect(hotels.data[0]).to.deep.equal(hotel2);
+    var hotel1 = hotelData[0];
+    var hotel2 = hotelData[1];
+    var hotelArray = [hotel2, hotel1];
+    hotelArray.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    hotels.sortByPriceAsc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotel1);
   });
 
   it('should sort all hotels by price, from lowest to highest', function(){
     hotelData.forEach(function(hotel){
       hotels.addHotel(hotel);
     });
-    hotels.sortByPrice();
-    expect(hotels.data[0]).to.deep.equal({
-      "name": "Bargain Hostel",
-      "pricePerPerson": 12,
-      "rooms": 60,
-      "stars": 1,
-      "address": {
-        "building": "7",
-        "street": "Harbour Lane",
-        "city": "Melbourne",
-        "zip": 5789046
-      }
-    });
+    var hotelTest = hotelData[2];
+    hotels.sortByPriceAsc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotelTest);
   });
 
   it('should return the cheapest price from all prices', function(){
     hotelData.forEach(function(hotel){
       hotels.addHotel(hotel);
     });
-    hotels.sortByPrice();
+    hotels.sortByPriceAsc(hotels.data);
     hotels.hotelsReturnCheapest();
     assert.equal(12, hotels.hotelsReturnCheapest()[0].pricePerPerson);
   });
