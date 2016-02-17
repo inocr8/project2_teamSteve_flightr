@@ -1,7 +1,7 @@
 var Mustache = require('mustache');
 
-var PackageSavedView = function(savedPackages,localStorageManager){
-  this.localStorageManager = localStorageManager;
+var PackageSavedView = function(savedPackages){
+  // this.localStorageManager = localStorageManager;
   this.package = savedPackages[0];
   this.itinerary = savedPackages[0].itinerary;
   this.outboundFlightElement = document.querySelector('#package-saved-outbound-flight');
@@ -12,19 +12,6 @@ var PackageSavedView = function(savedPackages,localStorageManager){
   console.log(this.package);
 
   var self = this;
-
-  this.package.options = function(){
-    self.rebuildPackageSaved();
-  };
-  this.package.outboundFlight = function(){
-    self.rebuildOutboundFlight();
-  };
-  this.package.returnFlight = function(){
-    self.rebuildReturnFlight();
-  };
-  this.package.hotel = function(){
-    self.rebuildHotel();
-  };
 
 }
 
@@ -89,8 +76,8 @@ PackageSavedView.prototype = {
         numberOfPersons: this.itinerary.numberOfPersons,
         numberOfNights: this.itinerary.numberOfNights,
 
-        checkin: this.itinerary.checkin,
-        checkout: this.itinerary.checkout,
+        checkin: this.itinerary.checkin.toLocaleDateString('en-GB', dateOptions),
+        checkout: this.itinerary.checkout.toLocaleDateString('en-GB', dateOptions),
 
         stars: hotel.stars > 1 ? 'stars' : 'star',
         nights: this.itinerary.numberOfNights > 1 ? 'nights' : 'night',

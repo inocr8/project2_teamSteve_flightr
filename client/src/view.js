@@ -71,14 +71,12 @@ var View = function(packagesManager, localStorageManager){
 
     // var savedPackages = this.localStorageManager.getPackages('savedPackageData');
     // console.log(savedPackages);
+    var savedPackages = this.localStorageManager.getPackages('savedPackageData');
+        // console.log(savedPackages[0]);
 
     this.savedButton.onclick = function(){
         console.log('saved button clicked')
-        var savedPackages = this.localStorageManager.getPackages('savedPackageData');
-        console.log(savedPackages[0]);
         this.renderSavedPackageBreakdown(savedPackages);
-        // console.log('after passed', savedPackages);
-
     }.bind(this);
 };
 
@@ -172,21 +170,19 @@ View.prototype = {
     },
 
     renderPackageBreakdown: function(package){
+
         var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
         packageBreakdownView.rebuildPackageBreakdown();
         
         var packageSummaryView = new PackageSummaryView(package, this.localStorageManager);
         packageSummaryView.rebuildPackageSummary();
 
-        // var packageSavedView = new PackageSavedView(package, this.localStorageManager);
-        // packageSavedView.rebuildPackageSaved();
     },
 
     renderSavedPackageBreakdown: function(savedPackages){
 
         var packageSavedView = new PackageSavedView(savedPackages, this.localStorageManager);
-        // console.log(savedPackages);
-        // packageSavedView.rebuildPackageSaved();
+        packageSavedView.rebuildPackageSaved();
     }
 
 };
