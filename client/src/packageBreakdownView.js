@@ -6,10 +6,17 @@ var PackageBreakdownView = function(package, localStorageManager){
     this.package = package;
     this.itinerary = package.itinerary;
 
-    this.packageBreakdownButtons = document.querySelector('#package-breakdown-buttons');
+    // Package Preview
+    this.previewButtons = document.querySelector('#package-breakdown-buttons');
     this.outboundFlightElement = document.querySelector('#package-breakdown-outbound-flight');
     this.returnFlightElement = document.querySelector('#package-breakdown-return-flight');
     this.hotelElement = document.querySelector('#package-breakdown-hotel');
+
+    // Package Summary
+    this.summaryOutboundFlightElement = document.querySelector('#package-summary-outbound-flight');
+    this.summaryReturnFlightElement = document.querySelector('#package-summary-return-flight');
+    this.summaryHotel = document.querySelector('#package-summary-hotel');
+    this.summaryButtons = document.querySelector('#package-summary-buttons')
 
 
     console.log('package breakdown created');
@@ -37,7 +44,7 @@ var PackageBreakdownView = function(package, localStorageManager){
 
 PackageBreakdownView.prototype = {
     rebuildPackageBreakdown: function(){
-        this.packageBreakdownButtons.innerHTML = '';
+        this.previewButtons.innerHTML = '';
         this.rebuildOutboundFlight();
         this.rebuildReturnFlight();
         this.rebuildHotel();
@@ -53,7 +60,7 @@ PackageBreakdownView.prototype = {
         button.onclick = function(){
             self.localStorageManager.savePackage(self.package);
         };
-        this.packageBreakdownButtons.appendChild(button);
+        this.summaryButtons.appendChild(button);
     },
 
     buildDeleteButton: function(){
@@ -64,16 +71,20 @@ PackageBreakdownView.prototype = {
         button.onclick = function(){
             self.localStorageManager.deletePackage(self.package);
         };
-        this.packageBreakdownButtons.appendChild(button);
+        this.summaryButtons.appendChild(button);
     },
 
 
     rebuildOutboundFlight: function(){
-        this.outboundFlightElement.innerHTML = this.rebuildFlight(this.package.outboundFlight);
+        var output = this.rebuildFlight(this.package.outboundFlight);
+        this.outboundFlightElement.innerHTML = output;
+        this.summaryOutboundFlightElement.innerHTML = output;
     },
 
     rebuildReturnFlight: function(){
-        this.returnFlightElement.innerHTML = this.rebuildFlight(this.package.returnFlight);
+        var output = this.rebuildFlight(this.package.returnFlight);
+        this.returnFlightElement.innerHTML = output;
+        this.summaryReturnFlightElement.innerHTML = output;
     },
 
     rebuildFlight: function(flight){
@@ -127,6 +138,7 @@ PackageBreakdownView.prototype = {
         +   '</div>', view);
 
         this.hotelElement.innerHTML = output;
+        this.summaryHotel.innerHTML = output;
     }
 };
 

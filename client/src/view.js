@@ -160,8 +160,8 @@ View.prototype = {
         var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
         packageBreakdownView.rebuildPackageBreakdown();
         
-        var packageSummaryView = new PackageSummaryView(package, this.localStorageManager);
-        packageSummaryView.rebuildPackageSummary();
+        // var packageSummaryView = new PackageSummaryView(package, this.localStorageManager);
+        // packageSummaryView.rebuildPackageSummary();
     }
 
 };
