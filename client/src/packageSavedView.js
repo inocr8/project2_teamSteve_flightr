@@ -1,24 +1,88 @@
 var Mustache = require('mustache');
+var Itinerary = require('./itinerary/itinerary.js');
+var Flight = require('./flights/flight.js');
 
-var PackageSavedView = function(savedPackages, localStorageManager){
+var PackageSavedView = function(view, localStorageManager){
   this.localStorageManager = localStorageManager;
 
-  this.package = savedPackages[0];
-  this.itinerary = savedPackages[0].itinerary;
+  this.packages = this.localStorageManager.packages;
+
+  this.view = view;
+  // this.itinerary = selectedPackage.itinerary;
+
+  this.element = document.querySelector('#package-saved');
   
   // Package Saved Summary
-  this.outboundFlightElement = document.querySelector('#package-saved-outbound-flight');
-  this.returnFlightElement = document.querySelector('#package-saved-return-flight');
-  this.packageSavedHotel = document.querySelector('#package-saved-hotel');
-  this.packageDeleteButtonSaved = document.querySelector('#package-delete-button')
+  // this.outboundFlightElement = document.querySelector('#package-saved-outbound-flight');
+  // this.returnFlightElement = document.querySelector('#package-saved-return-flight');
+  // this.packageSavedHotel = document.querySelector('#package-saved-hotel');
+  // this.packageDeleteButtonSaved = document.querySelector('#package-delete-button')
 
   console.log("Package Saved View Created")
   console.log(this.package);
 
 }
 
+
+
 PackageSavedView.prototype = {
 
+  rebuildSavedPackages: function(){
+    this.element.innerHTML = '';
+    var self = this;
+    this.packages.forEach(function(package){
+      var li = document.createElement('li');
+      li.innerText = package.hotel.name;
+
+      var button = self.buildDeleteButtonSaved(package);
+      li.appendChild(button);
+
+      var viewButton = self.buildViewPackageButton(package);
+      li.appendChild(viewButton);
+      self.element.appendChild(li);
+    })
+  },
+
+
+  buildDeleteButtonSaved: function(package){
+    var button = document.createElement('button');
+    button.innerText = 'Delete Saved Package';
+
+    var self = this;
+    button.onclick = function(){
+      self.localStorageManager.deletePackage(package);
+      self.rebuildSavedPackages();
+    };
+    return button;
+  },
+
+  buildViewPackageButton: function(package){
+    var button = document.createElement('button');
+    button.innerText = 'View Package';
+    console.log(this.packagesManager);
+
+    var self = this;
+    button.onclick = function(){
+      package.itinerary = new Itinerary(package.itinerary);
+      package.outboundFlight = new Flight(package.outboundFlight);
+      package.returnFlight = new Flight(package.returnFlight);
+
+      console.log('our package', package);
+
+      var packageOptions = self.view.packagesManager.createPackageOptions(package.itinerary);
+      packageOptions.setCurrentPackage(package);
+
+      self.view.renderPackageOptions(packageOptions);
+      self.view.renderPackageView(packageOptions.currentPackage);
+
+
+      console.log('package Options',packageOptions);
+    };
+    return button;
+  },
+
+
+  //////////////////////////////////////
   rebuildPackageSaved: function(){
     this.rebuildOutboundFlight();
     this.rebuildReturnFlight();
@@ -26,19 +90,10 @@ PackageSavedView.prototype = {
     this.buildDeleteButtonSaved();
   },
 
-  buildDeleteButtonSaved: function(){
-    var button = document.createElement('button');
-    button.innerText = 'Delete Saved Package';
-
-    var self = this;
-    button.onclick = function(){
-      self.localStorageManager.deletePackage(self.package);
-    };
-    this.packageDeleteButtonSaved.appendChild(button);
-  },
-
   rebuildOutboundFlight: function(){
+    //var outboundFlight = document.createElement('this.package.outboundFlight');
     this.outboundFlightElement.innerHTML = this.rebuildFlight(this.package.outboundFlight);
+    // this.outboundFlightElement.appendChild(outboundFlight);
   },
 
   rebuildReturnFlight: function(){
@@ -78,8 +133,8 @@ PackageSavedView.prototype = {
         numberOfPersons: this.itinerary.numberOfPersons,
         numberOfNights: this.itinerary.numberOfNights,
 
-        checkin: this.itinerary.checkin,
-        checkout: this.itinerary.checkout,
+        // checkin: this.itinerary.checkin,
+        // checkout: this.itinerary.checkout,
 
         stars: hotel.stars > 1 ? 'stars' : 'star',
         nights: this.itinerary.numberOfNights > 1 ? 'nights' : 'night',

@@ -1,4 +1,5 @@
 var Mustache = require('mustache');
+var Package = require('./packages/package.js');
 
 var PackageView = function(package, localStorageManager){
     this.localStorageManager = localStorageManager;
@@ -59,7 +60,8 @@ PackageView.prototype = {
 
         var self = this;
         button.onclick = function(){
-            self.localStorageManager.savePackage(self.package);
+            var newPackage = new Package(self.package);
+            self.localStorageManager.savePackage(newPackage);
         };
         this.summaryButtons.appendChild(button);
     },

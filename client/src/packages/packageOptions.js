@@ -31,6 +31,10 @@ PackageOptions.prototype = {
         return bestValuePackage;
     },
 
+    setCurrentPackage: function(package){
+        this.currentPackage = new Package(package);
+    },
+
     sortHotelsByPriceAsc: function(){
         this.hotels = HotelsManager.prototype.sortByPriceAsc(this.hotels);
     },
