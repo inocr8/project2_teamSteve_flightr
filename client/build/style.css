@@ -301,9 +301,21 @@ span {
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
   left: 0px;
 }
-
 .hotels-tab-row {
   margin-left: 0;
   margin-right: 0;
+}
+.saved-content {
+  z-index: 2;
+  overflow: hidden;
+  width: 100%;
+  font-size: 17px;
+  line-height: 25px;
+  padding: 25px;
+  position: absolute;
+  top: 53px;
+  left: -10000px;
+  background: tomato;
+  border-top: 1px solid tomato;
 }
 
