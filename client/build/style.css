@@ -198,13 +198,13 @@ span {
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#package-breakdown {
+#package-preview {
     display: block;
     background-color: #fff;
     border: 3px solid tomato;
 }
 
-.package-breakdown {
+.package-preview {
   display: inline-block;
 }
 

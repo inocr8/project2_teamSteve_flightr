@@ -1,6 +1,5 @@
 var Itinerary = require('./itinerary/itinerary.js');
-var PackageBreakdownView = require('./packageBreakdownView.js');
-var PackageSummaryView = require('./packageSummaryView.js');
+var PackageView = require('./packageView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
 var HotelsView = require('./hotelsView.js');
@@ -61,7 +60,7 @@ var View = function(packagesManager, localStorageManager){
         var packageOptions = this.packagesManager.createPackageOptions(itinerary);
 
         this.renderPackageOptions(packageOptions);
-        this.renderPackageBreakdown(packageOptions.currentPackage);
+        this.renderPackageView(packageOptions.currentPackage);
 
     }.bind(this);
 };
@@ -156,12 +155,9 @@ View.prototype = {
         hotelsView.populateMap();
     },
 
-    renderPackageBreakdown: function(package){
-        var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
-        packageBreakdownView.rebuildPackageBreakdown();
-        
-        // var packageSummaryView = new PackageSummaryView(package, this.localStorageManager);
-        // packageSummaryView.rebuildPackageSummary();
+    renderPackageView: function(package){
+        var packageView = new PackageView(package, this.localStorageManager);
+        packageView.rebuildPackageView();
     }
 
 };
