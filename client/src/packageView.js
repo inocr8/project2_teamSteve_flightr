@@ -18,6 +18,7 @@ var PackageView = function(package, localStorageManager){
     this.summaryOutboundFlight = document.querySelector('#package-summary-outbound-flight');
     this.summaryReturnFlight = document.querySelector('#package-summary-return-flight');
     this.summaryHotel = document.querySelector('#package-summary-hotel');
+
     this.summaryButtons = document.querySelector('#package-summary-buttons');
     this.summaryTotal = document.querySelector('#package-summary-total');
 
@@ -166,7 +167,7 @@ PackageView.prototype = {
         +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
         +       '<span class="name">{{hotel.name}}</span>'
         +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
-        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
+        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span>'
         +   '</div>', view);
 
         this.previewHotel.innerHTML = output;

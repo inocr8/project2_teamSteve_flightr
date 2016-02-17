@@ -21,7 +21,6 @@ var PackageOptions = function(options){
 PackageOptions.prototype = {
 
     createBestValuePackage: function(){
-
         var bestValuePackage = new Package({
             itinerary: this.itinerary,
             outboundFlight: FlightsManager.prototype.cheapestFlight(this.outboundFlights),

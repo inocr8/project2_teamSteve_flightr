@@ -57,6 +57,11 @@ HotelsManager.prototype = {
     return this.sortByPriceAsc(cityHotels);
   },
 
+  hotelsReturnRandom: function(){
+    var random = this.data[Math.floor(Math.random()*this.data.length)];
+    return random;
+  },
+
   filterByStars: function(hotels, stars){
     return hotels.filter(function(hotel){
       console.log(stars, 'include', hotel.stars, '?', stars.includes(hotel.stars));
