@@ -18,87 +18,117 @@
   <header class="row">
     <h1 class="logo">fflyghtr</h1>
 
-  <form id="search" class="row">
+    <form id="search" class="row">
       <div class="form-group">
-      <label for="departure-airport" class="three columns">Departure</label>
-      <input type="text" id="departure-airport" class="nine columns" name="departure-airport" value="Edinburgh">
+        <label for="departure-airport" class="three columns">Departure</label>
+        <input type="text" id="departure-airport" class="nine columns" name="departure-airport" value="Edinburgh">
       </div>
 
       <div class="form-group">
-      <label for="arrival-airport" class="three columns">Arrival</label>
-      <input type="text" id="arrival-airport" class="nine columns" name="arrival-airport" value="Canberra">
+        <label for="arrival-airport" class="three columns">Arrival</label>
+        <input type="text" id="arrival-airport" class="nine columns" name="arrival-airport" value="Canberra">
       </div>
 
       <div class="form-group">
-      <label for="outbound-date" class="three columns">Outbound</label>
-      <input type="date" id="outbound-date" class="nine columns" name="outbound-date" value="2016-03-28">
+        <label for="outbound-date" class="three columns">Outbound</label>
+        <input type="date" id="outbound-date" class="nine columns" name="outbound-date" value="2016-03-28">
       </div>
 
       <div class="form-group">
-      <label for="return-date" class="three columns">Return</label>
-      <input type="date" id="return-date" class="nine columns" name="return-date" value="2016-04-11">
+        <label for="return-date" class="three columns">Return</label>
+        <input type="date" id="return-date" class="nine columns" name="return-date" value="2016-04-11">
       </div>
 
       <div class="form-group">
-      <label for="number-of-persons" class="six columns">Number of Persons</label>
-      <input type="number" id="number-of-persons" class="six columns" name="number-of-persons" min="1" value="1">
+        <label for="number-of-persons" class="six columns">Number of Persons</label>
+        <input type="number" id="number-of-persons" class="six columns" name="number-of-persons" min="1" value="1">
       </div>
 
       <input type="button" id="search-button" value="Find your holiday">
 
-  </form>
+    </form>
   </header>
 
-  <div id="package-breakdown" class=""></div>
+  <div id="package-preview" class="">
+    <div id="package-preview-outbound-flight" class="package-preview"></div>
+    <div id="package-preview-return-flight" class="package-preview"></div>
+    <div id="package-preview-hotel" class="package-preview"></div>
+    <div id="package-preview-buttons" class="package-preview"></div>
+  </div>
 
 
-  <ul class="tabs row">
-      <li class="row">
-         <input type="radio" id="tab1" name="tabs" checked>
-         <label for="tab1">Flights</label>
-         
-         <div id="tab-content1" class="tab-content u-cf">
-           <div id="outbound-flights" class="one-half column"></div>
-           <div id="return-flights" class="one-half column"></div>
-         </div>
-     </li>
-      
-     <li id="hotels-tab">
-         <input type="radio" id="tab2" name="tabs">
-         <label for="tab2">Hotels</label>
-         
-            <div id="tab-content2" class="tab-content u-cf">
-              <div id="hotels-sort-by">
-                <ul class="sort-options-list">
-                  <li>Order By: <li>
-                  <li>
-                    <a href="#" id="lowest-price-first">Lowest Price First</a>
-                  </li>
-                  <li>
-                    <a href="#" id="lowest-stars-first">Stars 1 - 5</a>
-                  </li>
-                  <li>
-                    <a href="#" id="highest-stars-first">Stars 5 - 1</a>
-                  </li>
-                </ul>
-              </div>
-              <ul id="hotels" class="one-third column"></ul>
-              <div id="map" class="two-third column"></div>
-            </div> 
+  <ul class="tabs container">
+    <li>
+     <input type="radio" id="tab1" name="tabs" checked>
+     <label for="tab1">Flights</label>
 
-     </li>
-      
-      <li>
-         <input type="radio" id="tab3" name="tabs">
-         <label for="tab3">Package</label>
-       
-         <div id="tab-content3" class="tab-content u-cf">
-         </div>
-     </li>
-      
-  </ul>
+     <div id="tab-content1" class="tab-content container">
+       <div id="outbound-flights" class="one-half column flights-three-day">
+         <p>Outbound</p>
+         <div id="outbound-prev-day" class="flight-day"></div>
+         <div id="outbound-on-day" class="flight-day"></div>
+         <div id="outbound-next-day" class="flight-day"></div>
+       </div>
+       <div id="return-flights" class="one-half column">
+         <p>Return</p>
+         <div id="return-prev-day" class="flight-day"></div>
+         <div id="return-on-day" class="flight-day"></div>
+         <div id="return-next-day" class="flight-day"></div>
+       </div>
+     </div>
+   </li>
 
-  <br class=".u-cf">
+   <li>
+     <input type="radio" id="tab2" name="tabs">
+     <label for="tab2">Hotels</label>
+
+     <div id="tab-content2" class="tab-content container">
+
+       <div id="hotels-sort-by row">
+        <ul class="sort-options-list">
+          <li>Order By: <li>
+            <li>
+              <a href="#" id="lowest-price-first">Lowest Price First</a>
+            </li>
+            <li>
+              <a href="#" id="lowest-stars-first">Stars 1 - 5</a>
+            </li>
+            <li>
+              <a href="#" id="highest-stars-first">Stars 5 - 1</a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="row">
+          <ul id="hotels" class="four columns"></ul>
+          <div id="map" class="eight columns"></div>
+        </div>
+
+      </div> 
+
+    </li>
+
+    <li>
+     <input type="radio" id="tab3" name="tabs">
+     <label for="tab3">Package</label>
+
+     <div id="tab-content3" class="tab-content container">
+      <div id="package-summary" >
+        
+        <div id="package-summary-outbound-flight"></div>
+        <div id="package-summary-return-flight"></div>
+          
+        <div id="package-summary-hotel"></div>
+        <div id="package-summary-buttons"></div>  
+      </div>
+     </div>
+   </li>
+
+ </ul>
+
+ <br class=".u-cf">
+
+ <div class="test">Does this show???</div>
 
 </body>
 </html>

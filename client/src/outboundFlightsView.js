@@ -1,17 +1,34 @@
 var Mustache = require('mustache');
+var moment = require('moment');
 
 var OutboundFlightsView = function(packageOptions){
     this.packageOptions = packageOptions;
     this.element = document.querySelector('#outbound-flights');
+
+    this.onDay = document.querySelector('#outbound-on-day');
+    this.nextDay = document.querySelector('#outbound-next-day');
+    this.prevDay = document.querySelector('#outbound-prev-day');
 };
 
 OutboundFlightsView.prototype = {
 
-    rebuildFlightOptions: function(){
+    rebuildThreeDayFlightOptions: function(){
+        var onDay = this.packageOptions.itinerary.outboundDate;
+    
+        var prevDay =  moment(onDay).subtract(1, 'day');
+        var nextDay =  moment(onDay).add(1, 'day');
 
-        this.element.innerHTML = Mustache.render('<p>{{itinerary.departureAirport}} to {{itinerary.arrivalAirport}} - {{itinerary.displayDates.outboundDate}}', this.packageOptions);
+        var threeDayFlights = this.packageOptions.threeDayFlights;
 
-        var flights = this.packageOptions.outboundFlights;
+        this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[prevDay], this.prevDay, prevDay);
+        this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[onDay], this.onDay, onDay);
+        this.rebuildDayFlightOptions(threeDayFlights.outboundFlights[nextDay], this.nextDay, nextDay);
+    },
+
+    rebuildDayFlightOptions: function(flights, element, day){
+
+        element.innerHTML = '<p>' + day.format('ddd DD MMM') + '</p>';
+
         for (var key in flights) {
 
             var flight = flights[key];
@@ -28,7 +45,7 @@ OutboundFlightsView.prototype = {
 
             var self = this;
             a.onclick = function(){
-                self.notifyFlightSelection(this);
+                self.notifyFlightSelectionOnDay(day, this.id);
             };
 
             if (flight === this.packageOptions.bestValuePackage.outboundFlight) {
@@ -40,19 +57,17 @@ OutboundFlightsView.prototype = {
             }
 
             li.appendChild(a);
-            this.element.appendChild(li);
+
+            element.appendChild(li);
         }
     },
 
-    notifyFlightSelection: function(element){
-        // console.log('element', key);
-        // console.log('element id', key.id);
-        var key = element.id;
+    notifyFlightSelectionOnDay: function(day, key){
 
-        this.packageOptions.updateCurrentPackageOutboundFlight(key);
-        this.rebuildFlightOptions(this.packageOptions);
+        var flight = this.packageOptions.findOutboundFlightByDayAndKey(day, key);
 
-        console.log('current', this.packageOptions.currentPackage);
+        this.packageOptions.updateCurrentPackageOutboundFlight(flight);
+        this.rebuildThreeDayFlightOptions();
     }
 };
 

@@ -1,3 +1,5 @@
+var moment = require('moment');
+
 var Flight = function(options){
     this.departure = options.departure;
     this.arrival = options.arrival;
@@ -5,8 +7,10 @@ var Flight = function(options){
     this.arriving = this.parseDate(options.arriving),
     this.price = options.price;
 
+    this.length = this.calculateLength(this.departing, this.arriving);
+
     this.displayDates = this.formatDisplayDates(this.departing, this.arriving);
-}
+};
 
 Flight.prototype = {
     parseDate: function(string){
@@ -25,30 +29,36 @@ Flight.prototype = {
 
         var dateString = year + '-' + month + '-' + day + time;
 
-        return new Date(dateString);
+        return moment(dateString);
     },
 
-    formatDisplayDates: function(departing, arriving){
-        var dateOptions = {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        };
-        var timeOptions = {
-            hour: '2-digit',
-            minute:'2-digit'
-        };
+    formatDisplayDates: function(departing, arriving, length){
+
         return {
             departing: {
-                date: departing.toLocaleDateString('en-GB', dateOptions),
-                time: departing.toLocaleTimeString('en-GB', timeOptions)
+                date: departing.format('ddd DD MMM YYYY'),
+                time: departing.format('HH:mm')
             },
             arriving: {
-                date: arriving.toLocaleDateString('en-GB', dateOptions),
-                time: arriving.toLocaleTimeString('en-GB', timeOptions)
-            }
+                date: arriving.format('ddd DD MMM YYYY'),
+                time: arriving.format('HH:mm')
+            },
+            length: this.formatLength(length)
         };
+    },
+
+    calculateLength: function(departing, arriving){
+        return arriving.diff(departing, 'm');
+    },
+
+    formatLength: function(lengthInMinutes){
+        var hours = Math.floor(lengthInMinutes / 60);
+        var minutes = lengthInMinutes % 60;
+
+        var string = hours + 'h';
+        if (minutes !== 0)
+            string += ' ' + minutes;
+        return string;
     }
 };
 

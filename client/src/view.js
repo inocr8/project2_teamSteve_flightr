@@ -1,5 +1,5 @@
 var Itinerary = require('./itinerary/itinerary.js');
-var PackageBreakdownView = require('./packageBreakdownView.js');
+var PackageView = require('./packageView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
 var HotelsView = require('./hotelsView.js');
@@ -23,7 +23,7 @@ var View = function(packagesManager, localStorageManager){
     this.hotel = document.querySelector('#hotel');
 
     this.packageBreakdown = document.querySelector('#package-breakdown');
-
+    this.packageSummary = document.querySelector('#package-summary');
 
     // Prevent Tabs from defaulting
     // var tabs = document.querySelectorAll('input[type=radio]');
@@ -54,13 +54,13 @@ var View = function(packagesManager, localStorageManager){
             departureAirport: this.departureAirport.value,
             arrivalAirport: this.arrivalAirport.value,
 
-            outboundDate: new Date(this.outboundDate.value),
-            returnDate: new Date(this.returnDate.value)
+            outboundDate: this.outboundDate.value,
+            returnDate: this.returnDate.value
         });
         var packageOptions = this.packagesManager.createPackageOptions(itinerary);
 
         this.renderPackageOptions(packageOptions);
-        this.renderPackageBreakdown(packageOptions.currentPackage);
+        this.renderPackageView(packageOptions.currentPackage);
 
     }.bind(this);
 };
@@ -148,15 +148,16 @@ View.prototype = {
         var returnFlightsView = new ReturnFlightsView(packageOptions);
         var hotelsView = new HotelsView(packageOptions);
 
-        outboundFlightsView.rebuildFlightOptions();
-        returnFlightsView.rebuildFlightOptions();
+        // outboundFlightsView.rebuildFlightOptions();
+        outboundFlightsView.rebuildThreeDayFlightOptions();
+        returnFlightsView.rebuildThreeDayFlightOptions();
         hotelsView.rebuildHotelOptions();
         hotelsView.populateMap();
     },
 
-    renderPackageBreakdown: function(package){
-        var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
-        packageBreakdownView.rebuildPackageBreakdown();
+    renderPackageView: function(package){
+        var packageView = new PackageView(package, this.localStorageManager);
+        packageView.rebuildPackageView();
     }
 
 };

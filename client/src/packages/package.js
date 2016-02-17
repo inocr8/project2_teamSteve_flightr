@@ -1,14 +1,14 @@
+var moment = require('moment');
+
 var Package = function(options){
     this.itinerary = options.itinerary;
+
     this.outboundFlight = options.outboundFlight;
     this.returnFlight = options.returnFlight;
     this.hotel = options.hotel;
 
     this.totalPricePerPerson = this.calcTotalPricePerPerson();
     this.totalPrice = this.calcTotalPrice();
-
-    // this.dates = this.formatDates();
-    this.optionsUpdated = undefined;
 };
 
 Package.prototype = {
@@ -27,35 +27,29 @@ Package.prototype = {
 
     updateOutboundFlight: function(flight){
         this.outboundFlight = flight;
-        this.optionsUpdated();
+        if (!this.outboundFlight.arriving.isSame(this.itinerary.checkin, 'day')) {
+            var newCheckin = this.outboundFlight.arriving.startOf('day');
+            this.itinerary.updateCheckin(newCheckin);
+        }
+        // notifies view of update
+        this.outboundFlightUpdated();
     },
 
     updateReturnFlight: function(flight){
         this.returnFlight = flight;
-        this.optionsUpdated();
+        if (!this.returnFlight.departing.isSame(this.itinerary.checkout, 'day')) {
+            var newCheckout = this.returnFlight.departing.startOf('day');
+            this.itinerary.updateCheckout(newCheckout);
+        }
+        // notifies view of update
+        this.returnFlightUpdated();
     },
 
     updateHotel: function(hotel){
         this.hotel = hotel;
-        this.optionsUpdated();
+        // notifies view of update
+        this.hotelUpdated();
     }
-
-    // formatDates: function(){
-    //     return {
-    //         outboundFlight: {
-    //             departing:this.outboundFlight.departing.toDateString(),
-    //             arriving: this.outboundFlight.arriving.toDateString()
-    //         },
-    //         returnFlight: {
-    //             departing: this.returnFlight.departing.toDateString(),
-    //             arriving: this.returnFlight.arriving.toDateString()
-    //         }
-    //     }
-    // }
-
-    // summary: function(){
-
-    // }
 };
 
 module.exports = Package;
