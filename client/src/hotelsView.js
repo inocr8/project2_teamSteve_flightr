@@ -112,12 +112,12 @@ HotelsView.prototype = {
             var self = this;
             checkbox.onclick = function(){
 
-                var checkboxs = self.filterByStarsForm.stars;
+                var checkboxes = self.filterByStarsForm.stars;
 
                 var stars = [];
-                for (var i = 0; i < checkboxs.length; i++) {
-                    if (checkboxs[i].checked)
-                        stars.push(parseInt(checkboxs[i].value));
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked)
+                        stars.push(parseInt(checkboxes[i].value));
                 }
 
                 if (stars[0] == null) {
