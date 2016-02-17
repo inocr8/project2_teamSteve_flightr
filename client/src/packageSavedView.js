@@ -2,12 +2,11 @@ var Mustache = require('mustache');
 var Itinerary = require('./itinerary/itinerary.js');
 var Flight = require('./flights/flight.js');
 
-var PackageSavedView = function(view, localStorageManager){
+var PackageSavedView = function(localStorageManager){
   this.localStorageManager = localStorageManager;
 
   this.packages = this.localStorageManager.packages;
 
-  this.view = view;
   // this.itinerary = selectedPackage.itinerary;
 
   this.element = document.querySelector('#package-saved');
@@ -20,6 +19,13 @@ var PackageSavedView = function(view, localStorageManager){
 
   console.log("Package Saved View Created")
   console.log(this.package);
+
+  this.savedButton = document.querySelector('#submit-button');
+
+  this.savedButton.onclick = function(){
+      console.log('show saved packages button clicked')
+      this.rebuildSavedPackages();
+  }.bind(this);
 
 }
 
@@ -67,16 +73,18 @@ PackageSavedView.prototype = {
       package.outboundFlight = new Flight(package.outboundFlight);
       package.returnFlight = new Flight(package.returnFlight);
 
-      console.log('our package', package);
+      self.displaySavedPackage(package);
 
-      var packageOptions = self.view.packagesManager.createPackageOptions(package.itinerary);
-      packageOptions.setCurrentPackage(package);
+      // console.log('our package', package);
 
-      self.view.renderPackageOptions(packageOptions);
-      self.view.renderPackageView(packageOptions.currentPackage);
+      // var packageOptions = self.view.packagesManager.createPackageOptions(package.itinerary);
+      // packageOptions.setCurrentPackage(package);
+
+      // self.view.renderPackageOptions(packageOptions);
+      // self.view.renderPackageView(packageOptions.currentPackage);
 
 
-      console.log('package Options',packageOptions);
+      // console.log('package Options',packageOptions);
     };
     return button;
   },
