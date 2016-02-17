@@ -55,6 +55,11 @@ HotelsManager.prototype = {
       }
     } 
     return this.sortByPriceAsc(cityHotels);
+  },
+
+  hotelsReturnRandom: function(){
+    var random = this.data[Math.floor(Math.random()*this.data.length)];
+    return random;
   }
 
 };

@@ -148,4 +148,25 @@ describe('Hotels', function(){
     expect(hotelsInCanberra.length).to.equal(3);
   });
 
+  it('should return an object when hotelsReturnRandom is called', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    var randomHotel = hotels.hotelsReturnRandom();
+    expect(randomHotel).to.be.an('object');
+  });
+
+  it('should return an object with the keys: name, pricePerPerson, rooms, stars, address', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    var randomHotel = hotels.hotelsReturnRandom();
+    expect(randomHotel).to.have.property('name');
+    expect(randomHotel).to.have.property('pricePerPerson');
+    expect(randomHotel).to.have.property('rooms');
+    expect(randomHotel).to.have.property('stars');
+    expect(randomHotel).to.have.property('address');
+  });
+
+
 });
