@@ -3,21 +3,16 @@ var HotelsManager = require('./hotelsManager');
 
 var HotelRandomView = function(HotelsManager){
   this.randomHotel = hotelsManager.hotelsReturnRandom();
-  self = this;
+  this.element = document.querySelector('#hotel-random');
 }
 
 HotelRandomView.prototype = {
-  rebuildHotelRandomView: function(){
-    this.rebuildHotel();
+  buildRandomHotel: function(){
+    element.innerHTML = Mustache.render(
+      '<ul><li>{{name}}</li> <li>{{pricePerPerson}}</li> <li>{{stars}}</li></ul>'
+      
+      )
   }
-
-
-
-
-}
-
-
-
 };
 
 
