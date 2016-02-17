@@ -1,5 +1,8 @@
+var moment = require('moment');
+
 var Package = function(options){
     this.itinerary = options.itinerary;
+
     this.outboundFlight = options.outboundFlight;
     this.returnFlight = options.returnFlight;
     this.hotel = options.hotel;
@@ -24,35 +27,29 @@ Package.prototype = {
 
     updateOutboundFlight: function(flight){
         this.outboundFlight = flight;
+        if (!this.outboundFlight.arriving.isSame(this.itinerary.checkin, 'day')) {
+            var newCheckin = this.outboundFlight.arriving.startOf('day');
+            this.itinerary.updateCheckin(newCheckin);
+        }
+        // notifies view of update
         this.outboundFlightUpdated();
     },
 
     updateReturnFlight: function(flight){
         this.returnFlight = flight;
+        if (!this.returnFlight.departing.isSame(this.itinerary.checkout, 'day')) {
+            var newCheckout = this.returnFlight.departing.startOf('day');
+            this.itinerary.updateCheckout(newCheckout);
+        }
+        // notifies view of update
         this.returnFlightUpdated();
     },
 
     updateHotel: function(hotel){
         this.hotel = hotel;
+        // notifies view of update
         this.hotelUpdated();
     }
-
-    // formatDates: function(){
-    //     return {
-    //         outboundFlight: {
-    //             departing:this.outboundFlight.departing.toDateString(),
-    //             arriving: this.outboundFlight.arriving.toDateString()
-    //         },
-    //         returnFlight: {
-    //             departing: this.returnFlight.departing.toDateString(),
-    //             arriving: this.returnFlight.arriving.toDateString()
-    //         }
-    //     }
-    // }
-
-    // summary: function(){
-
-    // }
 };
 
 module.exports = Package;

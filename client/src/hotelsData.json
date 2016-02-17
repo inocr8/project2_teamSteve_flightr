@@ -110,6 +110,8 @@
 // ]
 
 module.exports = [
+
+// MELBOURNE HOTELS
 {
 "name": "The Plaza",
 "pricePerPerson": 32,
@@ -120,9 +122,10 @@ module.exports = [
 "street": "Park Avenue",
 "city": "Melbourne",
 "zip": 3498890, 
-"lat": -37.827028986826775,
-"lng": 144.95683343238613,
-"latLng": {"lat": -37.827028986826775, "lng": 144.95683343238613}
+"image": "http://aff.bstatic.com/images/hotel/max500/305/30525176.jpg",
+"lat": -37.86006907910177,
+"lng": 145.01567376149222,
+"latLng": {"lat":-37.86006907910177, "lng":145.01567376149222}
 }
 },
 {
@@ -135,6 +138,7 @@ module.exports = [
 "street": "Grand Lane",
 "city": "Melbourne",
 "zip": 4788278, 
+"image": "http://www.destination360.com/australia-south-pacific/australia/images/s/australia-melbourne-hotels.jpg",
 "lat": -37.77417955127804,
 "lng": 144.94894442654916,
 "latLng": {"lat": -37.77417955127804, "lng": 144.94894442654916}
@@ -150,11 +154,86 @@ module.exports = [
 "street": "Harbour Lane",
 "city": "Melbourne",
 "zip": 5789046, 
-"lat": -37.86006907910177,
-"lng": 145.01567376149222,
-"latLng": {"lat":-37.86006907910177, "lng":145.01567376149222}
+"image": "http://www.nina-travels.com/wp-content/uploads/2014/11/graffiti-melbourne-australia-travel1.jpg",
+"lat": -37.43789,
+"lng": 144.99999,
+"latLng": {"lat": -37.43789, "lng": 144.99999}
 }
 },
+
+{
+"name": "The Langham Melbourne",
+"pricePerPerson": 125,
+"rooms": 150,
+"stars": 5,
+"address": {
+"building": "1",
+"street": "Southgate Avenue",
+"city": "Melbourne",
+"zip": 3498890,
+"image": "http://i.toau-media.com/contentFiles/image/venues/travel/the-langham.jpg",
+"lat": -37.827028986826775,
+"lng": 144.95683343238613,
+"latLng": {"lat": -37.827028986826775, "lng": 144.95683343238613}
+}
+},
+
+{
+"name": "Novotel on Collins",
+"pricePerPerson": 94,
+"rooms": 94,
+"stars": 4,
+"address": {
+"building": "270",
+"street": "Collins Street",
+"city": "Melbourne",
+"zip": 3498890, 
+"image": "https://media-cdn.tripadvisor.com/media/photo-s/07/98/17/64/novotel-melbourne-on.jpg",
+"lat": -37.76543,
+"lng": 145.01233,
+"latLng": {"lat": -37.76543, "lng": 145.01233}
+}
+},
+
+{
+"name": "Vibe",
+"pricePerPerson": 88,
+"rooms": 120,
+"stars": 4,
+"address": {
+"building": "186",
+"street": "Exhibition Street",
+"city": "Melbourne",
+"image": "https://exp.cdn-hotels.com/hotels/1000000/20000/14300/14269/14269_44_b.jpg",
+"zip": 3498890, 
+"lat": -37.54689,
+"lng": 144.894265,
+"latLng": {"lat": -37.77417, "lng": 144.894265}
+}
+},
+
+{
+"name": "Metro Apartments",
+"pricePerPerson": 50,
+"rooms": 5,
+"stars": 3,
+"address": {
+"building": "18",
+"street": "Bank Place",
+"city": "Melbourne",
+"zip": 3498890, 
+"image": "http://i0.bookcdn.com/data/Photos/Large/896/89682/89682908.JPEG",
+"lat": -38.21345,
+"lng": 145.01233,
+"latLng": {"lat": -38.21345, "lng": 145.12343}
+}
+},
+
+
+
+
+// SYDNEY HOTELS
+
 {
 "name": "Four Seasons",
 "pricePerPerson": 78,
@@ -165,6 +244,7 @@ module.exports = [
 "street": "Hyde Street",
 "city": "Sydney",
 "zip": 8947548,
+"image": "http://www.fourseasons.com/content/dam/fourseasons/images/web/SYD/SYD_330_aspect16x9.jpg/jcr:content/renditions/cq5dam.web.637.358.jpeg",
 "lat": -33.861726,
 "lng": 151.209967,
 "latLng": {"lat":-33.861726, "lng":151.209967}
@@ -180,6 +260,7 @@ module.exports = [
 "street": "Bourne Street",
 "city": "Sydney",
 "zip": 3673290,
+"image": "https://propimages1.roamfree.com/Images/ACCOM_PROVIDERS/324846/City%20Hotel-3_L.jpg",
 "lat": -33.886146945433566,
 "lng": 151.202938204774,
 "latLng": {"lat":-33.886146945433566, "lng":151.202938204774}
@@ -195,11 +276,85 @@ module.exports = [
 "street": "Stell Avenue",
 "city": "Sydney",
 "zip": 4567824,
+"image": "https://i.ytimg.com/vi/TBxYekEcCRA/hqdefault.jpg",
 "lat": -33.88803587448435,
 "lng": 151.23256586525508,
 "latLng": {"lat":-33.88803587448435, "lng":151.23256586525508}
 }
 },
+
+{
+"name": "ibis Budget Sydney East",
+"pricePerPerson": 45,
+"rooms": 80,
+"stars": 3,
+"address": {
+"building": "191",
+"street": "Williams Street",
+"city": "Sydney",
+"zip": 3673290,
+"image": "http://www.ahstatic.com/photos/5675_ho_01_p_346x260.jpg",
+"lat": -33.88614,
+"lng": 150.86724,
+"latLng": {"lat":-33.88614, "lng":150.86724}
+}
+},
+
+{
+"name": "Waldorf Parramatta",
+"pricePerPerson": 210,
+"rooms": 150,
+"stars": 5,
+"address": {
+"building": "110-114",
+"street": "James Ruse Drive",
+"city": "Sydney",
+"zip": 3673290,
+"image": "https://www.google.co.uk/search?q=waldorf+parramatta&espv=2&biw=1280&bih=705&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiRiqWDnvzKAhWJ6RQKHf1PCtIQ_AUICSgE#imgrc=kkxf9lgg7Gl48M%3A",
+"lat": -33.88614,
+"lng": 150.86724,
+"latLng": {"lat":-33.824106, "lng":151.020968}
+}
+},
+
+{
+"name": "Central Railway Hotel",
+"pricePerPerson": 40,
+"rooms": 25,
+"stars": 2,
+"address": {
+"building": "240",
+"street": "Chalmers Street",
+"city": "Sydney",
+"zip": 3673290,
+"image": "https://www.google.co.uk/search?q=central+railway+hotel+sydney&espv=2&biw=1280&bih=705&source=lnms&tbm=isch&sa=X&ved=0ahUKEwjsgfSPnvzKAhVHSBQKHRVUBL0Q_AUIBygC#imgrc=KZ-Y0kS4T7C7RM%3A",
+"lat": -33.88614,
+"lng": 150.86724,
+"latLng": {"lat":-33.890729, "lng":151.206097}
+}
+},
+
+{
+"name": "Woolbrokers B&B",
+"pricePerPerson": 10,
+"rooms": 2,
+"stars": 1,
+"address": {
+"building": "22",
+"street": "Allen Street",
+"city": "Sydney",
+"zip": 8947548,
+"image": "http://media-cdn.tripadvisor.com/media/photo-o/05/48/7a/c4/graffiti-playa-hostel.jpg",
+"lat": -33.861726,
+"lng": 151.209967,
+"latLng": {"lat":-33.873031, "lng":151.196759}
+}
+},
+
+
+
+
+// CANBERRA HOTELS
 {
 "name": "Royal Hotel",
 "pricePerPerson": 45,
@@ -210,6 +365,7 @@ module.exports = [
 "street": "Kestrel Street",
 "city": "Canberra",
 "zip": 567818,
+"image": "http://media-cdn.tripadvisor.com/media/photo-s/04/d1/f0/62/royal-hotel-yass-bistro.jpg",
 "lat": -35.3075,
 "lng": 149.1244,
 "latLng": {"lat":-35.3075, "lng":149.1244}
@@ -222,14 +378,84 @@ module.exports = [
 "stars": 5,
 "address": {
 "building": "50",
-"street": "May Lane",
+"street": "May Street",
 "city": "Canberra",
 "zip": 5678427,
+"image": "http://i0.bookcdn.com/data/Photos/OriginalPhoto/1263/126309/126309774/Hyatt-Regency-Dallas-At-Reunion-photos-Restaurant-Restaurant.JPEG",
+"lat": -35.3475,
+"lng": 149.1360,
+"latLng": {"lat":-35.23924, "lng":149.14692}
+}
+},
+
+{
+"name": "Brassey Hotel",
+"pricePerPerson": 25,
+"rooms": 35,
+"stars": 3,
+"address": {
+"building": "50",
+"street": "Belmore Gardens & Macquarie Street",
+"city": "Canberra",
+"zip": 5678427,
+"image": "https://media-cdn.tripadvisor.com/media/photo-s/09/f1/77/53/brassey-hotel.jpg",
+"lat": -35.3475,
+"lng": 149.1360,
+"latLng": {"lat":-35.31111, "lng":149.13846}
+}
+},
+
+{
+"name": "Medina Serviced Apartments",
+"pricePerPerson": 65,
+"rooms": 170,
+"stars": 3,
+"address": {
+"building": "11",
+"street": "Giles Street",
+"city": "Canberra",
+"zip": 5678427,
+"image": "https://www.street-directory.com.au/himages/1000000/50000/48000/47952/47952_11_b.jpg",
 "lat": -35.3475,
 "lng": 149.1360,
 "latLng": {"lat":-35.3475, "lng":149.1360}
 }
 },
+
+{
+"name": "Motel Monaro",
+"pricePerPerson": 25,
+"rooms": 28,
+"stars": 2,
+"address": {
+"building": "27",
+"street": "Dawes Street",
+"city": "Canberra",
+"zip": 5678427,
+"image": "https://media-cdn.tripadvisor.com/media/photo-s/02/d3/65/cb/best-western-motel-monaro.jpg", 
+"lat": -35.3475,
+"lng": 149.1360,
+"latLng": {"lat":-35.290423, "lng":149.1106780}
+}
+},
+
+{
+"name": "Griffin Hotel",
+"pricePerPerson": 85,
+"rooms": 32,
+"stars": 4,
+"address": {
+"building": "15",
+"street": "Trench Street",
+"city": "Canberra",
+"zip": 5678427,
+"image": "https://images.trvl-media.com/hotels/8000000/7720000/7711400/7711306/7711306_12_z.jpg",
+"lat": -35.3475,
+"lng": 149.1360,
+"latLng": {"lat":-35.32678, "lng":149.17033}
+}
+},
+
 {
 "name": "Surfer's Inn",
 "pricePerPerson": 100,
@@ -240,9 +466,10 @@ module.exports = [
 "street": "High Street",
 "city": "Canberra",
 "zip": 6758473,
+"image": "http://www.backpackersworld.com/sites/backpackersworld.com/files/styles/largeslide/public/4d8feecfe3e70_987_sleeping-inn1.JPG?itok=rJ-Y6rvv",
 "lat": -35.3250,
 "lng": 149.1250,
-"latLng": {"lat":-35.3250, "lng":149.1250}
+"latLng": {"lat":-35.33912, "lng":149.157990}
 }
 }
 ]

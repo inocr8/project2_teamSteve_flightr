@@ -9,6 +9,8 @@ var PackageOptions = function(options){
     this.outboundFlights = options.outboundFlights;
     this.returnFlights = options.returnFlights;
 
+    this.threeDayFlights = options.threeDayFlights;
+
     this.hotels = options.hotels;
 
     this.bestValuePackage = this.createBestValuePackage(this);
@@ -21,8 +23,8 @@ PackageOptions.prototype = {
 
         var bestValuePackage = new Package({
             itinerary: this.itinerary,
-            outboundFlight: this.outboundFlights[0],
-            returnFlight: this.returnFlights[0],
+            outboundFlight: FlightsManager.prototype.cheapestFlight(this.outboundFlights),
+            returnFlight: FlightsManager.prototype.cheapestFlight(this.returnFlights),
             hotel: this.hotels[0]
         });
 
@@ -46,13 +48,11 @@ PackageOptions.prototype = {
     },
 
 
-    updateCurrentPackageOutboundFlight: function(key){
-        var flight = this.outboundFlights[key];
+    updateCurrentPackageOutboundFlight: function(flight){
         this.currentPackage.updateOutboundFlight(flight);
     },
 
-    updateCurrentPackageReturnFlight: function(key){
-        var flight = this.returnFlights[key];
+    updateCurrentPackageReturnFlight: function(flight){
         this.currentPackage.updateReturnFlight(flight);
     },
 
@@ -60,8 +60,15 @@ PackageOptions.prototype = {
         var hotel = this.hotels[key];
         this.currentPackage.updateHotel(hotel);
         return hotel;
-    }
+    },
 
+    findOutboundFlightByDayAndKey: function(day, key){
+        return this.threeDayFlights.outboundFlights[day][key];
+    },
+
+    findReturnFlightByDayAndKey: function(day, key){
+        return this.threeDayFlights.returnFlights[day][key];
+    }
 
 };
 

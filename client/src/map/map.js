@@ -1,5 +1,6 @@
 var Mustache = require('mustache');
 //var hotel = require('../packages/view.js')
+var testImage =('beach.jpeg');
 
 var HotelMap = function(hotel){
   var hotelLatLng = hotel.address.latLng; 
@@ -37,15 +38,18 @@ HotelMap.prototype = {
 
    addInfoWindow: function(hotel){
      var marker = this.addMarker(hotel);
-     var infoWindow = new google.maps.InfoWindow({
-      content: Mustache.render("Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: {{pricePerPerson}}", hotel)
-     });
-    marker.addListener('mouseover', function(){
+     var infoWindow = new google.maps.InfoWindow({ 
+      
+      content: Mustache.render('Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: £{{pricePerPerson}}, <div>Address: {{address.building}} {{address.street}} {{address.city}},{{address.zip}}</div>,<img src="{{address.image}}"/>', hotel),
+      
+      pixelOffset: new google.maps.Size(0,-60)
+     }); 
+    marker.addListener('click', function(){
       infoWindow.open(this.map, marker);
     });
-    marker.addListener('mouseout', function(){
-      infoWindow.close();
-    });
+     // marker.addListener('click', function(){
+     //   infoWindow.close();
+     // });
     
   }
 
