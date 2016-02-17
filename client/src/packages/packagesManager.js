@@ -14,6 +14,27 @@ PackagesManager.prototype = {
 
         var flights = this.flightsManager.returnJourneyQuery(itinerary);
 
+        var day =  24 * 60 * 60 * 1000;
+        var nextDayFlights = this.flightsManager.returnJourneyQuery({
+            departureAirport: itinerary.departureAirport,
+            arrivalAirport: itinerary.arrivalAirport,
+
+            outboundDate: new Date(itinerary.outboundDate.getTime() + day),
+            returnDate: new Date(itinerary.returnDate.getTime() + day)
+        });
+
+        var prevDayFlights = this.flightsManager.returnJourneyQuery({
+            departureAirport: itinerary.departureAirport,
+            arrivalAirport: itinerary.arrivalAirport,
+
+            outboundDate: new Date(itinerary.outboundDate.getTime() - day),
+            returnDate: new Date(itinerary.returnDate.getTime() - day)
+        });
+
+
+        var threeDayFlights = this.flightsManager.threeDayQuery(itinerary);
+        console.log('threeDayFlights', threeDayFlights);
+
         var checkin = flights.outboundFlights[0].arriving;
         var checkout = flights.returnFlights[0].departing;
 
@@ -26,9 +47,18 @@ PackagesManager.prototype = {
 
         var options = {
             itinerary: itinerary,
+
+            threeDayFlights: threeDayFlights,
+
+            prevDayOutboundFlights: prevDayFlights.outboundFlights,
             outboundFlights: flights.outboundFlights,
+            nextDayOutboundFlights: nextDayFlights.outboundFlights,
+
+            prevDayReturnFlights: prevDayFlights.returnFlights,
             returnFlights: flights.returnFlights,
-            hotels: hotels,
+            nextDayReturnFlights: nextDayFlights.returnFlights,
+
+            hotels: hotels
         };
 
         var packageOptions = new PackageOptions(options);

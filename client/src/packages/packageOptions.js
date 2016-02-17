@@ -6,8 +6,15 @@ var FlightsManager = require('../flights/flightsManager.js');
 var PackageOptions = function(options){
     this.itinerary = options.itinerary;
 
+    this.prevDayOutboundFlights = options.prevDayOutboundFlights;
     this.outboundFlights = options.outboundFlights;
+    this.nextDayOutboundFlights = options.nextDayOutboundFlights;
+
+    this.prevDayReturnFlights = options.prevDayReturnFlights;
     this.returnFlights = options.returnFlights;
+    this.nextDayReturnFlights = options.nextDayReturnFlights;
+
+    this.threeDayFlights = options.threeDayFlights;
 
     this.hotels = options.hotels;
 
@@ -46,8 +53,7 @@ PackageOptions.prototype = {
     },
 
 
-    updateCurrentPackageOutboundFlight: function(key){
-        var flight = this.outboundFlights[key];
+    updateCurrentPackageOutboundFlight: function(flight){
         this.currentPackage.updateOutboundFlight(flight);
     },
 
@@ -60,6 +66,10 @@ PackageOptions.prototype = {
         var hotel = this.hotels[key];
         this.currentPackage.updateHotel(hotel);
         return hotel;
+    },
+
+    findOutboundFlightByDayAndKey: function(day, key){
+        return this.threeDayFlights.outboundFlights[day][key];
     }
 
 

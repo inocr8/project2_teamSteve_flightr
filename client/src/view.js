@@ -163,7 +163,8 @@ View.prototype = {
         var returnFlightsView = new ReturnFlightsView(packageOptions);
         var hotelsView = new HotelsView(packageOptions);
 
-        outboundFlightsView.rebuildFlightOptions();
+        // outboundFlightsView.rebuildFlightOptions();
+        outboundFlightsView.rebuildThreeDayFlightOptions();
         returnFlightsView.rebuildFlightOptions();
         hotelsView.rebuildHotelOptions();
         hotelsView.populateMap();
