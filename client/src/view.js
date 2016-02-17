@@ -178,7 +178,14 @@ var View = function(packagesManager, localStorageManager){
     renderSavedPackageBreakdown: function(savedPackages){
 
         var packageSavedView = new PackageSavedView(savedPackages, this.localStorageManager);
-        packageSavedView.rebuildPackageSaved();
+        var savedPackageData = savedPackages;
+        var savedPackagesView = document.querySelector('saved-package-main');
+        for ( var i = 0; i < savedPackageData.length; i++ ){
+            var li = document.createElement('li');
+            li.innerHTML = packageSavedView.rebuildPackageSaved(i);
+            console.log('Saved packages rendered');
+            // savedPackagesView.appendChild(li);
+        }
     }
 
 

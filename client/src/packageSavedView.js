@@ -1,17 +1,19 @@
 var Mustache = require('mustache');
 
-var PackageSavedView = function(savedPackages){
-  // this.localStorageManager = localStorageManager;
+var PackageSavedView = function(savedPackages, localStorageManager){
+  this.localStorageManager = localStorageManager;
+
   this.package = savedPackages[0];
   this.itinerary = savedPackages[0].itinerary;
+  
+  // Package Saved Summary
   this.outboundFlightElement = document.querySelector('#package-saved-outbound-flight');
   this.returnFlightElement = document.querySelector('#package-saved-return-flight');
   this.packageSavedHotel = document.querySelector('#package-saved-hotel');
-  this.packageDeleteButton = document.querySelector('#package-delete-button')
+  this.packageDeleteButtonSaved = document.querySelector('#package-delete-button')
+
   console.log("Package Saved View Created")
   console.log(this.package);
-
-  var self = this;
 
 }
 
@@ -21,10 +23,10 @@ PackageSavedView.prototype = {
     this.rebuildOutboundFlight();
     this.rebuildReturnFlight();
     this.rebuildHotel();
-    this.buildDeleteButton();
+    this.buildDeleteButtonSaved();
   },
 
-  buildDeleteButton: function(){
+  buildDeleteButtonSaved: function(){
     var button = document.createElement('button');
     button.innerText = 'Delete Saved Package';
 
@@ -32,7 +34,7 @@ PackageSavedView.prototype = {
     button.onclick = function(){
       self.localStorageManager.deletePackage(self.package);
     };
-    this.packageDeleteButton.appendChild(button);
+    this.packageDeleteButtonSaved.appendChild(button);
   },
 
   rebuildOutboundFlight: function(){
@@ -76,8 +78,8 @@ PackageSavedView.prototype = {
         numberOfPersons: this.itinerary.numberOfPersons,
         numberOfNights: this.itinerary.numberOfNights,
 
-        checkin: this.itinerary.checkin.toLocaleDateString('en-GB', dateOptions),
-        checkout: this.itinerary.checkout.toLocaleDateString('en-GB', dateOptions),
+        checkin: this.itinerary.checkin,
+        checkout: this.itinerary.checkout,
 
         stars: hotel.stars > 1 ? 'stars' : 'star',
         nights: this.itinerary.numberOfNights > 1 ? 'nights' : 'night',
