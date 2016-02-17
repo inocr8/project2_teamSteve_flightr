@@ -1,5 +1,5 @@
 var Itinerary = require('./itinerary/itinerary.js');
-var PackageBreakdownView = require('./packageBreakdownView.js');
+var PackageView = require('./packageView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
 var HotelsView = require('./hotelsView.js');
@@ -23,7 +23,7 @@ var View = function(packagesManager, localStorageManager){
     this.hotel = document.querySelector('#hotel');
 
     this.packageBreakdown = document.querySelector('#package-breakdown');
-
+    this.packageSummary = document.querySelector('#package-summary');
 
     // Prevent Tabs from defaulting
     // var tabs = document.querySelectorAll('input[type=radio]');
@@ -60,7 +60,7 @@ var View = function(packagesManager, localStorageManager){
         var packageOptions = this.packagesManager.createPackageOptions(itinerary);
 
         this.renderPackageOptions(packageOptions);
-        this.renderPackageBreakdown(packageOptions.currentPackage);
+        this.renderPackageView(packageOptions.currentPackage);
 
     }.bind(this);
 };
@@ -155,9 +155,9 @@ View.prototype = {
         hotelsView.populateMap();
     },
 
-    renderPackageBreakdown: function(package){
-        var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
-        packageBreakdownView.rebuildPackageBreakdown();
+    renderPackageView: function(package){
+        var packageView = new PackageView(package, this.localStorageManager);
+        packageView.rebuildPackageView();
     }
 
 };

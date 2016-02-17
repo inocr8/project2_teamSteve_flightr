@@ -198,13 +198,13 @@ span {
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#package-breakdown {
+#package-preview {
     display: block;
     background-color: #fff;
     border: 3px solid tomato;
 }
 
-.package-breakdown {
+.package-preview {
   display: inline-block;
 }
 
@@ -243,9 +243,12 @@ span {
 #map {
 /*    display: inline-block;*/
     height: 500px;
-    width: 500px;
-}
+    max-width: 100%;
 
+}
+#map img{
+    max-width: 60%; 
+}
 /*.map-responsive{
     overflow:hidden;
     padding-bottom:56.25%;
