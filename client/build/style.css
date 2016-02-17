@@ -3,8 +3,13 @@ body {
   border-left: 1px solid white;
 }
 
-header {
+img {
+  max-width: 100%;
+}
 
+p {
+  margin: 0;
+  padding: 0;
 }
 
 .logo {
@@ -43,6 +48,11 @@ span {
 
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.flights-three-day {
+  display: block;
+  min-width: 310px;
+}
 
 .flight-day {
   display: inline-block;
