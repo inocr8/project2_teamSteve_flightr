@@ -112,6 +112,12 @@ span {
     font-size: .8rem;
 }
 
+.flight-options span.length {
+    font-size: .8rem;
+}
+
+
+
 /* Hotel Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #hotels {

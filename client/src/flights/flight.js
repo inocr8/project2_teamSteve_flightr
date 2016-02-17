@@ -9,7 +9,7 @@ var Flight = function(options){
 
     this.length = this.calculateLength(this.departing, this.arriving);
 
-    this.displayDates = this.formatDisplayDates(this.departing, this.arriving);
+    this.displayDates = this.formatDisplayDates(this.departing, this.arriving, this.length);
 };
 
 Flight.prototype = {
@@ -40,8 +40,10 @@ Flight.prototype = {
                 time: departing.format('HH:mm')
             },
             arriving: {
-                date: arriving.format('ddd DD MMM YYYY'),
-                time: arriving.format('HH:mm')
+                // date: arriving.format('ddd DD MMM YYYY'),
+                // time: arriving.format('HH:mm')
+                    time: this.timeAtDestination(arriving),
+                    date: this.dateAtDestination(arriving)
             },
             length: this.formatLength(length)
         };
@@ -59,7 +61,21 @@ Flight.prototype = {
         if (minutes !== 0)
             string += ' ' + minutes;
         return string;
+    },
+
+    timeAtDestination: function(arriving){
+        var arrTime = moment(arriving).format('HH:mm');
+        return arrTime;
+    },
+
+    dateAtDestination: function(arriving){
+        var arrDate = moment(arriving).format('DD MMM');
+        return arrDate;
     }
+
+
+
+
 };
 
 module.exports = Flight;

@@ -32,6 +32,7 @@ describe('Hotels', function(){
         "street": "Park Avenue",
         "city": "Melbourne",
         "zip": 3498890,
+        "image": "http://aff.bstatic.com/images/hotel/max500/305/30525176.jpg",
         "lat": -37.827028986826775,
         "lng": 144.95683343238613,
         "latLng": {"lat": -37.827028986826775, "lng": 144.95683343238613}
@@ -147,5 +148,18 @@ describe('Hotels', function(){
     var hotelsInCanberra = hotels.hotelsByCity('Canberra');
     expect(hotelsInCanberra.length).to.equal(3);
   });
+
+  it('should return an hotel image as a string', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].address.image).to.be.a('string');
+  });
+
+  it('should each have a star rating between 1 and 5', function(){
+    hotelData.forEach(function(hotel){
+    expect(hotel.stars).to.be.above(0);
+    expect(hotel.stars).to.be.below(6);
+    });
+  })
 
 });
