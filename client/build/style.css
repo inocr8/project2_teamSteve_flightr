@@ -293,11 +293,11 @@ span {
   width: 33.33333%;
   display: block;
 }
-.tabs input[type="radio"] {
+.tabs input[type="radio"].radio-tabs {
   position: absolute;
   left: -10000px;
 }
-.tabs label {
+.tabs label.radio-tabs {
   display: block;
   padding: 14px 21px;
   border-radius: 2px 2px 0 0;
@@ -313,7 +313,7 @@ span {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.tabs label:hover {
+.tabs label.radio-tabs:hover {
   background: #fff;
 }
 .tabs .tab-content {
@@ -331,7 +331,7 @@ span {
 
   min-height: 550px;
 }
-.tabs [id^="tab"]:checked + label {
+.tabs [id^="tab"]:checked + label.radio-tabs {
   padding-top: 17px;
   background: tomato;
   color: #fff;
