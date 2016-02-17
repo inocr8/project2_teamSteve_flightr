@@ -7,8 +7,10 @@ var Flight = function(options){
     this.arriving = this.parseDate(options.arriving),
     this.price = options.price;
 
+    this.length = this.calculateLength(this.departing, this.arriving);
+
     this.displayDates = this.formatDisplayDates(this.departing, this.arriving);
-}
+};
 
 Flight.prototype = {
     parseDate: function(string){
@@ -30,7 +32,7 @@ Flight.prototype = {
         return moment(dateString);
     },
 
-    formatDisplayDates: function(departing, arriving){
+    formatDisplayDates: function(departing, arriving, length){
 
         return {
             departing: {
@@ -40,8 +42,23 @@ Flight.prototype = {
             arriving: {
                 date: arriving.format('ddd DD MMM YYYY'),
                 time: arriving.format('HH:mm')
-            }
+            },
+            length: this.formatLength(length)
         };
+    },
+
+    calculateLength: function(departing, arriving){
+        return arriving.diff(departing, 'm');
+    },
+
+    formatLength: function(lengthInMinutes){
+        var hours = Math.floor(lengthInMinutes / 60);
+        var minutes = lengthInMinutes % 60;
+
+        var string = hours + 'h';
+        if (minutes !== 0)
+            string += ' ' + minutes;
+        return string;
     }
 };
 

@@ -310,6 +310,8 @@ span {
   left: -10000px;
   background: #fff;
   border-top: 1px solid tomato;
+
+  min-height: 550px;
 }
 .tabs [id^="tab"]:checked + label {
   padding-top: 17px;
