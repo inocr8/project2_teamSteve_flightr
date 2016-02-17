@@ -205,6 +205,11 @@ span {
   color: tomato;
 }
 
+#filter-by-stars input[type="radio"] {
+  position: relative;
+  left: 0;
+}
+
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 

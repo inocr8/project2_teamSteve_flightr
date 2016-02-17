@@ -152,6 +152,8 @@ View.prototype = {
         outboundFlightsView.rebuildThreeDayFlightOptions();
         returnFlightsView.rebuildThreeDayFlightOptions();
         hotelsView.rebuildHotelOptions();
+
+        hotelsView.rebuildFilters();
         hotelsView.populateMap();
     },
 

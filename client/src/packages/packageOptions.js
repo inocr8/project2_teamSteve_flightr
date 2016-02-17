@@ -12,6 +12,7 @@ var PackageOptions = function(options){
     this.threeDayFlights = options.threeDayFlights;
 
     this.hotels = options.hotels;
+    this.displayingHotels = this.hotels.slice();
 
     this.bestValuePackage = this.createBestValuePackage(this);
     this.currentPackage = new Package(this.bestValuePackage);
@@ -32,20 +33,29 @@ PackageOptions.prototype = {
     },
 
     sortHotelsByPriceAsc: function(){
-        this.hotels = HotelsManager.prototype.sortByPriceAsc(this.hotels);
+        this.displayingHotels = HotelsManager.prototype.sortByPriceAsc(this.displayingHotels);
     },
 
     sortHotelsByPriceDesc: function(){
-        this.hotels = HotelsManager.prototype.sortByPriceDesc(this.hotels);
+        this.displayingHotels = HotelsManager.prototype.sortByPriceDesc(this.displayingHotels);
     },
 
     sortHotelsByStarsAsc: function(){
-        this.hotels = HotelsManager.prototype.sortByStarsAsc(this.hotels);
+        this.displayingHotels = HotelsManager.prototype.sortByStarsAsc(this.displayingHotels);
     },
 
     sortHotelsByStarsDesc: function(){
-        this.hotels = HotelsManager.prototype.sortByStarsDesc(this.hotels);
+        this.displayingHotels = HotelsManager.prototype.sortByStarsDesc(this.displayingHotels);
     },
+
+
+
+    filterHotelsByStars: function(stars){
+        console.log('displaying', this.displayingHotels);
+        this.displayingHotels = HotelsManager.prototype.filterByStars(this.hotels, stars);
+    },
+
+
 
 
     updateCurrentPackageOutboundFlight: function(flight){
@@ -57,7 +67,7 @@ PackageOptions.prototype = {
     },
 
     updateCurrentPackageHotel: function(key){
-        var hotel = this.hotels[key];
+        var hotel = this.displayingHotels[key];
         this.currentPackage.updateHotel(hotel);
         return hotel;
     },

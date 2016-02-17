@@ -7,7 +7,6 @@ var HotelsView = function(packageOptions){
     this.element = document.querySelector('#hotels');
 
     // Sort by
-
     var self = this;
 
     self.lowestPriceFirst = document.querySelector('#lowest-price-first');
@@ -30,6 +29,9 @@ var HotelsView = function(packageOptions){
         self.packageOptions.sortHotelsByStarsDesc();
         self.rebuildHotelOptions();
     };
+
+    //Filter
+    this.filterByStarsForm = document.querySelector('#filter-by-stars');
 };
 
 HotelsView.prototype = {
@@ -45,7 +47,7 @@ HotelsView.prototype = {
     rebuildHotelOptions: function(){
         this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
 
-        var hotels = this.packageOptions.hotels;
+        var hotels = this.packageOptions.displayingHotels;
         for (var key in hotels) {
 
             var hotel = hotels[key];
@@ -92,6 +94,42 @@ HotelsView.prototype = {
         this.hotelMap.setCenter(hotel);
 
         console.log('current', this.packageOptions.currentPackage);
+    },
+
+    rebuildFilters: function(){
+        this.filterByStarsForm.innerHTML = '';
+        for (var stars = 5; stars >= 1; stars--) {
+            var label = document.createElement('label');
+            label.innerHTML = stars + ' stars';
+            label.htmlFor = stars;
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'stars';
+            checkbox.id = stars;
+            checkbox.value = stars;
+
+
+            var self = this;
+            checkbox.onclick = function(){
+
+                var checkboxs = self.filterByStarsForm.stars;
+
+                var stars = [];
+                for (var i = 0; i < checkboxs.length; i++) {
+                    if (checkboxs[i].checked)
+                        stars.push(parseInt(checkboxs[i].value));
+                }
+
+                if (stars[0] == null) {
+                    stars = [1,2,3,4,5];
+                }
+
+                self.packageOptions.filterHotelsByStars(stars);
+                self.rebuildHotelOptions();
+            };
+            this.filterByStarsForm.appendChild(label);
+            this.filterByStarsForm.appendChild(checkbox);
+        }
     }
 
 };

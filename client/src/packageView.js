@@ -37,13 +37,11 @@ var PackageView = function(package, localStorageManager){
     };
     this.package.hotelUpdated = function(){
         self.rebuildHotel();
-        self.rebuildHotelSummary();
     };
 
     this.itinerary.checkinCheckoutUpdated = function(){
         self.rebuildHotel();
-        self.rebuildHotelSummary();
-    }
+    };
 };
 
 PackageView.prototype = {
@@ -134,6 +132,7 @@ PackageView.prototype = {
                 persons: this.itinerary.numberOfPersons > 1 ? 'persons' : 'person'
             }
         };
+        console.log('package hotel', hotel);
 
         this.rebuildHotelPreview(view);
         this.rebuildHotelSummary(view);

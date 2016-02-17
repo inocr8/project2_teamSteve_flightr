@@ -55,6 +55,13 @@ HotelsManager.prototype = {
       }
     } 
     return this.sortByPriceAsc(cityHotels);
+  },
+
+  filterByStars: function(hotels, stars){
+    return hotels.filter(function(hotel){
+      console.log(stars, 'include', hotel.stars, '?', stars.includes(hotel.stars));
+      return stars.includes(hotel.stars);
+    });
   }
 
 };
