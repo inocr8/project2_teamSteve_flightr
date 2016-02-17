@@ -58,9 +58,6 @@ PackageView.prototype = {
         this.buildSaveButton();
         this.buildDeleteButton();
 
-        this.rebuildPackageSummary();
-        this.rebuildHotelSummary();
-
         this.rebuildTotal();
     },
 
@@ -138,15 +135,8 @@ PackageView.prototype = {
             }
         };
 
-        var output =  Mustache.render(
-            '<div class="package-hotel">'
-        +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
-        +       '<span class="name">{{hotel.name}}</span>'
-        +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
-        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
-        +   '</div>', view);
-
-        this.previewHotel.innerHTML = output;
+        this.rebuildHotelPreview(view);
+        this.rebuildHotelSummary(view);
 
         this.rebuildTotal();
     },
@@ -169,30 +159,25 @@ PackageView.prototype = {
 
     // SUMMARY ONLY
 
-    rebuildHotelSummary: function(){
-        var hotel = this.package.hotel;
-
-        var view = {
-            hotel: hotel,
-
-            display: {
-                numberOfPersons: this.itinerary.numberOfPersons,
-                numberOfNights: this.itinerary.numberOfNights(),
-
-                checkin: this.itinerary.checkin.format('ddd DD MMM'),
-                checkout: this.itinerary.checkout.format('ddd DD MMM YYYY'),
-
-                stars: hotel.stars > 1 ? 'stars' : 'star',
-                nights: this.itinerary.numberOfNights() > 1 ? 'nights' : 'night',
-                persons: this.itinerary.numberOfPersons > 1 ? 'persons' : 'person'
-            }
-        };
-
+    rebuildHotelPreview: function(view){
         var output =  Mustache.render(
             '<div class="package-hotel">'
         +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
         +       '<span class="name">{{hotel.name}}</span>'
-        +       '<img src="{{hotel.address.image}}"'
+        +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
+        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
+        +   '</div>', view);
+
+        this.previewHotel.innerHTML = output;
+    },
+
+    rebuildHotelSummary: function(view){
+        
+        var output =  Mustache.render(
+            '<div class="package-hotel">'
+        +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
+        +       '<span class="name">{{hotel.name}}</span>'
+        +       '<img src="{{hotel.address.image}}">'
         +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
         +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
         +   '</div>', view);
