@@ -1,4 +1,5 @@
 var Mustache = require('mustache');
+var Package = require('./packages/package.js');
 
 var PackageView = function(package, localStorageManager){
     this.localStorageManager = localStorageManager;
@@ -11,13 +12,16 @@ var PackageView = function(package, localStorageManager){
     this.previewOutboundFlight = document.querySelector('#package-preview-outbound-flight');
     this.previewReturnFlight = document.querySelector('#package-preview-return-flight');
     this.previewHotel = document.querySelector('#package-preview-hotel');
+    this.previewTotal = document.querySelector('#package-preview-total');
 
     // Package Summary
     this.summaryOutboundFlight = document.querySelector('#package-summary-outbound-flight');
     this.summaryReturnFlight = document.querySelector('#package-summary-return-flight');
     this.summaryHotel = document.querySelector('#package-summary-hotel');
-    this.summaryButtons = document.querySelector('#package-summary-buttons')
-    
+
+    this.summaryButtons = document.querySelector('#package-summary-buttons');
+    this.summaryTotal = document.querySelector('#package-summary-total');
+
 
     console.log('package preview created');
 
@@ -39,18 +43,22 @@ var PackageView = function(package, localStorageManager){
 
     this.itinerary.checkinCheckoutUpdated = function(){
         self.rebuildHotel();
-    }
+    };
 };
 
 PackageView.prototype = {
     rebuildPackageView: function(){
         this.previewButtons.innerHTML = '';
         this.summaryButtons.innerHTML = '';
+
         this.rebuildOutboundFlight();
         this.rebuildReturnFlight();
         this.rebuildHotel();
+
         this.buildSaveButton();
         this.buildDeleteButton();
+
+        this.rebuildTotal();
     },
 
     buildSaveButton: function(){
@@ -59,7 +67,8 @@ PackageView.prototype = {
 
         var self = this;
         button.onclick = function(){
-            self.localStorageManager.savePackage(self.package);
+            var newPackage = new Package(self.package);
+            self.localStorageManager.savePackage(newPackage);
         };
         this.summaryButtons.appendChild(button);
     },
@@ -78,14 +87,18 @@ PackageView.prototype = {
 
     rebuildOutboundFlight: function(){
         var output = this.rebuildFlight(this.package.outboundFlight);
-        this.previewOutboundFlight.innerHTML = output;
-        this.summaryOutboundFlight.innerHTML = output;
+        this.previewOutboundFlight.innerHTML = '<p>Outbound</p>' + output;
+        this.summaryOutboundFlight.innerHTML = '<p>Outbound</p>' + output;
+
+        this.rebuildTotal();
     },
 
     rebuildReturnFlight: function(){
         var output = this.rebuildFlight(this.package.returnFlight);
-        this.previewReturnFlight.innerHTML = output;
-        this.summaryReturnFlight.innerHTML = output;
+        this.previewReturnFlight.innerHTML = '<p>Return</p>' + output;
+        this.summaryReturnFlight.innerHTML = '<p>Return</p>' + output;
+
+        this.rebuildTotal();
     },
 
     rebuildFlight: function(flight){
@@ -107,13 +120,6 @@ PackageView.prototype = {
     rebuildHotel: function(){
         var hotel = this.package.hotel;
 
-        var dateOptions = {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        };
-
         var view = {
             hotel: hotel,
 
@@ -129,7 +135,33 @@ PackageView.prototype = {
                 persons: this.itinerary.numberOfPersons > 1 ? 'persons' : 'person'
             }
         };
+        console.log('package hotel', hotel);
 
+        this.rebuildHotelPreview(view);
+        this.rebuildHotelSummary(view);
+
+        this.rebuildTotal();
+    },
+
+    rebuildTotal: function(){
+        var view = {
+            flightsTotal: this.package.calcFlightsTotalPrice(),
+            hotelTotal: this.package.calcHotelTotalPrice(),
+            totalPerPerson: this.package.calcTotalPrice(),
+            total: this.package.calcTotalPricePerPerson()
+        };
+        var output = Mustache.render(
+             '<p>Flights Total: £{{flightsTotal}}</p>'
+            +'<p>Hotel Total: £{{hotelTotal}}</p>'
+            +'<p>Final Total: £{{total}}', view);
+
+        this.previewTotal.innerHTML = output;
+        this.summaryTotal.innerHTML = output;
+    },
+
+    // SUMMARY ONLY
+
+    rebuildHotelPreview: function(view){
         var output =  Mustache.render(
             '<div class="package-hotel">'
         +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
@@ -139,8 +171,24 @@ PackageView.prototype = {
         +   '</div>', view);
 
         this.previewHotel.innerHTML = output;
+    },
+
+    rebuildHotelSummary: function(view){
+        
+        var output =  Mustache.render(
+            '<div class="package-hotel">'
+        +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
+        +       '<span class="name">{{hotel.name}}</span>'
+        +       '<img src="{{hotel.address.image}}">'
+        +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
+        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
+        +   '</div>', view);
+
         this.summaryHotel.innerHTML = output;
     }
+
+
+    ///// SUMMARY ONLY
 };
 
 module.exports = PackageView;

@@ -3,8 +3,13 @@ body {
   border-left: 1px solid white;
 }
 
-header {
+img {
+  max-width: 100%;
+}
 
+p {
+  margin: 0;
+  padding: 0;
 }
 
 .logo {
@@ -64,14 +69,23 @@ __________________________________________________ */
 }
 
 
-/* Nav
+/* Saved Packages
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+#saved-package-main {
+  margin-top: 1550px;
+  min-height: 700px;
+}
 
 
 
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.flights-three-day {
+  display: block;
+  min-width: 310px;
+}
 
 .flight-day {
   display: inline-block;
@@ -224,6 +238,11 @@ __________________________________________________ */
   color: tomato;
 }
 
+#filter-by-stars input[type="radio"] {
+  position: relative;
+  left: 0;
+}
+
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
@@ -308,11 +327,11 @@ __________________________________________________ */
   width: 33.33333%;
   display: block;
 }
-.tabs input[type="radio"] {
+.tabs input[type="radio"].radio-tabs {
   position: absolute;
   left: -10000px;
 }
-.tabs label {
+.tabs label.radio-tabs {
   display: block;
   padding: 14px 21px;
   border-radius: 2px 2px 0 0;
@@ -328,7 +347,7 @@ __________________________________________________ */
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.tabs label:hover {
+.tabs label.radio-tabs:hover {
   background: #fff;
 }
 .tabs .tab-content {
@@ -346,7 +365,7 @@ __________________________________________________ */
 
   min-height: 550px;
 }
-.tabs [id^="tab"]:checked + label {
+.tabs [id^="tab"]:checked + label.radio-tabs {
   padding-top: 17px;
   background: tomato;
   color: #fff;
@@ -354,9 +373,21 @@ __________________________________________________ */
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
   left: 0px;
 }
-
 .hotels-tab-row {
   margin-left: 0;
   margin-right: 0;
+}
+.saved-content {
+/*  z-index: 2;
+  overflow: hidden;*/
+  width: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 25px;
+  position: absolute;
+  top: 53px;
+  /*left: -10000px;*/
+  background: wheat;
+  border-top: 1px solid tomato;
 }
 

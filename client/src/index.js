@@ -1,4 +1,5 @@
 var View = require('./view.js');
+var PackageSavedView = require('./packageSavedView.js');
 
 var flightsData = require('./flightsData.json');
 var hotelsData = require('./hotelsData.json');
@@ -24,7 +25,17 @@ window.onload = function(){
 
     var view = new View(packagesManager, localStorageManager);
 
+
     var hotelRandomView = new HotelRandomView(hotelsManager);
     hotelRandomView.buildRandomHotel();
 
+    var packageSavedView = new PackageSavedView(localStorageManager);
+
+    packageSavedView.displaySavedPackage = function(package){
+        view.displaySavedPackage(package);
+    };
+
+    packageSavedView.rebuildSavedPackages();
 };
+
+

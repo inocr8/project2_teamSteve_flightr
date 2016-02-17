@@ -1,7 +1,7 @@
 var moment = require('moment');
 
 var Itinerary = function(options){
-    this.numberOfPersons = options.numberOfPersons;
+    this.numberOfPersons = parseInt(options.numberOfPersons);
 
     this.departureAirport = options.departureAirport;
     this.arrivalAirport = options.arrivalAirport;
@@ -10,8 +10,8 @@ var Itinerary = function(options){
     this.returnDate = moment(options.returnDate);
 
     this.destination = options.arrivalAirport;
-    this.checkin = null;
-    this.checkout = null;
+    this.checkin = moment(options.checkin) || null;
+    this.checkout = moment(options.checkout) || null;
 };
 
 Itinerary.prototype = {
@@ -33,6 +33,14 @@ Itinerary.prototype = {
     updateCheckout: function(date){
         this.checkout = date;
         this.checkinCheckoutUpdated();
+    },
+
+    convertDatesToMoments: function(){
+        this.outboundDate = moment(this.outboundDate);
+        this.returnDate = moment(this.returnDate);
+
+        this.checkin = moment(this.checkin);
+        this.checkout = moment(this.checkout);
     }
 
 };
