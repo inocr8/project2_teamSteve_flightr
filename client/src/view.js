@@ -1,6 +1,7 @@
 var Itinerary = require('./itinerary/itinerary.js');
 var PackageBreakdownView = require('./packageBreakdownView.js');
 var PackageSummaryView = require('./packageSummaryView.js');
+var PackageSavedView = require('./packageSavedView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
 var HotelsView = require('./hotelsView.js');
@@ -20,11 +21,14 @@ var View = function(packagesManager, localStorageManager){
 
     this.searchButton = document.querySelector('#search-button');
 
+    this.savedButton = document.querySelector('#submit-button');
+
     // Views
     this.hotel = document.querySelector('#hotel');
 
     this.packageBreakdown = document.querySelector('#package-breakdown');
     this.packageSummary = document.querySelector('#package-summary');
+    this.packageSaved = document.querySelector('#package-saved');
 
     // Prevent Tabs from defaulting
     // var tabs = document.querySelectorAll('input[type=radio]');
@@ -62,6 +66,18 @@ var View = function(packagesManager, localStorageManager){
 
         this.renderPackageOptions(packageOptions);
         this.renderPackageBreakdown(packageOptions.currentPackage);
+
+    }.bind(this);
+
+    // var savedPackages = this.localStorageManager.getPackages('savedPackageData');
+    // console.log(savedPackages);
+
+    this.savedButton.onclick = function(){
+        console.log('saved button clicked')
+        var savedPackages = this.localStorageManager.getPackages('savedPackageData');
+        console.log(savedPackages[0]);
+        this.renderSavedPackageBreakdown(savedPackages);
+        // console.log('after passed', savedPackages);
 
     }.bind(this);
 };
@@ -161,6 +177,16 @@ View.prototype = {
         
         var packageSummaryView = new PackageSummaryView(package, this.localStorageManager);
         packageSummaryView.rebuildPackageSummary();
+
+        // var packageSavedView = new PackageSavedView(package, this.localStorageManager);
+        // packageSavedView.rebuildPackageSaved();
+    },
+
+    renderSavedPackageBreakdown: function(savedPackages){
+
+        var packageSavedView = new PackageSavedView(savedPackages, this.localStorageManager);
+        // console.log(savedPackages);
+        // packageSavedView.rebuildPackageSaved();
     }
 
 };
