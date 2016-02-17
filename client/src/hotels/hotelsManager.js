@@ -7,6 +7,12 @@ HotelsManager.prototype = {
     this.data.push(hotel);
   },
 
+  addHotels: function(hotelsArray){
+    for (var hotel of hotelsArray) {
+      this.addHotel(hotel);
+    }
+  },
+
   sortByPriceAsc: function(hotels){
     return hotels.sort(function(a, b){
       return a.pricePerPerson - b.pricePerPerson

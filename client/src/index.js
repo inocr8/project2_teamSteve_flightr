@@ -15,12 +15,7 @@ window.onload = function(){
     flightsManager.addFlights(flightsData);
 
     var hotelsManager = new HotelsManager();
-
-    hotelsData.forEach(function(hotel){
-        hotelsManager.addHotel(hotel);
-    });
-
-    console.log('data', hotelsManager.data);
+    hotelsManager.addHotels(hotelsData);
 
     var packagesManager = new PackagesManager(flightsManager, hotelsManager);
 

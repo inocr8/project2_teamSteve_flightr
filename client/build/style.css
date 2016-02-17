@@ -44,12 +44,30 @@ span {
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
+.flight-day {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.flight-day p {
+  margin: 0;
+  border-right: 1px solid #ccc;
+  margin-left: 4px;
+  margin-right: -2px;
+  font-size: 1rem;
+}
+
+.flight-three-day p:last-of-type {
+  border-right: none;
+}
+
+
 .flight-options {
-    display: inline-block;
+    display: block;
     color: #555;
     border: 1px solid #ccc;
     padding: 1.8rem .8rem .8rem .8rem;
-    margin: 0 .2rem;
+    margin: .3rem 2px;
 }
 
 .flight-options.best-value {
@@ -180,13 +198,13 @@ span {
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#package-breakdown {
+#package-preview {
     display: block;
     background-color: #fff;
     border: 3px solid tomato;
 }
 
-.package-breakdown {
+.package-preview {
   display: inline-block;
 }
 
@@ -225,9 +243,12 @@ span {
 #map {
 /*    display: inline-block;*/
     height: 500px;
-    width: 500px;
-}
+    max-width: 100%;
 
+}
+#map img{
+    max-width: 60%; 
+}
 /*.map-responsive{
     overflow:hidden;
     padding-bottom:56.25%;
@@ -292,6 +313,8 @@ span {
   left: -10000px;
   background: #fff;
   border-top: 1px solid tomato;
+
+  min-height: 550px;
 }
 .tabs [id^="tab"]:checked + label {
   padding-top: 17px;

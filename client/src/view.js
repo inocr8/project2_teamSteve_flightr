@@ -1,6 +1,5 @@
 var Itinerary = require('./itinerary/itinerary.js');
-var PackageBreakdownView = require('./packageBreakdownView.js');
-var PackageSummaryView = require('./packageSummaryView.js');
+var PackageView = require('./packageView.js');
 var PackageSavedView = require('./packageSavedView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');
 var ReturnFlightsView = require('./returnFlightsView.js');
@@ -59,13 +58,13 @@ var View = function(packagesManager, localStorageManager){
             departureAirport: this.departureAirport.value,
             arrivalAirport: this.arrivalAirport.value,
 
-            outboundDate: new Date(this.outboundDate.value),
-            returnDate: new Date(this.returnDate.value)
+            outboundDate: this.outboundDate.value,
+            returnDate: this.returnDate.value
         });
         var packageOptions = this.packagesManager.createPackageOptions(itinerary);
 
         this.renderPackageOptions(packageOptions);
-        this.renderPackageBreakdown(packageOptions.currentPackage);
+        this.renderPackageView(packageOptions.currentPackage);
 
     }.bind(this);
 
@@ -74,13 +73,13 @@ var View = function(packagesManager, localStorageManager){
     var savedPackages = this.localStorageManager.getPackages('savedPackageData');
         // console.log(savedPackages[0]);
 
-    this.savedButton.onclick = function(){
-        console.log('saved button clicked')
-        this.renderSavedPackageBreakdown(savedPackages);
-    }.bind(this);
-};
+        this.savedButton.onclick = function(){
+            console.log('saved button clicked')
+            this.renderSavedPackageBreakdown(savedPackages);
+        }.bind(this);
+    };
 
-View.prototype = {
+    View.prototype = {
 
     // renderPackage: function(package){
 
@@ -165,19 +164,15 @@ View.prototype = {
 
         // outboundFlightsView.rebuildFlightOptions();
         outboundFlightsView.rebuildThreeDayFlightOptions();
-        returnFlightsView.rebuildFlightOptions();
+        returnFlightsView.rebuildThreeDayFlightOptions();
         hotelsView.rebuildHotelOptions();
         hotelsView.populateMap();
     },
 
-    renderPackageBreakdown: function(package){
 
-        var packageBreakdownView = new PackageBreakdownView(package, this.localStorageManager);
-        packageBreakdownView.rebuildPackageBreakdown();
-        
-        var packageSummaryView = new PackageSummaryView(package, this.localStorageManager);
-        packageSummaryView.rebuildPackageSummary();
-
+    renderPackageView: function(package){
+        var packageView = new PackageView(package, this.localStorageManager);
+        packageView.rebuildPackageView();
     },
 
     renderSavedPackageBreakdown: function(savedPackages){
@@ -185,6 +180,7 @@ View.prototype = {
         var packageSavedView = new PackageSavedView(savedPackages, this.localStorageManager);
         packageSavedView.rebuildPackageSaved();
     }
+
 
 };
 

@@ -62,11 +62,11 @@
     </div>
   </div>
 
-  <div id="package-breakdown" class="">
-    <div id="package-breakdown-outbound-flight" class="package-breakdown"></div>
-    <div id="package-breakdown-return-flight" class="package-breakdown"></div>
-    <div id="package-breakdown-hotel" class="package-breakdown"></div>
-    <div id="package-breakdown-buttons" class="package-breakdown"></div>
+  <div id="package-preview" class="">
+    <div id="package-preview-outbound-flight" class="package-preview"></div>
+    <div id="package-preview-return-flight" class="package-preview"></div>
+    <div id="package-preview-hotel" class="package-preview"></div>
+    <div id="package-preview-buttons" class="package-preview"></div>
   </div>
 
 
@@ -76,15 +76,17 @@
      <label for="tab1">Flights</label>
 
      <div id="tab-content1" class="tab-content container">
-       <div id="outbound-flights" class="one-half column">
-         <div id="outbound-next-day"></div>
-         <div id="outbound-on-day"></div>
-         <div id="outbound-prev-day"></div>
+       <div id="outbound-flights" class="one-half column flights-three-day">
+         <p>Outbound</p>
+         <div id="outbound-prev-day" class="flight-day"></div>
+         <div id="outbound-on-day" class="flight-day"></div>
+         <div id="outbound-next-day" class="flight-day"></div>
        </div>
        <div id="return-flights" class="one-half column">
-         <div id="return-next-day"></div>
-         <div id="return-on-day"></div>
-         <div id="return-prev-day"></div>
+         <p>Return</p>
+         <div id="return-prev-day" class="flight-day"></div>
+         <div id="return-on-day" class="flight-day"></div>
+         <div id="return-next-day" class="flight-day"></div>
        </div>
      </div>
    </li>
@@ -111,8 +113,8 @@
         </div>
 
         <div class="row">
-          <ul id="hotels" class="one-third column"></ul>
-          <div id="map" class="two-third column"></div>
+          <ul id="hotels" class="four columns"></ul>
+          <div id="map" class="eight columns"></div>
         </div>
 
       </div> 
@@ -130,7 +132,7 @@
         <div id="package-summary-return-flight"></div>
 
         <div id="package-summary-hotel"></div>
-        <div id="package-summary-button"></div>  
+        <div id="package-summary-buttons"></div>  
       </div>
     </div>
   </li>
@@ -138,6 +140,8 @@
 </ul>
 
 <!-- <br class=".u-cf"> -->
+
+ <div class="test">Does this show???</div>
 
 </body>
 </html>
