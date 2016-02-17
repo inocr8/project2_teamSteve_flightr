@@ -165,6 +165,8 @@ var View = function(packagesManager, localStorageManager){
         outboundFlightsView.rebuildThreeDayFlightOptions();
         returnFlightsView.rebuildThreeDayFlightOptions();
         hotelsView.rebuildHotelOptions();
+
+        hotelsView.rebuildFilters();
         hotelsView.populateMap();
     },
 
