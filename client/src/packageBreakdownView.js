@@ -29,6 +29,10 @@ var PackageBreakdownView = function(package, localStorageManager){
     this.package.hotelUpdated = function(){
         self.rebuildHotel();
     };
+
+    this.itinerary.checkinCheckoutUpdated = function(){
+        self.rebuildHotel();
+    }
 };
 
 PackageBreakdownView.prototype = {
@@ -103,13 +107,13 @@ PackageBreakdownView.prototype = {
 
             display: {
                 numberOfPersons: this.itinerary.numberOfPersons,
-                numberOfNights: this.itinerary.numberOfNights,
+                numberOfNights: this.itinerary.numberOfNights(),
 
-                checkin: this.itinerary.checkin.toLocaleDateString('en-GB', dateOptions),
-                checkout: this.itinerary.checkout.toLocaleDateString('en-GB', dateOptions),
+                checkin: this.itinerary.checkin.format('ddd DD MMM'),
+                checkout: this.itinerary.checkout.format('ddd DD MMM YYYY'),
 
                 stars: hotel.stars > 1 ? 'stars' : 'star',
-                nights: this.itinerary.numberOfNights > 1 ? 'nights' : 'night',
+                nights: this.itinerary.numberOfNights() > 1 ? 'nights' : 'night',
                 persons: this.itinerary.numberOfPersons > 1 ? 'persons' : 'person'
             }
         };

@@ -6,13 +6,8 @@ var FlightsManager = require('../flights/flightsManager.js');
 var PackageOptions = function(options){
     this.itinerary = options.itinerary;
 
-    this.prevDayOutboundFlights = options.prevDayOutboundFlights;
     this.outboundFlights = options.outboundFlights;
-    this.nextDayOutboundFlights = options.nextDayOutboundFlights;
-
-    this.prevDayReturnFlights = options.prevDayReturnFlights;
     this.returnFlights = options.returnFlights;
-    this.nextDayReturnFlights = options.nextDayReturnFlights;
 
     this.threeDayFlights = options.threeDayFlights;
 
@@ -28,8 +23,8 @@ PackageOptions.prototype = {
 
         var bestValuePackage = new Package({
             itinerary: this.itinerary,
-            outboundFlight: this.outboundFlights[0],
-            returnFlight: this.returnFlights[0],
+            outboundFlight: FlightsManager.prototype.cheapestFlight(this.outboundFlights),
+            returnFlight: FlightsManager.prototype.cheapestFlight(this.returnFlights),
             hotel: this.hotels[0]
         });
 
@@ -57,8 +52,7 @@ PackageOptions.prototype = {
         this.currentPackage.updateOutboundFlight(flight);
     },
 
-    updateCurrentPackageReturnFlight: function(key){
-        var flight = this.returnFlights[key];
+    updateCurrentPackageReturnFlight: function(flight){
         this.currentPackage.updateReturnFlight(flight);
     },
 
@@ -70,8 +64,11 @@ PackageOptions.prototype = {
 
     findOutboundFlightByDayAndKey: function(day, key){
         return this.threeDayFlights.outboundFlights[day][key];
-    }
+    },
 
+    findReturnFlightByDayAndKey: function(day, key){
+        return this.threeDayFlights.returnFlights[day][key];
+    }
 
 };
 
