@@ -17,7 +17,6 @@ var PackageView = function(package, localStorageManager){
     this.summaryReturnFlight = document.querySelector('#package-summary-return-flight');
     this.summaryHotel = document.querySelector('#package-summary-hotel');
     this.summaryButtons = document.querySelector('#package-summary-buttons')
-    // Package Random
     
 
     console.log('package preview created');
