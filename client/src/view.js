@@ -21,7 +21,7 @@ var View = function(packagesManager, localStorageManager){
 
     // Views
     this.hotel = document.querySelector('#hotel');
-    this.randomHotel = document.querySelector('#hotel-random');
+    //this.randomHotel = document.querySelector('#hotel-random');
     this.packageBreakdown = document.querySelector('#package-breakdown');
     this.packageSummary = document.querySelector('#package-summary');
 
@@ -159,6 +159,8 @@ View.prototype = {
         var packageView = new PackageView(package, this.localStorageManager);
         packageView.rebuildPackageView();
     }
+
+
 
 };
 

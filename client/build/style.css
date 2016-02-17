@@ -29,9 +29,23 @@ __________________________________________________ */
   padding: 1rem 1.2rem;
   background-color: rgba(255, 255, 255,.6);
   border: 1px solid tomato;
+  height: 250px;
+  vertical-align: bottom;
 }
 
+#hotel-random .hotel-info {
+  display: inline-block;
+  width: 45%;
+  vertical-align: top;
+}
 
+#hotel-random img{
+  /*max-width: auto;*/
+/*      height:100px;*/
+  display: inline-block;
+    max-width: 45%;
+    height: 100%;
+}
 
 
 
