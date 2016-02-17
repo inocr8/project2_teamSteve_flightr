@@ -9,8 +9,7 @@ var HotelRandomView = function(HotelsManager){
 HotelRandomView.prototype = {
   buildRandomHotel: function(){
     element.innerHTML = Mustache.render(
-      '<ul><li>{{name}}</li> <li>{{pricePerPerson}}</li> <li>{{stars}}</li></ul>'
-      
+      'Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: £{{pricePerPerson}}, <div>Address: {{address.building}} {{address.street}} {{address.city}},{{address.zip}}</div>,<img src="{{address.image}}"/>'
       )
   }
 };
