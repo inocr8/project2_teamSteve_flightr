@@ -13,8 +13,5 @@ var PackageRandomizerView = function(packageOptions){
 
 }
 
-PackageRandomizerView.prototype = {
-  createRandomPackage: function(){
-    var randomPackage = 
-  }
+
 };
