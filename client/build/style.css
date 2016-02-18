@@ -132,15 +132,6 @@ box-shadow: rgba(255, 99, 71, 0.08) 0 -1px 3px;
 }
 
 
-/* Saved Packages
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
-
-#saved-package-main {
-  margin-top: 1550px;
-  min-height: 700px;
-}
-
-
 
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
@@ -558,18 +549,5 @@ box-shadow: rgba(255, 99, 71, 0.08) 0 -1px 3px;
 .hotels-tab-row {
   margin-left: 0;
   margin-right: 0;
-}
-.saved-content {
-/*  z-index: 2;
-  overflow: hidden;*/
-  width: 100%;
-  font-size: 12px;
-  line-height: 20px;
-  padding: 25px;
-  position: absolute;
-  top: 53px;
-  /*left: -10000px;*/
-  background: wheat;
-  border-top: 1px solid tomato;
 }
 

@@ -16,7 +16,7 @@ Flight.prototype = {
     parseDate: function(string){
         // expecting: "28-03-2016 T12:00:00"
         // returning: "2016-03-28T12:00:00"
-        console.log('moment?', moment(string));
+        // console.log('moment?', moment(string));
         var date = moment(string);
         if (date.isValid()) return date;
 
