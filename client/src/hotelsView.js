@@ -1,10 +1,13 @@
 var Mustache = require('mustache');
 var HotelMap = require('./map/map.js');
+var HotelsManager = require('./hotels/hotelsManager.js');
 
 var HotelsView = function(packageOptions){
     this.packageOptions = packageOptions;
     this.hotelMap = new HotelMap(packageOptions.currentPackage.hotel);
     this.element = document.querySelector('#hotels');
+
+    this.averageHotelPrice = document.querySelector('#average-hotel-price');
 
     // Sort by
     var self = this;
@@ -45,6 +48,7 @@ HotelsView.prototype = {
     },
 
     rebuildHotelOptions: function(){
+
         this.element.innerHTML = '';
         // this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
 
@@ -83,6 +87,12 @@ HotelsView.prototype = {
             li.appendChild(a);
             this.element.appendChild(li);
         }
+
+        this.rebuildAverageHotelPrice(hotels);
+    },
+
+    rebuildAverageHotelPrice: function(hotels){
+        this.averageHotelPrice.innerHTML = HotelsManager.prototype.averagePricePerPerson(hotels);
     },
 
     notifyHotelSelection: function(element){
