@@ -1,4 +1,5 @@
 var View = require('./view.js');
+var PackageSavedView = require('./packageSavedView.js');
 
 var flightsData = require('./flightsData.json');
 var hotelsData = require('./hotelsData.json');
@@ -8,6 +9,8 @@ var HotelsManager = require('./hotels/hotelsManager.js');
 var PackagesManager = require('./packages/packagesManager.js');
 
 var LocalStorageManager = require('./localStorage/localStorageManager.js');
+var HotelRandomView = require('./hotelRandomView2.js');
+
 
 window.onload = function(){
 
@@ -22,4 +25,23 @@ window.onload = function(){
     var localStorageManager = new LocalStorageManager();
 
     var view = new View(packagesManager, localStorageManager);
+    
+    var packageSavedView = new PackageSavedView(localStorageManager);
+
+    packageSavedView.displaySavedPackage = function(package){
+        view.displaySavedPackage(package);
+    };
+
+    localStorageManager.refreshSavedPackages = function(){
+        packageSavedView.rebuildSavedPackages();
+    };
+
+
+    var hotelRandomView = new HotelRandomView(hotelsManager);
+    hotelRandomView.buildRandomHotel();
+
+
+    packageSavedView.rebuildSavedPackages();
 };
+
+
