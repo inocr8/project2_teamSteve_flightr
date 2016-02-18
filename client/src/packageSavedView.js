@@ -73,7 +73,6 @@ PackageSavedView.prototype = {
       package.itinerary = new Itinerary(package.itinerary);
       package.outboundFlight = new Flight(package.outboundFlight);
       package.returnFlight = new Flight(package.returnFlight);
-
       self.displaySavedPackage(package);
 
       // console.log('our package', package);

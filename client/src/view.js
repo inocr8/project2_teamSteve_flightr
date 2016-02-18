@@ -58,11 +58,14 @@ var View = function(packagesManager, localStorageManager){
 
 
     displaySavedPackage: function(package){
+        document.querySelector('#tab3').checked = true;
+        
         var packageOptions = this.packagesManager.createPackageOptions(package.itinerary);
         packageOptions.setCurrentPackage(package);
 
         this.renderPackageOptions(packageOptions);
         this.renderPackageView(packageOptions.currentPackage);
+        this.packagePreview.scrollIntoView({block: "end", behavior: "smooth"});
     },
 
 
