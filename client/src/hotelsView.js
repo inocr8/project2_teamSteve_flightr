@@ -1,13 +1,15 @@
 var Mustache = require('mustache');
 var HotelMap = require('./map/map.js');
+var HotelsManager = require('./hotels/hotelsManager.js');
 
 var HotelsView = function(packageOptions){
     this.packageOptions = packageOptions;
     this.hotelMap = new HotelMap(packageOptions.currentPackage.hotel);
     this.element = document.querySelector('#hotels');
 
-    // Sort by
+    this.averageHotelPrice = document.querySelector('#average-hotel-price');
 
+    // Sort by
     var self = this;
 
     self.lowestPriceFirst = document.querySelector('#lowest-price-first');
@@ -30,6 +32,9 @@ var HotelsView = function(packageOptions){
         self.packageOptions.sortHotelsByStarsDesc();
         self.rebuildHotelOptions();
     };
+
+    //Filter
+    this.filterByStarsForm = document.querySelector('#filter-by-stars');
 };
 
 HotelsView.prototype = {
@@ -43,9 +48,11 @@ HotelsView.prototype = {
     },
 
     rebuildHotelOptions: function(){
-        this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
 
-        var hotels = this.packageOptions.hotels;
+        this.element.innerHTML = '';
+        // this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
+
+        var hotels = this.packageOptions.displayingHotels;
         for (var key in hotels) {
 
             var hotel = hotels[key];
@@ -62,9 +69,7 @@ HotelsView.prototype = {
             }
 
             a.innerHTML = Mustache.render(
-                        '<span class="price">£{{hotel.pricePerPerson}}pp</span>'
-            +           '<span class="name">{{hotel.name}}</span>'
-            +           '<span class="stars">{{hotel.stars}} {{stars}}</span>', view);
+                        '<span class="name">{{hotel.name}}</span><span class="price">£{{hotel.pricePerPerson}}pp</span><span class="stars">{{hotel.stars}} {{stars}}</span>', view);
 
             var self = this;
             a.onclick = function(){
@@ -82,6 +87,12 @@ HotelsView.prototype = {
             li.appendChild(a);
             this.element.appendChild(li);
         }
+
+        this.rebuildAverageHotelPrice(hotels);
+    },
+
+    rebuildAverageHotelPrice: function(hotels){
+        this.averageHotelPrice.innerHTML = HotelsManager.prototype.averagePricePerPerson(hotels);
     },
 
     notifyHotelSelection: function(element){
@@ -92,6 +103,42 @@ HotelsView.prototype = {
         this.hotelMap.setCenter(hotel);
 
         console.log('current', this.packageOptions.currentPackage);
+    },
+
+    rebuildFilters: function(){
+        this.filterByStarsForm.innerHTML = 'Filter By Stars:  ';
+        for (var stars = 5; stars >= 1; stars--) {
+            var label = document.createElement('label');
+            label.innerHTML = stars;
+            label.htmlFor = stars;
+            var checkbox = document.createElement('input');
+            checkbox.type = 'checkbox';
+            checkbox.name = 'stars';
+            checkbox.id = stars;
+            checkbox.value = stars;
+
+
+            var self = this;
+            checkbox.onclick = function(){
+
+                var checkboxes = self.filterByStarsForm.stars;
+
+                var stars = [];
+                for (var i = 0; i < checkboxes.length; i++) {
+                    if (checkboxes[i].checked)
+                        stars.push(parseInt(checkboxes[i].value));
+                }
+
+                if (stars[0] == null) {
+                    stars = [1,2,3,4,5];
+                }
+
+                self.packageOptions.filterHotelsByStars(stars);
+                self.rebuildHotelOptions();
+            };
+            this.filterByStarsForm.appendChild(label);
+            this.filterByStarsForm.appendChild(checkbox);
+        }
     }
 
 };

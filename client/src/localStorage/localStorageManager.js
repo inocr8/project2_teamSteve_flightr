@@ -28,6 +28,7 @@ LocalStorageManager.prototype = {
     storedPackages.push(package);
     console.log('Package saved');
     localStorage.setItem(this.storageKeyPackages, JSON.stringify(storedPackages));
+    this.refreshSavedPackages();
   },
 
   deletePackage:function(package){

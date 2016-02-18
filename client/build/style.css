@@ -1,48 +1,147 @@
 body {
-  background-image: url('http://2.bp.blogspot.com/-OIBygzZgQVg/U12FSHRFt0I/AAAAAAAAAbM/WT0akTR3TcU/s1600/BouchonGrapeVines.jpg');
-  border-left: 1px solid white;
+  margin: 0;
+  background: url('./tomatoVineyardDouble.jpg') top center;
+  background-size: cover;
+  /*border-left: 1px solid white;*/
+  position: relative;
 }
 
 header {
+  /*background: url('http://pngimg.com/upload/cloud_PNG4.png')  top center;*/
+  background: url('http://img-fotki.yandex.ru/get/6802/200418627.a/0_107c86_6a946916_orig.png')  top center,
+  url('http://pngimg.com/upload/cloud_PNG29.png') top center,
+  url('http://www.carbonellusa.com/static/i/light/cloud-1.png');
+  background-size: cover;
+}
 
+sm {
+  font-size: .68rem;
+}
+
+.shadow {
+  box-shadow: rgba(0, 0, 0, 0.3) 0 1px 3px;
+}
+
+.colored {
+  color: tomato;
+}
+
+#top-bar {
+  position: absolute;
+  top: 0px;
+  height: 115px;
+  width: 100%;
+  z-index: -9999;
+  background-color: tomato;
+}
+
+img {
+  max-width: 100%;
+  border: 1px solid tomato;
+}
+
+p {
+  margin: 0;
+  padding: 0;
 }
 
 .logo {
   padding: 1rem 1.2rem;
-  color: tomato;
-  -webkit-text-fill-color: tomato; /* Will override color (regardless of order) */
+/*  color: tomato;
+  -webkit-text-fill-color: tomato;
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: #fff;
+  -webkit-text-stroke-color: #fff;*/
+  color: #fff;
   letter-spacing: .2rem;
+  font-style: italic;
+  text-align: center;
 }
 
 span {
     display: block;
 }
 
-/* Search
-–––––––––––––––––––––––––––––––––––––––––––––––––– */
 
-#search {
-  float: right;
+
+/* Random
+__________________________________________________ */
+#hotel-random {
+  float: left;
   padding: 1rem 1.2rem;
-  background-color: rgba(255, 255, 255, .6);
+  background-color: rgba(255, 255, 255,.6);
   border: 1px solid tomato;
+  height: 250px;
+  vertical-align: bottom;
 }
 
-#search label {
+#hotel-random .hotel-info {
+  display: inline-block;
+  width: 45%;
   vertical-align: top;
 }
 
+#hotel-random img{
+  /*max-width: auto;*/
+/*      height:100px;*/
+  display: inline-block;
+    max-width: 45%;
+    height: 100%;
+}
 
-/* Nav
+
+
+/* Search
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+#search {
+  position: relative;
+  padding: 1.4rem 1.2rem 0 1.2rem;
+  /*background-color: rgba(255, 255, 255, .9);*/
+  background-color: #fff;
+/*  border: 1px solid tomato;*/
+box-shadow: rgba(255, 99, 71, 0.08) 0 -1px 3px;
+}
 
+#search:before {
+  content: "Start your journey here";
+  color: tomato;
+  font-size: 1.2rem;
+  font-style: italic;
+  font-weight: 600;
+  text-align: left;
+  position: absolute;
+  top: -1.6rem;
+  left: 0;
+  right: 0;
+  width: 100%;
+}
+
+
+.form-group {
+  margin-bottom: .5rem;
+  border-bottom: 1px solid rgba(255, 99, 71, .25);
+}
+
+.form-group input{
+  margin-bottom: .5rem;
+}
+
+#search label {
+  position: relative;
+  top: 9px;
+  color: #444;
+}
 
 
 
 /* Flight Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
+
+.flights-three-day {
+  display: block;
+  width: 310px;
+  min-width: 310px;
+  margin: 0 auto;
+}
 
 .flight-day {
   display: inline-block;
@@ -91,13 +190,15 @@ span {
 }
 
 .flight-options.best-value:before {
-    content: "Best Value";
+    content: "Lowest Fare";
     color: #fff;
     font-size: .8rem;
     text-align: center;
-    padding: .1rem 0;
+    padding: .1rem 0 .01rem 0;
+    margin-bottom: .05rem;
     position: absolute;
     background-color: tomato;
+    border-bottom: 1px solid #fff;
     top: 0;
     left: 0;
     right: 0;
@@ -108,15 +209,38 @@ span {
     font-size: 1.2rem;
 }
 
+.flight-options span.pp {
+  font-size: .8rem;
+  display: inline;
+}
+
 .flight-options span.time {
+    font-size: .9rem;
+    border-bottom: 1px solid #ccc;
+}
+
+.flight-options span.time:last-child {
+    border-bottom: none;
+}
+
+.flight-options span.date {
     font-size: .8rem;
 }
+
+.flight-options span.length {
+    font-size: .8rem;
+    margin: 0;
+}
+
+
 
 /* Hotel Options
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 #hotels {
 /*    display: inline-block;*/
     vertical-align: top;
+    max-height: 550px;
+    overflow: scroll;
 }
 
 .hotel-options {
@@ -157,21 +281,30 @@ span {
     content: "Best Value";
     color: #fff;
     font-size: .8rem;
-    text-align: center;
-    padding: .1rem 0;
+    text-align: left;
+    padding: .1rem .8rem .01rem .8rem;
+    margin-bottom: .05rem;
     position: absolute;
     background-color: tomato;
+    border-bottom: 1px solid #fff;
     top: 0;
     left: 0;
     right: 0;
     width: 100%;
 }
 
-.hotel-options span.price {
+
+.hotel-options span.name {
     font-size: 1.2rem;
+    font-weight: 600;
 }
 
-.hotel-options span.name,
+.hotel-options span.price {
+  float: right;
+  margin-right: 1.8rem;
+  font-size: 1.2rem;
+}
+
 .hotel-option span.stars {
     font-size: .8rem;
 }
@@ -195,13 +328,84 @@ span {
   color: tomato;
 }
 
+#filter-by-stars {
+  margin-bottom: 0
+}
+
+#filter-by-stars input[type="checkbox"] {
+  margin-right: 1rem;
+}
+
+
+
 /* Package
 –––––––––––––––––––––––––––––––––––––––––––––––––– */
 
 #package-preview {
     display: block;
     background-color: #fff;
-    border: 3px solid tomato;
+    border-bottom: 1px solid tomato;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+#package-preview > span {
+  color: #fff;
+  font-size: 1.6rem;
+  text-align: left;
+  background-color: tomato;
+
+  max-width: 960px;
+
+
+  padding: 11px 16px;
+  border-radius: 2px 2px 0 0;
+  font-size: 20px;
+  font-weight: 100;
+  text-transform: uppercase;
+  margin-bottom: .5rem;
+}
+
+#package-preview .final-total,
+#package-summary-total .final-total {
+  font-weight: 600;
+}
+
+#package-preview .total-price,
+#package-summary-total .total-price {
+  font-size: 2rem;
+  display: inline-block;
+  vertical-align: top;
+}
+
+#package-preview-outbound-flight {
+  margin-left: 4rem;
+}
+
+#package-preview-outbound-flight,
+#package-preview-return-flight,
+#package-preview-hotel {
+  border-right: 1px solid rgba(255, 99, 71, .25);
+}
+
+/*#package-summary-flights {
+  display: inline-block;
+}*/
+
+/*#package-summary > div {
+  display: inline-block;
+}*/
+
+/*#package-summary-flights > div {
+  display: block;
+  margin-right: 1rem;
+}*/
+#package-summary-buttons {
+  margin-top: .2rem;
+}
+
+#package-summary-buttons button {
+  margin-left: 1rem;
 }
 
 .package-preview {
@@ -209,9 +413,15 @@ span {
 }
 
 .package-flight,
-.package-hotel {
+.package-hotel,
+.package-total {
     display: inline-block;
     padding: 1rem;
+    vertical-align: top;
+}
+
+.package-hotel img {
+  height: 200px;
 }
 
 .package-flight span.date,
@@ -238,16 +448,28 @@ span {
     font-weight: 600;
 }
 
+
 /* HotelMap---------------------------------------------------------- */
 
 #map {
 /*    display: inline-block;*/
-    height: 500px;
+  border: 1px solid tomato;
+    height: 550px;
     max-width: 100%;
 
 }
 #map img{
-    max-width: 60%; 
+    width: 100%;
+    overflow: hidden;
+}
+
+#map .map-hotel-stars {
+  color: tomato;
+  font-size: 1.2rem;
+  text-align: right;
+}
+.address {
+/*  color: red;*/
 }
 /*.map-responsive{
     overflow:hidden;
@@ -272,33 +494,34 @@ span {
   list-style: none;
   position: relative;
   text-align: left;
+  margin-top: 0;
 }
 .tabs > li {
   float: left;
   width: 33.33333%;
   display: block;
 }
-.tabs input[type="radio"] {
+.tabs input[type="radio"].radio-tabs {
   position: absolute;
   left: -10000px;
 }
-.tabs label {
+.tabs label.radio-tabs {
   display: block;
-  padding: 14px 21px;
-  border-radius: 2px 2px 0 0;
+  padding: 15px 21px;
+  /*border-radius: 2px 2px 0 0;*/
   font-size: 20px;
   font-weight: normal;
   text-transform: uppercase;
   background: #eee;
   cursor: pointer;
   position: relative;
-  top: 4px;
+  top: 0;
   -moz-transition: all 0.2s ease-in-out;
   -o-transition: all 0.2s ease-in-out;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
-.tabs label:hover {
+.tabs label.radio-tabs:hover {
   background: #fff;
 }
 .tabs .tab-content {
@@ -313,10 +536,9 @@ span {
   left: -10000px;
   background: #fff;
   border-top: 1px solid tomato;
-
   min-height: 550px;
 }
-.tabs [id^="tab"]:checked + label {
+.tabs [id^="tab"]:checked + label.radio-tabs {
   padding-top: 17px;
   background: tomato;
   color: #fff;
@@ -324,7 +546,6 @@ span {
 .tabs [id^="tab"]:checked ~ [id^="tab-content"] {
   left: 0px;
 }
-
 .hotels-tab-row {
   margin-left: 0;
   margin-right: 0;

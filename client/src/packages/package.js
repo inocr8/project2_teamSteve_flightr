@@ -16,13 +16,30 @@ Package.prototype = {
         var total
         = this.outboundFlight.price
         + this.returnFlight.price
-        + this.hotel.pricePerPerson;
+        + this.hotel.pricePerPerson * this.itinerary.numberOfNights();
 
         return total;
     },
 
     calcTotalPrice: function(){
         return this.calcTotalPricePerPerson() * this.itinerary.numberOfPersons;
+    },
+
+    calcFlightsTotalPrice: function(){
+        var total
+        = (this.outboundFlight.price + this.returnFlight.price)
+        * this.itinerary.numberOfPersons;
+
+        return total;
+    },
+
+    calcHotelTotalPrice: function(){
+        var total
+        = this.hotel.pricePerPerson
+        * this.itinerary.numberOfPersons
+        * this.itinerary.numberOfNights();
+
+        return total;
     },
 
     updateOutboundFlight: function(flight){
