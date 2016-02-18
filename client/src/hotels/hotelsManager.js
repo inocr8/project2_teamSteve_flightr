@@ -67,6 +67,14 @@ HotelsManager.prototype = {
       console.log(stars, 'include', hotel.stars, '?', stars.includes(hotel.stars));
       return stars.includes(hotel.stars);
     });
+  },
+
+  averagePricePerPerson: function(hotels){
+    var sum = hotels.reduce(function(a, b) {
+            return {pricePerPerson: a.pricePerPerson + b.pricePerPerson};
+        }).pricePerPerson;
+
+    return Math.round(sum / hotels.length);
   }
 
 };

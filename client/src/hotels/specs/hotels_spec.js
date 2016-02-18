@@ -182,4 +182,13 @@ describe('Hotels', function(){
     });
   });
 
+  it('should be able to calculate the average price of hotels', function(){
+    var hotels = [];
+    hotels.push(hotelData[0]);
+    hotels.push(hotelData[1]);
+    hotels.push(hotelData[2]);
+    var average = HotelsManager.prototype.averagePricePerPerson(hotels);
+    expect(average).to.equal(62);
+  });
+
 });
