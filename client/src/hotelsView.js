@@ -92,7 +92,7 @@ HotelsView.prototype = {
     },
 
     rebuildAverageHotelPrice: function(hotels){
-        this.averageHotelPrice.innerHTML = HotelsManager.prototype.averagePricePerPerson(hotels);
+        this.averageHotelPrice.innerHTML = '£' + HotelsManager.prototype.averagePricePerPerson(hotels);
     },
 
     notifyHotelSelection: function(element){
