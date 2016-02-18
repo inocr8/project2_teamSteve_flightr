@@ -43,7 +43,7 @@ OutboundFlightsView.prototype = {
             +           '<span class="time">Dep {{displayDates.departing.time}}</span>'
             +           '<span class="time">Arr {{displayDates.arriving.time}}</span>'
             +           '<span class="date">on {{displayDates.arriving.date}}</span>'
-            +           '<span class="length">Transit {{displayDates.length}}</span>', flight);
+            +           '<span class="length"><sm>Transit</sm> {{displayDates.length}}</span>', flight);
 
             var self = this;
             a.onclick = function(){
