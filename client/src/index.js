@@ -25,16 +25,21 @@ window.onload = function(){
     var localStorageManager = new LocalStorageManager();
 
     var view = new View(packagesManager, localStorageManager);
-
-
-    var hotelRandomView = new HotelRandomView(hotelsManager);
-    hotelRandomView.buildRandomHotel();
-
+    
     var packageSavedView = new PackageSavedView(localStorageManager);
 
     packageSavedView.displaySavedPackage = function(package){
         view.displaySavedPackage(package);
     };
+
+    localStorageManager.refreshSavedPackages = function(){
+        packageSavedView.rebuildSavedPackages();
+    };
+
+
+    var hotelRandomView = new HotelRandomView(hotelsManager);
+    hotelRandomView.buildRandomHotel();
+
 
     packageSavedView.rebuildSavedPackages();
 };

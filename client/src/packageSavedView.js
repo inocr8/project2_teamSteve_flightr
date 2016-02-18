@@ -8,8 +8,8 @@ var PackageSavedView = function(localStorageManager){
   this.packages = this.localStorageManager.packages;
 
   this.element = document.querySelector('#package-saved');
-
-  this.element.style.display = 'none';
+  this.div = document.querySelector('#saved-package-main');
+  // this.element.style.display = 'none';
 
 
   console.log("Package Saved View Created")
@@ -21,7 +21,7 @@ var PackageSavedView = function(localStorageManager){
 
       console.log('show saved packages button clicked')
       this.rebuildSavedPackages();
-      this.element.scrollIntoView({block: "end", behavior: "smooth"});
+      this.div.scrollIntoView({block: "end", behavior: "smooth"});
 
   }.bind(this);
 
@@ -34,7 +34,7 @@ PackageSavedView.prototype = {
     var self = this;
     this.packages.forEach(function(package){
       var li = document.createElement('li');
-      li.innerHTML = '<img src="'+package.hotel.address.image+'" width="80" height="80">' + '<h1>'+package.hotel.name+'</h1>';
+      li.innerHTML = '<img src="'+package.hotel.address.image+'" width="80" height="80">' + '<p>'+package.hotel.name+'</p>';
 
       var button = self.buildDeleteButtonSaved(package);
       li.appendChild(button);
