@@ -1,3 +1,87 @@
+#popup:hover {
+  animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
+  perspective: 1000px;
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+#popup {
+  width: 350px;
+  height: 526px;
+  position: fixed;
+  /*color: #000000;*/
+  /*background-color: #ffffff;*/
+
+
+  z-index: 10000;
+  top: 50%;
+  left: 50%;
+  margin-top: -280px;
+  margin-left: -200px;
+  display: none;
+  overflow: hidden;
+  animation: 
+    pulse 3s ease infinite alternate, 
+    nudge 5s linear infinite alternate;
+}
+
+.turnIntoOverlay {
+    position: fixed;
+    background-color: white;
+    top: 60px;
+    max-width: 680px;
+    /*border: 6px solid rgba(0, 0, 0, 0.5);*/
+    box-shadow: 0 1px 1000px 1000px rgba(255, 99, 71, 0.8),
+                0 1px 10px  rgba(0, 0, 0, 0.5);
+    max-height: 800px;
+    overflow: auto;
+    padding:10px;
+    z-index: 80;
+}
+
+.turnIntoOverlay:before {
+    content: "";
+    background-color: skyblue;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 0.4;
+    top: 0;
+    left: 0;
+}
+
+.turnIntoOverlay:after{
+    position: absolute; 
+    width: 100%;
+    height: 100%;
+    top: 0; 
+    left: 0;
+    background-color: white;
+    z-index: -1;
+    content: "";
+}
+
+
+
 body {
   margin: 0;
   background: url('./tomatoVineyardDouble.jpg') top center;

@@ -57,6 +57,7 @@ PackageView.prototype = {
 
         this.buildSaveButton();
         this.buildDeleteButton();
+        this.buildBookButton();
 
         this.rebuildTotal();
     },
@@ -80,6 +81,18 @@ PackageView.prototype = {
         var self = this;
         button.onclick = function(){
             self.localStorageManager.deletePackage(self.package);
+        };
+        this.summaryButtons.appendChild(button);
+    },
+
+    buildBookButton: function(){
+        var button = document.createElement('button');
+        button.innerText = 'Book Package';
+        button.classList.add('button-primary');
+
+        var self = this;
+        button.onclick = function(){
+            document.querySelector('#popup').style.display = 'block';
         };
         this.summaryButtons.appendChild(button);
     },
