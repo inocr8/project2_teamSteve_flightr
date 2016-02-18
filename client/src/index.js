@@ -11,6 +11,7 @@ var PackagesManager = require('./packages/packagesManager.js');
 var LocalStorageManager = require('./localStorage/localStorageManager.js');
 var HotelRandomView = require('./hotelRandomView2.js');
 
+
 window.onload = function(){
 
     var flightsManager = new FlightsManager();

@@ -23,7 +23,7 @@ var View = function(packagesManager, localStorageManager){
     // Views
     this.hotel = document.querySelector('#hotel');
     //this.randomHotel = document.querySelector('#hotel-random');
-    this.packageBreakdown = document.querySelector('#package-breakdown');
+    this.packagePreview = document.querySelector('#package-preview');
     this.packageSummary = document.querySelector('#package-summary');
     this.packageSaved = document.querySelector('#package-saved');
 
@@ -43,6 +43,8 @@ var View = function(packagesManager, localStorageManager){
 
         this.renderPackageOptions(packageOptions);
         this.renderPackageView(packageOptions.currentPackage);
+
+        this.packagePreview.scrollIntoView({block: "end", behavior: "smooth"});
 
     }.bind(this);
 

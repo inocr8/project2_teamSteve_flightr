@@ -40,10 +40,13 @@ HotelMap.prototype = {
      var marker = this.addMarker(hotel);
      var infoWindow = new google.maps.InfoWindow({ 
       
-      content: Mustache.render('Hotel Name: {{name}}, Stars: {{stars}}, Price Per Person: £{{pricePerPerson}}, <div>Address: {{address.building}} {{address.street}} {{address.city}},{{address.zip}}</div>,<img src="{{address.image}}"/>', hotel),
+      content: Mustache.render('<h2>{{name}} £{{pricePerPerson}}pp</h2><img src="{{address.image}}" class="map-hotel-image"><p class="map-hotel-stars"> {{stars}} stars</p><p class="address">{{address.building}} {{address.street}}, {{address.city}}, {{address.zip}}</p>', hotel),
+
+      maxWidth: 200,
       
       pixelOffset: new google.maps.Size(0,-60)
      }); 
+
     marker.addListener('click', function(){
       infoWindow.open(this.map, marker);
     });
@@ -51,7 +54,13 @@ HotelMap.prototype = {
      //   infoWindow.close();
      // });
     
+  },
+
+  openInfoWindowForHotel: function(hotel){
+
   }
+
+
 
 }
 

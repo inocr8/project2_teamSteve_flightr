@@ -8,7 +8,7 @@ var PackageView = function(package, localStorageManager){
     this.itinerary = package.itinerary;
 
     // Package Preview
-    this.previewButtons = document.querySelector('#package-preview-buttons');
+    // this.previewButtons = document.querySelector('#package-preview-buttons');
     this.previewOutboundFlight = document.querySelector('#package-preview-outbound-flight');
     this.previewReturnFlight = document.querySelector('#package-preview-return-flight');
     this.previewHotel = document.querySelector('#package-preview-hotel');
@@ -48,7 +48,7 @@ var PackageView = function(package, localStorageManager){
 
 PackageView.prototype = {
     rebuildPackageView: function(){
-        this.previewButtons.innerHTML = '';
+        // this.previewButtons.innerHTML = '';
         this.summaryButtons.innerHTML = '';
 
         this.rebuildOutboundFlight();
@@ -87,16 +87,16 @@ PackageView.prototype = {
 
     rebuildOutboundFlight: function(){
         var output = this.rebuildFlight(this.package.outboundFlight);
-        this.previewOutboundFlight.innerHTML = '<p>Outbound</p>' + output;
-        this.summaryOutboundFlight.innerHTML = '<p>Outbound</p>' + output;
+        this.previewOutboundFlight.innerHTML = '<span class="colored">Outbound</span>' + output;
+        this.summaryOutboundFlight.innerHTML = '<span class="colored">Outbound</span>' + output;
 
         this.rebuildTotal();
     },
 
     rebuildReturnFlight: function(){
         var output = this.rebuildFlight(this.package.returnFlight);
-        this.previewReturnFlight.innerHTML = '<p>Return</p>' + output;
-        this.summaryReturnFlight.innerHTML = '<p>Return</p>' + output;
+        this.previewReturnFlight.innerHTML = '<span class="colored">Return</span>' + output;
+        this.summaryReturnFlight.innerHTML = '<span class="colored">Return</span>' + output;
 
         this.rebuildTotal();
     },
@@ -112,7 +112,7 @@ PackageView.prototype = {
         +       '<span class="date">{{flight.displayDates.departing.date}}</span>'
         +       '<span class="from">{{flight.departure}}</span>'
         +       '<span class="to">to {{flight.arrival}}</span>'
-        +       '<span class="time">Dep {{flight.displayDates.departing.time}} - Arr {{flight.displayDates.arriving.time}}</span>'
+        +       '<span class="time">{{flight.displayDates.departing.time}} - {{flight.displayDates.arriving.time}} on {{flight.displayDates.arriving.date}}</span>'
         +       '<span class="price">{{numberOfPersons}} x £{{flight.price}}</span'
         +   '</div>', view);
     },
@@ -151,12 +151,14 @@ PackageView.prototype = {
             total: this.package.calcTotalPricePerPerson()
         };
         var output = Mustache.render(
-             '<p>Flights Total: £{{flightsTotal}}</p>'
-            +'<p>Hotel Total: £{{hotelTotal}}</p>'
-            +'<p>Final Total: £{{total}}', view);
+             '<div class="package-total">'
+            +'<span class="flights-total total">Flights Total : <span class="u-pull-right">£{{flightsTotal}}</span></span>'
+            +'<span class="hotels-total total">Hotel Total : <span class="u-pull-right">£{{hotelTotal}}</span></span>'
+            +'<span class="final-total total">Final Total : <span class="total-price">£{{total}}</span></span>'
+            +'</div>', view);
 
-        this.previewTotal.innerHTML = output;
-        this.summaryTotal.innerHTML = output;
+        this.previewTotal.innerHTML = '<span class="colored">Total</span>' + output;
+        this.summaryTotal.innerHTML = '<span class="colored">Total</span>' + output;
     },
 
     // SUMMARY ONLY
@@ -164,13 +166,14 @@ PackageView.prototype = {
     rebuildHotelPreview: function(view){
         var output =  Mustache.render(
             '<div class="package-hotel">'
-        +       '<span class="date">{{display.checkin}} - {{display.checkout}}</span>'
+        +       '<span class="date">{{display.checkin}} -</span>'
+        +       '<span class="date">{{display.checkout}}</span>'
         +       '<span class="name">{{hotel.name}}</span>'
         +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
-        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span>'
+        +       '<span class="price">{{display.numberOfPersons}} x £{{hotel.pricePerPerson}} x {{display.numberOfNights}} {{display.nights}}</span>'
         +   '</div>', view);
 
-        this.previewHotel.innerHTML = output;
+        this.previewHotel.innerHTML = '<span class="colored">Hotel</span>' + output;
     },
 
     rebuildHotelSummary: function(view){
@@ -184,7 +187,7 @@ PackageView.prototype = {
         +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
         +   '</div>', view);
 
-        this.summaryHotel.innerHTML = output;
+        this.summaryHotel.innerHTML = '<span class="colored">Hotel</span>' + output;
     }
 
 

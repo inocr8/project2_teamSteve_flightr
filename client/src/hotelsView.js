@@ -45,7 +45,8 @@ HotelsView.prototype = {
     },
 
     rebuildHotelOptions: function(){
-        this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
+        this.element.innerHTML = '';
+        // this.element.innerHTML = Mustache.render('<p>{{itinerary.destination}} Hotels</p>', this.packageOptions);
 
         var hotels = this.packageOptions.displayingHotels;
         for (var key in hotels) {
@@ -64,9 +65,7 @@ HotelsView.prototype = {
             }
 
             a.innerHTML = Mustache.render(
-                        '<span class="price">£{{hotel.pricePerPerson}}pp</span>'
-            +           '<span class="name">{{hotel.name}}</span>'
-            +           '<span class="stars">{{hotel.stars}} {{stars}}</span>', view);
+                        '<span class="name">{{hotel.name}}</span><span class="price">£{{hotel.pricePerPerson}}pp</span><span class="stars">{{hotel.stars}} {{stars}}</span>', view);
 
             var self = this;
             a.onclick = function(){
@@ -97,10 +96,10 @@ HotelsView.prototype = {
     },
 
     rebuildFilters: function(){
-        this.filterByStarsForm.innerHTML = '';
+        this.filterByStarsForm.innerHTML = 'Filter By Stars:  ';
         for (var stars = 5; stars >= 1; stars--) {
             var label = document.createElement('label');
-            label.innerHTML = stars + ' stars';
+            label.innerHTML = stars;
             label.htmlFor = stars;
             var checkbox = document.createElement('input');
             checkbox.type = 'checkbox';

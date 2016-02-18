@@ -39,10 +39,10 @@ OutboundFlightsView.prototype = {
             var a = document.createElement('a');
             a.id = key;
             a.innerHTML = Mustache.render(
-                       '<span class="price">£{{price}}pp</span>'
+                       '<span class="price">£{{price}}<span class="pp">pp</span></span>'
             +           '<span class="time">Dep {{displayDates.departing.time}}</span>'
             +           '<span class="time">Arr {{displayDates.arriving.time}}</span>'
-            +           '<span class="time">on {{displayDates.arriving.date}}</span>'
+            +           '<span class="date">on {{displayDates.arriving.date}}</span>'
             +           '<span class="length">Transit {{displayDates.length}}</span>', flight);
 
             var self = this;
