@@ -97,13 +97,14 @@ box-shadow: rgba(255, 99, 71, 0.08) 0 -1px 3px;
 }
 
 #search:before {
-  content: "Start your journey here...";
+  content: "Start your journey here";
   color: tomato;
   font-size: 1.2rem;
   font-style: italic;
+  font-weight: 600;
   text-align: left;
   position: absolute;
-  top: -1.5rem;
+  top: -1.6rem;
   left: 0;
   right: 0;
   width: 100%;

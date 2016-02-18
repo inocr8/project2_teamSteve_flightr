@@ -25,6 +25,7 @@ var PackageSavedView = function(localStorageManager){
   this.savedButton.onclick = function(){
       console.log('show saved packages button clicked')
       this.rebuildSavedPackages();
+      this.element.scrollIntoView({block: "end", behavior: "smooth"});
   }.bind(this);
 
 }
