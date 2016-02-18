@@ -1,0 +1,56 @@
+/* Saved Packages Display
+__________________________________________________ */
+#saved-package-main {
+  margin-top: 1200px;
+  min-height: 300px;
+  max-width: 100%;
+  display: block;
+  background-color: #fff;
+  border: 3px solid tomato;
+  position: relative;
+}
+
+.saved-content {
+  /*z-index: 2;*/
+  overflow: hidden;
+  width: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 25px;
+  top: 53px;
+  display: inline-block;
+}
+
+#saved-package-main ul {
+  list-style: none;
+  position: relative;
+  text-align: left;
+  /*margin-right: 20px;*/
+}
+
+#saved-package-main ul li button {
+  /*background-color: red;*/
+  margin: 10px 50px 10px 10px;
+  display: inline-block;
+  vertical-align: bottom;
+  float:right;
+}
+
+#saved-package-main h1 {
+  margin: 20px 10px 20px 50px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#saved-package-main img {
+  vertical-align: top;
+  padding-bottom: 20px;
+}
+
+.hidden{
+    display:none;
+}
+
+.unhidden{
+    display:block;
+}

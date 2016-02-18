@@ -181,14 +181,12 @@ PackageView.prototype = {
         +       '<span class="name">{{hotel.name}}</span>'
         +       '<img src="{{hotel.address.image}}">'
         +       '<span class="stars">{{hotel.stars}} {{display.stars}}</span>'
-        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span'
+        +       '<span class="price">{{display.numberOfNights}} {{display.nights}} x {{display.numberOfPersons}} {{display.persons}} x £{{hotel.pricePerPerson}}</span>'
         +   '</div>', view);
 
         this.summaryHotel.innerHTML = output;
     }
 
-
-    ///// SUMMARY ONLY
 };
 
 module.exports = PackageView;

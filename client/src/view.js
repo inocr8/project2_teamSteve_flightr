@@ -46,14 +46,9 @@ var View = function(packagesManager, localStorageManager){
 
     }.bind(this);
 
-    // var savedPackages = this.localStorageManager.getPackages('savedPackageData');
-    // console.log(savedPackages);
-        // console.log(savedPackages[0]);
-
 };
 
     View.prototype = {
-
 
     displaySavedPackage: function(package){
         var packageOptions = this.packagesManager.createPackageOptions(package.itinerary);
@@ -62,7 +57,6 @@ var View = function(packagesManager, localStorageManager){
         this.renderPackageOptions(packageOptions);
         this.renderPackageView(packageOptions.currentPackage);
     },
-
 
     renderPackageOptions: function(packageOptions){
 
@@ -79,21 +73,10 @@ var View = function(packagesManager, localStorageManager){
         hotelsView.populateMap();
     },
 
-
     renderPackageView: function(package){
         var packageView = new PackageView(package, this.localStorageManager);
         packageView.rebuildPackageView();
-    },
-
-    // renderSavedPackageBreakdown: function(){
-
-    //     // var savedPackagesView = document.querySelector("package-saved");
-    //     var packageSavedView = new PackageSavedView(this, this.localStorageManager);
-    //     packageSavedView.rebuildSavedPackages();
-    // }
-
-
-
+    }
 
 };
 
