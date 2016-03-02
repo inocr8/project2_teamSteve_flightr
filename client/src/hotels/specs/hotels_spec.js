@@ -18,12 +18,81 @@ describe('Hotels', function(){
     assert.equal(1, hotels.data.length);
   });
 
+  it('should have a name, address and zip code', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    assert.equal("The Plaza", hotels.data[0].name);
+    expect(hotels.data[0]).to.deep.equal({
+      "name": "The Plaza",
+      "pricePerPerson": 32,
+      "rooms": 10,
+      "stars": 3,
+      "address": {
+        "building": "3",
+        "street": "Park Avenue",
+        "city": "Melbourne",
+        "zip": 3498890,
+        "image": "http://aff.bstatic.com/images/hotel/max500/305/30525176.jpg",
+        "lat": -37.827028986826775,
+        "lng": 144.95683343238613,
+        "latLng": {"lat": -37.827028986826775, "lng": 144.95683343238613}
+      }
+    });
+  });
+
+  it('should have a price per person to rent room', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    assert.equal(32, hotels.data[0].pricePerPerson);
+  });
+
+  it('should have a star rating as an integer', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].stars).to.be.an('number');
+  });
+
+  it('should have a number of rooms as an integer and greater than zero', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].rooms).to.be.an('number');
+    expect(hotels.data[0].rooms).to.be.above(0);
+  });
+
+  it('should have a latitude and longitude map position', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].address.lat).to.be.an('number');
+    expect(hotels.data[0].address.lng).to.be.an('number');
+    assert.equal(-37.827028986826775, hotels.data[0].address.lat);
+    assert.equal(144.95683343238613, hotels.data[0].address.lng);
+  });
+
+  it('should have a latLng object when created', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].address.latLng).to.be.an('object');
+  })
+
   it('should sort hotel by price, from lowest to highest', function(){
-    var hotel1 = hotelData[1];
-    var hotel2 = hotelData[0];
-    hotels.addHotel(hotel1);
-    hotels.addHotel(hotel2);
-    hotels.sortByPrice();
+    var hotel1 = hotelData[0];
+    var hotel2 = hotelData[1];
+    var hotelArray = [hotel2, hotel1];
+    hotelArray.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    hotels.sortByPriceAsc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotel1);
+  });
+
+  it('should sort hotel by price, from highest to lowest', function(){
+    var hotel1 = hotelData[0];
+    var hotel2 = hotelData[1];
+    var hotelArray = [hotel2, hotel1];
+    hotelArray.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    hotels.sortByPriceDesc(hotels.data);
     expect(hotels.data[0]).to.deep.equal(hotel2);
   });
 
@@ -31,31 +100,46 @@ describe('Hotels', function(){
     hotelData.forEach(function(hotel){
       hotels.addHotel(hotel);
     });
-    hotels.sortByPrice();
-    expect(hotels.data[0]).to.deep.equal({
-      "name": "Bargain Hostel",
-      "pricePerPerson": 12,
-      "rooms": 60,
-      "stars": 1,
-      "address": {
-        "building": "7",
-        "street": "Harbour Lane",
-        "city": "Melbourne",
-        "zip": 5789046
-      }
+    var hotelTest = hotelData[2];
+    hotels.sortByPriceAsc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotelTest);
+  });
+
+  it('should sort all hotels by price, from highest to lowest', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
     });
+    var hotelTest = hotelData[1];
+    hotels.sortByPriceDesc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotelTest);
+  });
+
+  it('should sort all hotels by stars, from lowest to highest', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    var hotelTest = hotelData[2];
+    hotels.sortByStarsAsc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotelTest);
+  });
+
+  it('should sort all hotels by stars, from highest to lowest', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    var hotelTest = hotelData[1];
+    hotels.sortByStarsDesc(hotels.data);
+    expect(hotels.data[0]).to.deep.equal(hotelTest);
   });
 
   it('should return the cheapest price from all prices', function(){
     hotelData.forEach(function(hotel){
       hotels.addHotel(hotel);
     });
-    hotels.sortByPrice();
+    hotels.sortByPriceAsc(hotels.data);
     hotels.hotelsReturnCheapest();
     assert.equal(12, hotels.hotelsReturnCheapest()[0].pricePerPerson);
   });
-
-
 
   it('should return all hotels from a city', function(){
     hotelData.forEach(function(hotel){
@@ -63,6 +147,48 @@ describe('Hotels', function(){
     });
     var hotelsInCanberra = hotels.hotelsByCity('Canberra');
     expect(hotelsInCanberra.length).to.equal(3);
+  });
+
+  it('should return an object when hotelsReturnRandom is called', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    var randomHotel = hotels.hotelsReturnRandom();
+    expect(randomHotel).to.be.an('object');
+  });
+
+  it('should return an object with the keys: name, pricePerPerson, rooms, stars, address', function(){
+    hotelData.forEach(function(hotel){
+      hotels.addHotel(hotel);
+    });
+    var randomHotel = hotels.hotelsReturnRandom();
+    expect(randomHotel).to.have.property('name');
+    expect(randomHotel).to.have.property('pricePerPerson');
+    expect(randomHotel).to.have.property('rooms');
+    expect(randomHotel).to.have.property('stars');
+    expect(randomHotel).to.have.property('address');
+  });
+
+  it('should return an hotel image as a string', function(){
+    var hotel = hotelData[0];
+    hotels.addHotel(hotel);
+    expect(hotels.data[0].address.image).to.be.a('string');
+  });
+
+  it('should each have a star rating between 1 and 5', function(){
+    hotelData.forEach(function(hotel){
+    expect(hotel.stars).to.be.above(0);
+    expect(hotel.stars).to.be.below(6);
+    });
+  });
+
+  it('should be able to calculate the average price of hotels', function(){
+    var hotels = [];
+    hotels.push(hotelData[0]);
+    hotels.push(hotelData[1]);
+    hotels.push(hotelData[2]);
+    var average = HotelsManager.prototype.averagePricePerPerson(hotels);
+    expect(average).to.equal(62);
   });
 
 });

@@ -1,32 +1,48 @@
+var moment = require('moment');
+
 var Itinerary = function(options){
-    this.numberOfPersons = options.numberOfPersons;
+    this.numberOfPersons = parseInt(options.numberOfPersons);
 
     this.departureAirport = options.departureAirport;
     this.arrivalAirport = options.arrivalAirport;
 
-    this.outboundDate = options.outboundDate;
-    this.returnDate = options.returnDate;
-
-    this.displayDates = this.formatDisplayDates(this.outboundDate, this.returnDate);
+    this.outboundDate = moment(options.outboundDate);
+    this.returnDate = moment(options.returnDate);
 
     this.destination = options.arrivalAirport;
-    this.checkin = null;
-    this.checkout = null;
+    this.checkin = moment(options.checkin) || null;
+    this.checkout = moment(options.checkout) || null;
 };
 
 Itinerary.prototype = {
-    formatDisplayDates: function(outboundDate, returnDate){
-        var dateOptions = {
-            weekday: 'short',
-            day: 'numeric',
-            month: 'short',
-            year: 'numeric'
-        };
-        return {
-            outboundDate: outboundDate.toLocaleDateString('en-GB', dateOptions),
-            returnDate: returnDate.toLocaleDateString('en-GB', dateOptions)
-        };
+    
+    updateCheckinCheckoutDates: function(checkin, checkout){
+        this.checkin = checkin;
+        this.checkout = checkout;
+    },
+
+    numberOfNights: function(){
+        return this.checkout.diff(this.checkin, 'day');
+    },
+
+    updateCheckin: function(date){
+        this.checkin = date;
+        this.checkinCheckoutUpdated();
+    },
+
+    updateCheckout: function(date){
+        this.checkout = date;
+        this.checkinCheckoutUpdated();
+    },
+
+    convertDatesToMoments: function(){
+        this.outboundDate = moment(this.outboundDate);
+        this.returnDate = moment(this.returnDate);
+
+        this.checkin = moment(this.checkin);
+        this.checkout = moment(this.checkout);
     }
+
 };
 
 module.exports = Itinerary;

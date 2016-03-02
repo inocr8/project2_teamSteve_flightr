@@ -1,0 +1,67 @@
+/* Saved Packages Display
+__________________________________________________ */
+#saved-package-main {
+  margin-top: 660px;
+  /*min-height: 100px;*/
+  width: 100%;
+/*  margin-top: -50px;*/
+  margin-bottom: 53px;
+  display: block;
+  position: relative;
+  background-color: #fff;
+  border: 3px solid tomato;
+}
+
+.saved-content {
+  z-index: 2;
+  overflow: hidden;
+  width: 100%;
+  font-size: 12px;
+  line-height: 20px;
+  padding: 25px;
+  top: 53px;
+  display: inline-block;
+}
+
+#saved-package-main ul {
+  list-style: none;
+  position: relative;
+  text-align: left;
+  /*margin-right: 20px;*/
+}
+
+#saved-package-main ul li button {
+  /*background-color: red;*/
+  margin: 0;
+  margin: 0 .2rem;
+  display: inline-block;
+  vertical-align: bottom;
+  float:right;
+}
+
+#saved-package-main h1 {
+  font-size: 1.8rem;
+  margin: 20px 10px 20px 50px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#saved-package-main p {
+  font-size: 1rem;
+  margin: 20px 10px 20px 50px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#saved-package-main img {
+  vertical-align: top;
+  /*padding-bottom: 20px;*/
+}
+
+.hidden{
+    display:none;
+}
+
+.unhidden{
+    display:block;
+}

@@ -6,21 +6,36 @@ HotelsManager.prototype = {
   addHotel: function(hotel){
     this.data.push(hotel);
   },
-  
-  sortByPrice: function(){
-    var sortedData = this.data.sort(function(a,b){
-      if (a.pricePerPerson > b.pricePerPerson) {
-    return 1;
+
+  addHotels: function(hotelsArray){
+    for (var hotel of hotelsArray) {
+      this.addHotel(hotel);
     }
-    if (a.pricePerPerson < b.pricePerPerson) {
-      return -1;
-    }
-    if (a.pricePerPerson === b.pricePerPerson){
-    return 0;
-    }
+  },
+
+  sortByPriceAsc: function(hotels){
+    return hotels.sort(function(a, b){
+      return a.pricePerPerson - b.pricePerPerson
     });
-    this.data = sortedData;
-  },  
+  },
+
+  sortByPriceDesc: function(hotels){
+    return hotels.sort(function(a, b){
+      return b.pricePerPerson - a.pricePerPerson
+    });
+  },
+
+  sortByStarsAsc: function(hotels){
+    return hotels.sort(function(a, b){
+      return a.stars - b.stars;
+    });
+  },
+
+  sortByStarsDesc: function(hotels){
+    return hotels.sort(function(a, b){
+      return b.stars - a.stars;
+    });
+  },
 
   hotelsReturnCheapest: function(){
     var cheapest = [this.data[0]];
@@ -39,7 +54,27 @@ HotelsManager.prototype = {
         cityHotels.push(hotel);
       }
     } 
-    return cityHotels;
+    return this.sortByPriceAsc(cityHotels);
+  },
+
+  hotelsReturnRandom: function(){
+    var random = this.data[Math.floor(Math.random()*this.data.length)];
+    return random;
+  },
+
+  filterByStars: function(hotels, stars){
+    return hotels.filter(function(hotel){
+      console.log(stars, 'include', hotel.stars, '?', stars.includes(hotel.stars));
+      return stars.includes(hotel.stars);
+    });
+  },
+
+  averagePricePerPerson: function(hotels){
+    var sum = hotels.reduce(function(a, b) {
+            return {pricePerPerson: a.pricePerPerson + b.pricePerPerson};
+        }).pricePerPerson;
+
+    return Math.round(sum / hotels.length);
   }
 
 };

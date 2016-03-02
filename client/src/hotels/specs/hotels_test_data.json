@@ -8,7 +8,11 @@
 "building": "3",
 "street": "Park Avenue",
 "city": "Melbourne",
-"zip": 3498890
+"zip": 3498890, 
+"image": "http://aff.bstatic.com/images/hotel/max500/305/30525176.jpg",
+"lat": -37.827028986826775,
+"lng": 144.95683343238613,
+"latLng": {"lat": -37.827028986826775, "lng": 144.95683343238613}
 }
 },
 {
@@ -20,7 +24,10 @@
 "building": "90",
 "street": "Grand Lane",
 "city": "Melbourne",
-"zip": 4788278
+"zip": 4788278, 
+"lat": -37.77417955127804,
+"lng": 144.94894442654916,
+"latLng": {"lat": -37.77417955127804, "lng": 144.94894442654916}
 }
 },
 {
@@ -32,7 +39,10 @@
 "building": "7",
 "street": "Harbour Lane",
 "city": "Melbourne",
-"zip": 5789046
+"zip": 5789046, 
+"lat": -37.86006907910177,
+"lng": 145.01567376149222,
+"latLng": {"lat":-37.86006907910177, "lng":145.01567376149222}
 }
 },
 {
@@ -44,7 +54,10 @@
 "building": "67",
 "street": "Hyde Street",
 "city": "Sydney",
-"zip": 8947548
+"zip": 8947548,
+"lat": -33.861726,
+"lng": 151.209967,
+"latLng": {"lat":-33.861726, "lng":151.209967}
 }
 },
 {
@@ -56,7 +69,10 @@
 "building": "10",
 "street": "Bourne Street",
 "city": "Sydney",
-"zip": 3673290
+"zip": 3673290,
+"lat": -33.886146945433566,
+"lng": 151.202938204774,
+"latLng": {"lat":-33.886146945433566, "lng":151.202938204774}
 }
 },
 {
@@ -68,7 +84,10 @@
 "building": "64",
 "street": "Stell Avenue",
 "city": "Sydney",
-"zip": 4567824
+"zip": 4567824,
+"lat": -33.88803587448435,
+"lng": 151.23256586525508,
+"latLng": {"lat":-33.88803587448435, "lng":151.23256586525508}
 }
 },
 {
@@ -80,31 +99,40 @@
 "building": "17",
 "street": "Kestrel Street",
 "city": "Canberra",
-"zip": 567818
+"zip": 567818,
+"lat": -35.3075,
+"lng": 149.1244,
+"latLng": {"lat":-35.3075, "lng":149.1244}
+}
+},
+{
+"name": "Hilton",
+"pricePerPerson": 95,
+"rooms": 170,
+"stars": 5,
+"address": {
+"building": "50",
+"street": "May Lane",
+"city": "Canberra",
+"zip": 5678427,
+"lat": -35.3475,
+"lng": 149.1360,
+"latLng": {"lat":-35.3475, "lng":149.1360}
 }
 },
 {
 "name": "Surfer's Inn",
-"pricePerPerson": 80,
+"pricePerPerson": 100,
 "rooms": 8,
 "stars": 4,
 "address": {
 "building": "35",
 "street": "High Street",
 "city": "Canberra",
-"zip": 6758473
-}
-},
-{
-"name": "Hilton",
-"pricePerPerson": 102,
-"rooms": 170,
-"stars": 4,
-"address": {
-"building": "50",
-"street": "May Lane",
-"city": "Canberra",
-"zip": 5678427
+"zip": 6758473,
+"lat": -35.3250,
+"lng": 149.1250,
+"latLng": {"lat":-35.3250, "lng":149.1250}
 }
 }
 ]
