@@ -1,6 +1,6 @@
 var Mustache = require('mustache');
-var Itinerary = require('./itinerary/itinerary.js');
-var Flight = require('./flights/flight.js');
+var Itinerary = require('../itinerary/itinerary.js');
+var Flight = require('../flights/flight.js');
 
 var PackageSavedView = function(localStorageManager){
   this.localStorageManager = localStorageManager;

@@ -1,5 +1,5 @@
 var Mustache = require('mustache');
-var Package = require('./packages/package.js');
+var Package = require('../packages/package.js');
 
 var PackageView = function(package, localStorageManager){
     this.localStorageManager = localStorageManager;

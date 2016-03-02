@@ -1,4 +1,4 @@
-var Itinerary = require('./itinerary/itinerary.js');
+var Itinerary = require('../itinerary/itinerary.js');
 var PackageView = require('./packageView.js');
 var PackageSavedView = require('./packageSavedView.js');
 var OutboundFlightsView = require('./outboundFlightsView.js');

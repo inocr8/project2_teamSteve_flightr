@@ -1,6 +1,6 @@
 var Mustache = require('mustache');
-var HotelMap = require('./map/map.js');
-var HotelsManager = require('./hotels/hotelsManager.js');
+var HotelMap = require('../map/map.js');
+var HotelsManager = require('../hotels/hotelsManager.js');
 
 var HotelsView = function(packageOptions){
     this.packageOptions = packageOptions;

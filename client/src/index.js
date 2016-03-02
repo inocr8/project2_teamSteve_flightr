@@ -1,5 +1,5 @@
-var View = require('./view.js');
-var PackageSavedView = require('./packageSavedView.js');
+var View = require('./views/view.js');
+var PackageSavedView = require('./views/packageSavedView.js');
 
 var flightsData = require('./flightsData.json');
 var hotelsData = require('./hotelsData.json');
@@ -9,7 +9,7 @@ var HotelsManager = require('./hotels/hotelsManager.js');
 var PackagesManager = require('./packages/packagesManager.js');
 
 var LocalStorageManager = require('./localStorage/localStorageManager.js');
-var HotelRandomView = require('./hotelRandomView2.js');
+var HotelRandomView = require('./views/hotelRandomView2.js');
 
 
 window.onload = function(){
