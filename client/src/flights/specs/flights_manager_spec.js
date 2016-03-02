@@ -4,9 +4,10 @@ var returnFlightsData = require('./return_flights_test_data.json');
 var chai = require('chai');
 var expect = require('chai').expect;
 var assert = require('chai').assert;
+var moment = require('moment');
 chai.use(require('chai-datetime'));
 
-describe('Flights', function(){
+describe('Flights Manager', function(){
     beforeEach(function createFlights(){
         flights = new FlightsManager();
     });
@@ -15,18 +16,15 @@ describe('Flights', function(){
         expect(flights.data).to.deep.equal([]);
     });
 
-    it('should return true for date equality, ignoring time', function(){
-        var date1 = new Date("2016-03-28T08:00:00");
-        var date2 = new Date("2016-03-28T12:30:00");
-        var bool = flights.sameDay(date1, date2);
-        expect(bool).to.equal(true);
-    });
-
     it('should be able to add a flight, with corrected formated date', function(){
         var flight = outgoingFlightsData[0];
         flights.addFlight(flight);
+
+        var departingDate = moment('2016-03-28T08:00:00');
+        departingDate._isValid = true;
+        
         expect(flights.data[0].departure).to.equal("Edinburgh");
-        expect(flights.data[0].departing).to.equalDate(new Date('Mon, 28 Mar 2016 08:00:00 GMT'));
+        expect(flights.data[0].departing).to.deep.equal(departingDate);
     });
 
     it('should be able to add multiple flight', function(){
@@ -88,12 +86,14 @@ describe('Flights with Data Outgoing', function(){
 
     it('should sort all flights by price, lowest to highest', function(){
         var flightPriceTest = flights.sortByPrice(flights.data)[0];
-        var dateDepart = new Date("2016-03-28T11:00");
-        var dateArrive = new Date("2016-03-29T13:00");
+        var dateDepart = moment("2016-03-28T11:00:00");
+        dateDepart._isValid = true;
+        var dateArrive = moment("2016-03-29T13:00:00");
+        dateArrive._isValid = true;
         assert.equal("Edinburgh", flightPriceTest.departure);
         assert.equal("Canberra", flightPriceTest.arrival);
-        expect(dateDepart).to.equalDate(flightPriceTest.departing);
-        expect(dateArrive).to.equalDate(flightPriceTest.arriving);
+        expect(flightPriceTest.departing).to.deep.equal(dateDepart);
+        expect(flightPriceTest.arriving).to.deep.equal(dateArrive);
     });
 
     it('should sort flights by departing, earliest to latest', function(){
